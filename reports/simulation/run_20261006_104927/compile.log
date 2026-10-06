@@ -1,0 +1,155 @@
+Vivado Simulator v2023.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: E:/Vivado/2023.2/bin/unwrapped/win64.o/xelab.exe -prj Synthesis/cv32e40p_soc.prj -top soc_tb -s soc_tb_sim --relax 
+Multi-threading is on. Using 14 slave threads.
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_apu_core_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_fpu_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/ecg_soc_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_if_stage.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_if_stage
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_cs_registers.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_cs_registers
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_register_file_ff.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_register_file
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_load_store_unit.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_load_store_unit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_id_stage.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_id_stage
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_aligner.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_aligner
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_decoder
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_compressed_decoder.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_compressed_decoder
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_fifo.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_fifo
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_prefetch_buffer.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_prefetch_buffer
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_hwloop_regs.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_hwloop_regs
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_mult.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_mult
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_int_controller.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_int_controller
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_ex_stage.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_ex_stage
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu_div.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_alu_div
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_alu
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_ff_one.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_ff_one
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_popcnt.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_popcnt
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_apu_disp.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_apu_disp
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_controller.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_controller
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_obi_interface.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_obi_interface
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_prefetch_controller.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_prefetch_controller
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/bhv/cv32e40p_sim_clock_gate.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_clock_gate
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_sleep_unit.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_sleep_unit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_core.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_core
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_top.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_top
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/obi_to_apb.sv" into library work
+INFO: [VRFC 10-311] analyzing module obi_to_apb
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/tcm_sram.sv" into library work
+INFO: [VRFC 10-311] analyzing module tcm_sram
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/sync_fifo.sv" into library work
+INFO: [VRFC 10-311] analyzing module sync_fifo
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/spi_master.sv" into library work
+INFO: [VRFC 10-311] analyzing module spi_master
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/spi_master_apb.sv" into library work
+INFO: [VRFC 10-311] analyzing module spi_master_apb
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/uart_controller.sv" into library work
+INFO: [VRFC 10-311] analyzing module uart_controller
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/uart_apb.sv" into library work
+INFO: [VRFC 10-311] analyzing module uart_apb
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/timer_apb.sv" into library work
+INFO: [VRFC 10-311] analyzing module timer_apb
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/gpio_apb.sv" into library work
+INFO: [VRFC 10-311] analyzing module gpio_apb
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/ecg_dma.sv" into library work
+INFO: [VRFC 10-311] analyzing module ecg_dma
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/mamba_bridge.sv" into library work
+INFO: [VRFC 10-311] analyzing module mamba_bridge
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/apb_interconnect.sv" into library work
+INFO: [VRFC 10-311] analyzing module apb_interconnect
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/ecg_soc_top.sv" into library work
+INFO: [VRFC 10-311] analyzing module ecg_soc_top
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/cv32e40p_ecg_soc_top.sv" into library work
+INFO: [VRFC 10-311] analyzing module cv32e40p_ecg_soc_top
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/Simulation/ads1292r_model.sv" into library work
+INFO: [VRFC 10-311] analyzing module ads1292r_model
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "E:/ResearchOnWork/RISC_V_CORE/Simulation/soc_tb.sv" into library work
+INFO: [VRFC 10-311] analyzing module soc_tb
+WARNING: [VRFC 10-3824] variable 'prev_pc' must explicitly be declared as automatic or static [E:/ResearchOnWork/RISC_V_CORE/Simulation/soc_tb.sv:224]
+WARNING: [VRFC 10-3824] variable 'stall_cycles' must explicitly be declared as automatic or static [E:/ResearchOnWork/RISC_V_CORE/Simulation/soc_tb.sv:225]
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3705] select index 5 into 's_prdata' is out of bounds [E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/ecg_soc_top.sv:257]
+WARNING: [VRFC 10-3705] select index 5 into 's_pready' is out of bounds [E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/ecg_soc_top.sv:258]
+WARNING: [VRFC 10-3705] select index 5 into 's_pslverr' is out of bounds [E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/ecg_soc_top.sv:259]
+Completed static elaboration
+Starting simulation data flow analysis
+WARNING: [XSIM 43-4100] "E:/ResearchOnWork/RISC_V_CORE/Simulation/soc_tb.sv" Line 13. Module soc_tb has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/ResearchOnWork/RISC_V_CORE/Simulation/ads1292r_model.sv" Line 12. Module ads1292r_model_default has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/ResearchOnWork/RISC_V_CORE/Simulation/soc_tb.sv" Line 13. Module soc_tb has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "E:/ResearchOnWork/RISC_V_CORE/Simulation/ads1292r_model.sv" Line 12. Module ads1292r_model_default has a timescale but at least one module in design doesn't have timescale.
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package work.ecg_soc_pkg
+Compiling package work.cv32e40p_apu_core_pkg
+Compiling package work.cv32e40p_pkg
+Compiling package work.cv32e40p_fpu_pkg
+Compiling module work.tcm_sram(MEM_SIZE_BYTES=32'b0100...
+Compiling module work.tcm_sram(MEM_SIZE_BYTES=32'b0100...
+Compiling module work.obi_to_apb
+Compiling module work.apb_interconnect(NUM_SLAVES=32'b...
+Compiling module work.sync_fifo(DATA_WIDTH=32'b01000,F...
+Compiling module work.uart_controller(FIFO_DEPTH=32'b0...
+Compiling module work.uart_apb
+Compiling module work.spi_master
+Compiling module work.spi_master_apb
+Compiling module work.timer_apb
+Compiling module work.gpio_apb
+Compiling module work.ecg_dma(SAMPLES_PER_BANK=32'b010...
+Compiling module work.ecg_soc_top_default
+Compiling module work.cv32e40p_clock_gate
+Compiling module work.cv32e40p_sleep_unit_default
+Compiling module work.cv32e40p_prefetch_controller(DEP...
+Compiling module work.cv32e40p_fifo(DEPTH=32'b010)
+Compiling module work.cv32e40p_obi_interface_default
+Compiling module work.cv32e40p_prefetch_buffer_default
+Compiling module work.cv32e40p_aligner
+Compiling module work.cv32e40p_compressed_decoder
+Compiling module work.cv32e40p_if_stage(COREV_PULP=1)
+Compiling module work.cv32e40p_register_file(ADDR_WIDT...
+Compiling module work.cv32e40p_decoder
+Compiling module work.cv32e40p_controller(COREV_PULP=1...
+Compiling module work.cv32e40p_int_controller_default
+Compiling module work.cv32e40p_hwloop_regs_default
+Compiling module work.cv32e40p_id_stage_default
+Compiling module work.cv32e40p_popcnt
+Compiling module work.cv32e40p_ff_one_default
+Compiling module work.cv32e40p_alu_div_default
+Compiling module work.cv32e40p_alu
+Compiling module work.cv32e40p_mult
+Compiling module work.cv32e40p_ex_stage(COREV_PULP=1)
+Compiling module work.cv32e40p_obi_interface(TRANS_STA...
+Compiling module work.cv32e40p_load_store_unit_default
+Compiling module work.cv32e40p_cs_registers(COREV_PULP...
+Compiling module work.cv32e40p_core(COREV_PULP=1)
+Compiling module work.cv32e40p_top(COREV_PULP=1)
+Compiling module work.cv32e40p_ecg_soc_top(BOOT_HEX="F...
+Compiling module work.ads1292r_model_default
+Compiling module work.soc_tb
+Built simulation snapshot soc_tb_sim

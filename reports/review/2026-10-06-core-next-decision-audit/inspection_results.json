@@ -1,0 +1,184 @@
+{
+    "boundary":  "read existing artifact bytes and hashes; no project code executed",
+    "firmware_hashes":  [
+                            {
+                                "file":  "hello.elf",
+                                "expected_sha256":  "a03a413b9aa1c7b8173d934a7a0776620efc51e802f12bc1f5adfaf3697ce48d",
+                                "actual_sha256":  "a03a413b9aa1c7b8173d934a7a0776620efc51e802f12bc1f5adfaf3697ce48d",
+                                "match":  true
+                            },
+                            {
+                                "file":  "hello.bin",
+                                "expected_sha256":  "6b73cd0a4c8b2604dee9b7da889c25f821d6b9f3abfe4c4ec1015bd336977ea1",
+                                "actual_sha256":  "6b73cd0a4c8b2604dee9b7da889c25f821d6b9f3abfe4c4ec1015bd336977ea1",
+                                "match":  true
+                            },
+                            {
+                                "file":  "hello.hex",
+                                "expected_sha256":  "bc931c029e3d5a686ec25b929f3bc1972b6bbe0fdffdfdfd776a455a8a21fe64",
+                                "actual_sha256":  "bc931c029e3d5a686ec25b929f3bc1972b6bbe0fdffdfdfd776a455a8a21fe64",
+                                "match":  true
+                            },
+                            {
+                                "file":  "hello.dump",
+                                "expected_sha256":  "f642d68ebcb581f0060542826a3d4ea5f5dabae876ee28316a0b7621073875ad",
+                                "actual_sha256":  "f642d68ebcb581f0060542826a3d4ea5f5dabae876ee28316a0b7621073875ad",
+                                "match":  true
+                            },
+                            {
+                                "file":  "hello.map",
+                                "expected_sha256":  "1884751c53bc4f9b16f14c1a713d7e9a33b5e0d51f20330d4bfe70f95ad50824",
+                                "actual_sha256":  "1884751c53bc4f9b16f14c1a713d7e9a33b5e0d51f20330d4bfe70f95ad50824",
+                                "match":  true
+                            },
+                            {
+                                "file":  "hello.nm",
+                                "expected_sha256":  "c5dc47cf03e50577d02b62ccf1aaf659d881de6a14a3b418aee004638edace5f",
+                                "actual_sha256":  "c5dc47cf03e50577d02b62ccf1aaf659d881de6a14a3b418aee004638edace5f",
+                                "match":  true
+                            },
+                            {
+                                "file":  "hello.readelf",
+                                "expected_sha256":  "e58b21832317f94347f220cef8e9a80a181261e57a228cab998e9cad05fe9b71",
+                                "actual_sha256":  "e58b21832317f94347f220cef8e9a80a181261e57a228cab998e9cad05fe9b71",
+                                "match":  true
+                            }
+                        ],
+    "fpga_archived_artifact_hashes":  [
+                                          {
+                                              "manifest_path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/utilization_synth.rpt",
+                                              "archived_path":  "Synthesis\\fpga\\ecg_artix7\\reports\\run_20261006_093347\\utilization_synth.rpt",
+                                              "expected_sha256":  "d8ca46be43d6f9edc5d207254e32471f11f27094a771982189fc1b6ca1bfc3cb",
+                                              "actual_sha256":  "d8ca46be43d6f9edc5d207254e32471f11f27094a771982189fc1b6ca1bfc3cb",
+                                              "match":  true
+                                          },
+                                          {
+                                              "manifest_path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/timing_synth.rpt",
+                                              "archived_path":  "Synthesis\\fpga\\ecg_artix7\\reports\\run_20261006_093347\\timing_synth.rpt",
+                                              "expected_sha256":  "e7424f77ebf2b4c1fe849f9865765827588df8b6dcad51b5825dfbc609141eda",
+                                              "actual_sha256":  "e7424f77ebf2b4c1fe849f9865765827588df8b6dcad51b5825dfbc609141eda",
+                                              "match":  true
+                                          },
+                                          {
+                                              "manifest_path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/utilization_placed.rpt",
+                                              "archived_path":  "Synthesis\\fpga\\ecg_artix7\\reports\\run_20261006_093347\\utilization_placed.rpt",
+                                              "expected_sha256":  "1457387b8ea3e9d202df4b476426c52563954d0374a181e89babc8d178110915",
+                                              "actual_sha256":  "1457387b8ea3e9d202df4b476426c52563954d0374a181e89babc8d178110915",
+                                              "match":  true
+                                          },
+                                          {
+                                              "manifest_path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/timing_routed.rpt",
+                                              "archived_path":  "Synthesis\\fpga\\ecg_artix7\\reports\\run_20261006_093347\\timing_routed.rpt",
+                                              "expected_sha256":  "15be4f6e08bfdfbe3a7468053ca65badb3ab6b88d73fc019961f722507c3358e",
+                                              "actual_sha256":  "15be4f6e08bfdfbe3a7468053ca65badb3ab6b88d73fc019961f722507c3358e",
+                                              "match":  true
+                                          },
+                                          {
+                                              "manifest_path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/timing_min_max.rpt",
+                                              "archived_path":  "Synthesis\\fpga\\ecg_artix7\\reports\\run_20261006_093347\\timing_min_max.rpt",
+                                              "expected_sha256":  "ff20ab4e563e775edd271512dd2976bad633a3fa8de262185f6b3307373785ee",
+                                              "actual_sha256":  "ff20ab4e563e775edd271512dd2976bad633a3fa8de262185f6b3307373785ee",
+                                              "match":  true
+                                          },
+                                          {
+                                              "manifest_path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/timing_setup.rpt",
+                                              "archived_path":  "Synthesis\\fpga\\ecg_artix7\\reports\\run_20261006_093347\\timing_setup.rpt",
+                                              "expected_sha256":  "0217b18a7a1001ab5e931d86897b7228e78a33b08e013991a63e023cb921efde",
+                                              "actual_sha256":  "0217b18a7a1001ab5e931d86897b7228e78a33b08e013991a63e023cb921efde",
+                                              "match":  true
+                                          },
+                                          {
+                                              "manifest_path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/timing_hold.rpt",
+                                              "archived_path":  "Synthesis\\fpga\\ecg_artix7\\reports\\run_20261006_093347\\timing_hold.rpt",
+                                              "expected_sha256":  "489a3a5c4e0368bb3b883731d7e4563f03fccbf5087eb2a68a6686455260b622",
+                                              "actual_sha256":  "489a3a5c4e0368bb3b883731d7e4563f03fccbf5087eb2a68a6686455260b622",
+                                              "match":  true
+                                          },
+                                          {
+                                              "manifest_path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/check_timing.rpt",
+                                              "archived_path":  "Synthesis\\fpga\\ecg_artix7\\reports\\run_20261006_093347\\check_timing.rpt",
+                                              "expected_sha256":  "5b8b75fadeaea022629f0060c976aa01923b0601a12461b9ed0eaad3d102faba",
+                                              "actual_sha256":  "5b8b75fadeaea022629f0060c976aa01923b0601a12461b9ed0eaad3d102faba",
+                                              "match":  true
+                                          },
+                                          {
+                                              "manifest_path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/utilization_hierarchical.rpt",
+                                              "archived_path":  "Synthesis\\fpga\\ecg_artix7\\reports\\run_20261006_093347\\utilization_hierarchical.rpt",
+                                              "expected_sha256":  "7663a05e4ed4f13140e1fe73f38791026f00f251c9ef14a2e1b05155fe329190",
+                                              "actual_sha256":  "7663a05e4ed4f13140e1fe73f38791026f00f251c9ef14a2e1b05155fe329190",
+                                              "match":  true
+                                          },
+                                          {
+                                              "manifest_path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/drc_routed.rpt",
+                                              "archived_path":  "Synthesis\\fpga\\ecg_artix7\\reports\\run_20261006_093347\\drc_routed.rpt",
+                                              "expected_sha256":  "2fbc732f42374e203f836624039f9b48c004176654cd8755de1f9d955f6186a0",
+                                              "actual_sha256":  "2fbc732f42374e203f836624039f9b48c004176654cd8755de1f9d955f6186a0",
+                                              "match":  true
+                                          },
+                                          {
+                                              "manifest_path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/power_routed.rpt",
+                                              "archived_path":  "Synthesis\\fpga\\ecg_artix7\\reports\\run_20261006_093347\\power_routed.rpt",
+                                              "expected_sha256":  "f29376725d964d1b3f788828faa22d0e482c00f917921702f191d5b427e9a18b",
+                                              "actual_sha256":  "f29376725d964d1b3f788828faa22d0e482c00f917921702f191d5b427e9a18b",
+                                              "match":  true
+                                          },
+                                          {
+                                              "manifest_path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/routed.dcp",
+                                              "archived_path":  "Synthesis\\fpga\\ecg_artix7\\reports\\run_20261006_093347\\routed.dcp",
+                                              "expected_sha256":  "3889587a6e51ad7a86ee9ff0f6a532eb07466cd95981a1fe359c878aa4a446a3",
+                                              "actual_sha256":  "3889587a6e51ad7a86ee9ff0f6a532eb07466cd95981a1fe359c878aa4a446a3",
+                                              "match":  true
+                                          },
+                                          {
+                                              "manifest_path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/cv32e40p_ecg_soc.bit",
+                                              "archived_path":  "Synthesis\\fpga\\ecg_artix7\\reports\\run_20261006_093347\\cv32e40p_ecg_soc.bit",
+                                              "expected_sha256":  "de3c631ae0896e88cc41437daeb7f78baf2f50e9ab7dd126597cc544e8deeec4",
+                                              "actual_sha256":  "de3c631ae0896e88cc41437daeb7f78baf2f50e9ab7dd126597cc544e8deeec4",
+                                              "match":  true
+                                          },
+                                          {
+                                              "manifest_path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/run_20261006_093347/vivado.log",
+                                              "archived_path":  "Synthesis\\fpga\\ecg_artix7\\reports\\run_20261006_093347\\vivado.log",
+                                              "expected_sha256":  "cedadbe48ae3aa312775baa209326becce207146d34b1b52fb669ac4ba61d38e",
+                                              "actual_sha256":  "cedadbe48ae3aa312775baa209326becce207146d34b1b52fb669ac4ba61d38e",
+                                              "match":  true
+                                          }
+                                      ],
+    "firmware_byte_inspection":  {
+                                     "elf_load_segments":  2,
+                                     "binary_bytes":  2108,
+                                     "hex_words":  8192,
+                                     "elf_binary_mismatched_bytes":  0,
+                                     "binary_hex_mismatched_bytes":  0,
+                                     "method":  "PowerShell BitConverter decoded ELF32 headers; compare PT_LOAD file payload at physical address to binary; compare little-endian hex prefix"
+                                 },
+    "routed_summary":  {
+                           "run_id":  "20261006_093347",
+                           "top":  "ecg_arty_top",
+                           "part":  "xc7a100tcsg324-1",
+                           "compute_period_ns":  20,
+                           "wns_ns":  -0.815,
+                           "tns_ns":  -63.389,
+                           "setup_failing_endpoints":  215,
+                           "setup_total_endpoints":  18669,
+                           "whs_ns":  0.044,
+                           "ths_ns":  0,
+                           "hold_failing_endpoints":  0,
+                           "hold_total_endpoints":  18669,
+                           "boundary":  "routed global census",
+                           "status":  "FAIL"
+                       },
+    "parameter_declaration_count":  {
+                                        "weight_elements":  31204,
+                                        "bias_elements":  500,
+                                        "declared_payload_bytes":  44492,
+                                        "method":  "regex of const int8/16/32 array declarations; not linked live-footprint measurement"
+                                    },
+    "allocation_count":  {
+                             "full_inference_live_bytes":  96000,
+                             "nested_stem_bytes":  88000,
+                             "combined_live_bytes":  184000,
+                             "boundary":  "source-derived allocation sizes; no target allocation execution"
+                         },
+    "canonical_requirement_count":  19
+}

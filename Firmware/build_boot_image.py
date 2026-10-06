@@ -78,7 +78,7 @@ def calculate_sha256(filepath: Path) -> str:
     return h.hexdigest()
 
 
-def build_firmware(out_dir: Path, prefix_override: str = None) -> int:
+def build_firmware(out_dir: Path, prefix_override: str = None, cascade_diagnostic: bool = False) -> int:
     prefix, tools = find_toolchain(prefix_override)
 
     if not prefix:
@@ -109,6 +109,8 @@ def build_firmware(out_dir: Path, prefix_override: str = None) -> int:
     if probe_proc.returncode != 0:
         isa = "-march=rv32imc"
 
+    diag_flag = ["-DENABLE_CASCADE_DIAGNOSTIC=1"] if cascade_diagnostic else []
+
     c_flags = [
         tools["gcc"],
         isa,
@@ -120,6 +122,7 @@ def build_firmware(out_dir: Path, prefix_override: str = None) -> int:
         "-ffreestanding",
         "-nostdlib",
         "-nostartfiles",
+        *diag_flag,
         "-T", str(BOOT_DIR / "link.ld"),
         str(BOOT_DIR / "crt0.S"),
         str(BOOT_DIR / "hello.c"),
@@ -204,6 +207,7 @@ def main():
     parser = argparse.ArgumentParser(description="Firmware Build Automation for CV32E40P ECG SoC")
     parser.add_argument("--prefix", type=str, default=None, help="RISC-V toolchain prefix (e.g. riscv32-unknown-elf-)")
     parser.add_argument("--out-dir", type=str, default=None, help="Output directory for build artifacts")
+    parser.add_argument("--cascade-diagnostic", action="store_true", help="Compile diagnostic build with TC-CASCADE-006 synthetic checks")
 
     args = parser.parse_args()
 
@@ -213,7 +217,7 @@ def main():
         run_id = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
         out_dir = FIRMWARE_DIR / "build_runs" / f"run_{run_id}"
 
-    ret = build_firmware(out_dir, args.prefix)
+    ret = build_firmware(out_dir, args.prefix, cascade_diagnostic=args.cascade_diagnostic)
     sys.exit(ret)
 
 

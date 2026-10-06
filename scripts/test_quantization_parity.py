@@ -43,15 +43,17 @@ def main():
     root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     weights_header = os.path.join(root_dir, "Firmware", "dsp", "resumamba_weights.h")
     bias_header = os.path.join(root_dir, "Firmware", "dsp", "resumamba_bias.h")
+    scales_header = os.path.join(root_dir, "Firmware", "dsp", "resumamba_scales.h")
+    contract_json = os.path.join(root_dir, "spec", "resumamba_integer_contract.json")
     checkpoint_path = r"E:\ResearchOnWork\Backup\PhD_VNU\checkpoints_pt\resumamba_30k.pt"
 
     print("================================================================")
     print("  RESUMAMBA-30K INT8/INT16 QUANTIZATION PARITY VERIFICATION")
     print("================================================================")
 
-    # Gate 1: Check header existence
-    if not os.path.exists(weights_header) or not os.path.exists(bias_header):
-        print(f"[FAIL] Missing quantized header files: {weights_header} or {bias_header}")
+    # Gate 1: Check header and contract existence
+    if not os.path.exists(weights_header) or not os.path.exists(bias_header) or not os.path.exists(scales_header) or not os.path.exists(contract_json):
+        print(f"[FAIL] Missing quantized header or contract files: {weights_header}, {bias_header}, {scales_header}, {contract_json}")
         print("Run scripts/quantize_resumamba.py first to generate firmware tables.")
         sys.exit(1)
 

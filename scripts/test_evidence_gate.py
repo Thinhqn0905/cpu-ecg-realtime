@@ -18,8 +18,10 @@ Enforces rejection of false-success runs per Tasks 1-2 in docs/plans/2026-10-06-
 import unittest
 import tempfile
 import os
+import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from check_evidence import accepted_run, validate_run, parse_test_events, calculate_sha256
 
 
@@ -148,6 +150,29 @@ class TestEvidenceGate(unittest.TestCase):
         )
         self.assertFalse(is_valid)
         self.assertTrue(any("Fatal errors/aborts" in e for e in errors))
+
+    def test_sva_error_rejected(self):
+        # Simulation log has PASS marker but also contains SVA $error, %Error:, or [ERROR]
+        expected = {"TC-001"}
+        log_content = (
+            "[PASS] TC-001: Intermediate step\n"
+            "%Error: p_cs_setup_time SVA assertion violated at time 45000\n"
+            "$error(\"CS hold violation\");\n"
+        )
+        observed, _ = parse_test_events(log_content)
+        self.assertFalse(accepted_run(
+            0, 0, expected, observed, [self.valid_artifact],
+            log_content=log_content
+        ))
+
+        is_valid, errors = validate_run(
+            compile_exit=0, simulation_exit=0,
+            expected_testcases=expected,
+            log_content=log_content,
+            artifacts=[self.valid_artifact]
+        )
+        self.assertFalse(is_valid)
+        self.assertTrue(any("Fatal errors/aborts detected" in e for e in errors))
 
     def test_rejected_corrupted_artifact_hash(self):
         expected = {"TC-001"}

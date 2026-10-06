@@ -64,8 +64,11 @@ def check_fatal_in_log(log_content: str) -> List[str]:
     fatal_patterns = [
         re.compile(r'\$fatal', re.IGNORECASE),
         re.compile(r'\[FATAL\]', re.IGNORECASE),
+        re.compile(r'\$error', re.IGNORECASE),
+        re.compile(r'\[ERROR\]', re.IGNORECASE),
+        re.compile(r'%Error:', re.IGNORECASE),
         re.compile(r'Segmentation fault', re.IGNORECASE),
-        re.compile(r'Assertion .* failed', re.IGNORECASE),
+        re.compile(r'Assertion.*failed', re.IGNORECASE),
         re.compile(r'Core dump', re.IGNORECASE),
         re.compile(r'Watchdog expired', re.IGNORECASE)
     ]

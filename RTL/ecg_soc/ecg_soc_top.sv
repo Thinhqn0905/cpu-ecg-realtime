@@ -254,6 +254,9 @@ module ecg_soc_top
         .event_irq_o     (mamba_event_irq)
       );
     end else begin : gen_no_mamba
+      assign s_prdata[5]     = 32'h0000_0000;
+      assign s_pready[5]     = 1'b1;
+      assign s_pslverr[5]    = 1'b0;
       assign mamba_event_irq = 1'b0;
     end
   endgenerate

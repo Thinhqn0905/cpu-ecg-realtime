@@ -1,0 +1,29 @@
+﻿{
+    "run_id":  "20261006_105354",
+    "timestamp":  "2026-10-06T11:04:02Z",
+    "target_part":  "xc7a100tcsg324-1",
+    "toolchain":  "E:\\Vivado\\2023.2\\bin\\vivado.bat",
+    "exit_code":  1,
+    "duration_seconds":  608.62024209999993,
+    "log_file":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/run_20261006_105354/vivado.log",
+    "core_sha256":  "b0d9341cc231d72333b196748a3500c32f3335b6e24092f8565dce776720aeed",
+    "boot_hex_sha256":  "9d8e5be2a90d57ff6cb9f61abee0dc0f4df756ce6d4f5a8310ab75c0b6d49810",
+    "artifacts":  [
+                      {
+                          "sha256":  "77646b472f26666b4f601b3c2bcaac54d2cd3a390b5012e4f99885616cd05b3c",
+                          "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/run_20261006_105354/utilization_synth.rpt"
+                      },
+                      {
+                          "sha256":  "feb24551e7e07f1267374775e6fd51ca910e3ff0a639ea554e339c046b3d0e9e",
+                          "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/run_20261006_105354/timing_synth.rpt"
+                      },
+                      {
+                          "sha256":  "f3b27ce661a3919920223e79473ccb591b90437fad0cf07e5d04dec6c56eea7e",
+                          "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/run_20261006_105354/utilization_placed.rpt"
+                      },
+                      {
+                          "sha256":  "3532bfb05848f45d3a4e4828f14239217d3e1a3011fc27aa3e49296aad3a09d5",
+                          "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/run_20261006_105354/vivado.log"
+                      }
+                  ]
+}

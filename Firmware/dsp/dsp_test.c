@@ -2,20 +2,21 @@
  * SPDX-License-Identifier: Apache-2.0
  *
  * DSP Arithmetic & Pan-Tompkins Verification Testbench (dsp_test.c)
- * Verifies:
- * 1. Zero input test (all zeros -> output zero) for scalar ref and ecg_fir_pulp
+ * Verifies per Instruction/claim_integrity.md and docs/plans/2026-10-06-core-next-decision-audit.md:
+ * 1. Zero input test (all zeros -> output zero) for scalar reference
  * 2. Impulse response test (unit impulse -> output matches tap 0)
- * 3. Exact arithmetic equivalence between ecg_fir_pulp and ecg_fir_scalar_reference
- * 4. Cycle count measurement via mcycle CSR (honest reporting, no mock values)
+ * 3. Exact arithmetic equivalence between ecg_fir_pulp assembly and ecg_fir_scalar_reference
+ *    (Executed on RISC-V target; explicitly SKIPPED on host to prevent stub false-pass)
+ * 4. Cycle count measurement via hardware mcycle CSR
+ *    (Executed on RISC-V target; explicitly SKIPPED on host)
  * 5. Pan-Tompkins squaring overflow verification (|deriv| > 46340)
  * 6. Pan-Tompkins complete QRS detection on synthetic cardiac waveform
  */
 
 #include <stdint.h>
 #include <stdbool.h>
-#include <stdio.h>
-#include <string.h>
 
+#include "dsp_runtime.h"
 #include "pan_tompkins.h"
 
 #define FIR_NUM_TAPS 45
@@ -23,122 +24,163 @@
 extern const int16_t g_fir_coeffs_q15[FIR_NUM_TAPS];
 int16_t ecg_fir_scalar_reference(const int16_t *samples, const int16_t *coeffs);
 
-// Assembly kernel declaration: num_taps_div2 = 45 / 2 = 22
-int32_t ecg_fir_pulp(const int16_t *samples, const int16_t *coeffs, uint32_t num_taps_div2);
-
-#if !defined(__riscv)
-// Host simulation stub: forwards to scalar reference
-int32_t ecg_fir_pulp(const int16_t *samples, const int16_t *coeffs, uint32_t num_taps_div2) {
-    (void)num_taps_div2;
-    return (int32_t)ecg_fir_scalar_reference(samples, coeffs);
-}
-#endif
-
-static inline uint32_t read_mcycle(void) {
-    uint32_t cycles;
 #if defined(__riscv)
-    asm volatile("csrr %0, mcycle" : "=r"(cycles));
-#else
-    cycles = 0;
+// Real assembly kernel on RISC-V target (ecg_fir_pulp.S)
+extern int32_t ecg_fir_pulp(const int16_t *samples, const int16_t *coeffs, uint32_t num_taps_div2);
 #endif
-    return cycles;
-}
 
 int main(void) {
     int pass_count = 0;
     int fail_count = 0;
+    int skip_count = 0;
 
     int16_t samples[FIR_NUM_TAPS];
-    memset(samples, 0, sizeof(samples));
+    dsp_memset(samples, 0, sizeof(samples));
 
-    printf("================================================================\n");
-    printf("  CV32E40P ECG DSP ARITHMETIC & DETECTION VERIFICATION SUITE   \n");
-    printf("  Mandatory Evidence Verification per Instruction/claim_integrity.md\n");
-    printf("================================================================\n");
+    dsp_puts("================================================================\n");
+    dsp_puts("  CV32E40P ECG DSP ARITHMETIC & DETECTION VERIFICATION SUITE   \n");
+    dsp_puts("  Mandatory Evidence Verification per Instruction/claim_integrity.md\n");
+    dsp_puts("================================================================\n");
 
     // -------------------------------------------------------------------------
     // Test 1: Zero Input Test
     // -------------------------------------------------------------------------
-    memset(samples, 0, sizeof(samples));
-    int16_t ref_zero  = ecg_fir_scalar_reference(samples, g_fir_coeffs_q15);
-    int32_t pulp_zero = ecg_fir_pulp(samples, g_fir_coeffs_q15, FIR_NUM_TAPS / 2);
+    dsp_memset(samples, 0, sizeof(samples));
+    int16_t ref_zero = ecg_fir_scalar_reference(samples, g_fir_coeffs_q15);
 
+#if defined(__riscv)
+    int32_t pulp_zero = ecg_fir_pulp(samples, g_fir_coeffs_q15, FIR_NUM_TAPS / 2);
     if ((ref_zero == 0) && (pulp_zero == 0)) {
-        printf("[PASS] TC-DSP-001: Zero input produces exact zero output on scalar and pulp kernels\n");
+        dsp_puts("[PASS] TC-DSP-001: Zero input produces exact zero output on scalar and pulp kernels\n");
         pass_count++;
     } else {
-        printf("[FAIL] TC-DSP-001: Zero input mismatch! ref=%d, pulp=%d (expected 0)\n", ref_zero, (int)pulp_zero);
+        dsp_puts("[FAIL] TC-DSP-001: Zero input mismatch! ref=");
+        dsp_print_i32((int32_t)ref_zero);
+        dsp_puts(", pulp=");
+        dsp_print_i32(pulp_zero);
+        dsp_puts(" (expected 0)\n");
         fail_count++;
     }
+#else
+    if (ref_zero == 0) {
+        dsp_puts("[PASS] TC-DSP-001: Zero input produces exact zero output on scalar reference\n");
+        pass_count++;
+    } else {
+        dsp_puts("[FAIL] TC-DSP-001: Zero input mismatch on scalar reference!\n");
+        fail_count++;
+    }
+#endif
 
     // -------------------------------------------------------------------------
     // Test 2: Unit Impulse Response
     // -------------------------------------------------------------------------
-    memset(samples, 0, sizeof(samples));
+    dsp_memset(samples, 0, sizeof(samples));
     samples[0] = 32767; // Q15 approx 1.0
-    int16_t ref_impulse  = ecg_fir_scalar_reference(samples, g_fir_coeffs_q15);
-    int32_t pulp_impulse = ecg_fir_pulp(samples, g_fir_coeffs_q15, FIR_NUM_TAPS / 2);
+    int16_t ref_impulse = ecg_fir_scalar_reference(samples, g_fir_coeffs_q15);
     int16_t expected_tap0 = g_fir_coeffs_q15[0];
+    bool ref_ok = (ref_impulse >= expected_tap0 - 1) && (ref_impulse <= expected_tap0 + 1);
 
-    bool ref_ok  = (ref_impulse >= expected_tap0 - 1) && (ref_impulse <= expected_tap0 + 1);
+#if defined(__riscv)
+    int32_t pulp_impulse = ecg_fir_pulp(samples, g_fir_coeffs_q15, FIR_NUM_TAPS / 2);
     bool pulp_ok = (pulp_impulse >= expected_tap0 - 1) && (pulp_impulse <= expected_tap0 + 1);
-
     if (ref_ok && pulp_ok && (ref_impulse == (int16_t)pulp_impulse)) {
-        printf("[PASS] TC-DSP-002: Impulse response matches tap 0 (%d) on scalar and pulp kernels\n", ref_impulse);
+        dsp_puts("[PASS] TC-DSP-002: Impulse response matches tap 0 (");
+        dsp_print_i32((int32_t)ref_impulse);
+        dsp_puts(") on scalar and pulp kernels\n");
         pass_count++;
     } else {
-        printf("[FAIL] TC-DSP-002: Impulse mismatch! ref=%d, pulp=%d, expected=%d\n",
-               ref_impulse, (int)pulp_impulse, expected_tap0);
+        dsp_puts("[FAIL] TC-DSP-002: Impulse mismatch! ref=");
+        dsp_print_i32((int32_t)ref_impulse);
+        dsp_puts(", pulp=");
+        dsp_print_i32(pulp_impulse);
+        dsp_puts(", expected=");
+        dsp_print_i32((int32_t)expected_tap0);
+        dsp_puts("\n");
         fail_count++;
     }
+#else
+    if (ref_ok) {
+        dsp_puts("[PASS] TC-DSP-002: Impulse response matches tap 0 (");
+        dsp_print_i32((int32_t)ref_impulse);
+        dsp_puts(") on scalar reference\n");
+        pass_count++;
+    } else {
+        dsp_puts("[FAIL] TC-DSP-002: Impulse mismatch on scalar reference! ref=");
+        dsp_print_i32((int32_t)ref_impulse);
+        dsp_puts(", expected=");
+        dsp_print_i32((int32_t)expected_tap0);
+        dsp_puts("\n");
+        fail_count++;
+    }
+#endif
 
     // -------------------------------------------------------------------------
     // Test 3: Arithmetic Equivalence on Complex Waveform
+    // (Target assembly executed on RISC-V target; SKIPPED on host)
     // -------------------------------------------------------------------------
+#if defined(__riscv)
     bool equiv_ok = true;
     for (int pattern = 0; pattern < 5; pattern++) {
         for (int i = 0; i < FIR_NUM_TAPS; i++) {
-            // Synthetic varying cardiac sample signal
             samples[i] = (int16_t)(((i * 739 + pattern * 1024) % 16000) - 8000);
         }
         int16_t ref_val  = ecg_fir_scalar_reference(samples, g_fir_coeffs_q15);
         int32_t pulp_val = ecg_fir_pulp(samples, g_fir_coeffs_q15, FIR_NUM_TAPS / 2);
 
         if (ref_val != (int16_t)pulp_val) {
-            printf("[FAIL] TC-DSP-003: Kernel arithmetic mismatch at pattern %d: ref=%d, pulp=%d\n",
-                   pattern, ref_val, (int)pulp_val);
+            dsp_puts("[FAIL] TC-DSP-003: Kernel arithmetic mismatch at pattern ");
+            dsp_print_i32(pattern);
+            dsp_puts(": ref=");
+            dsp_print_i32((int32_t)ref_val);
+            dsp_puts(", pulp=");
+            dsp_print_i32(pulp_val);
+            dsp_puts("\n");
             equiv_ok = false;
             break;
         }
     }
     if (equiv_ok) {
-        printf("[PASS] TC-DSP-003: ecg_fir_pulp matches ecg_fir_scalar_reference exactly across test vectors\n");
+        dsp_puts("[PASS] TC-DSP-003: ecg_fir_pulp matches ecg_fir_scalar_reference exactly across test vectors\n");
         pass_count++;
     } else {
         fail_count++;
     }
+#else
+    dsp_puts("[SKIP] TC-DSP-003: Target assembly kernel (ecg_fir_pulp) skipped on host (requires RISC-V target)\n");
+    skip_count++;
+#endif
 
     // -------------------------------------------------------------------------
-    // Test 4: Real Cycle Count Measurement
+    // Test 4: Real Cycle Count Measurement via Hardware mcycle CSR
+    // (Measured on RISC-V target; SKIPPED on host)
     // -------------------------------------------------------------------------
+#if defined(__riscv)
+    uint32_t overhead = dsp_measure_overhead();
     uint32_t c_start = read_mcycle();
     volatile int32_t p_out = ecg_fir_pulp(samples, g_fir_coeffs_q15, FIR_NUM_TAPS / 2);
     (void)p_out;
     uint32_t c_end = read_mcycle();
-    uint32_t pulp_cycles = (c_end >= c_start) ? (c_end - c_start) : 0;
+    uint32_t raw_cycles = (c_end >= c_start) ? (c_end - c_start) : (c_end + (0xFFFFFFFF - c_start) + 1);
+    uint32_t pulp_cycles = (raw_cycles >= overhead) ? (raw_cycles - overhead) : raw_cycles;
 
-    printf("  INFO: Measured ecg_fir_pulp execution cycles: %u\n", pulp_cycles);
-#if defined(__riscv)
+    dsp_puts("  INFO: Measured ecg_fir_pulp execution cycles: ");
+    dsp_print_u32(pulp_cycles);
+    dsp_puts(" (overhead: ");
+    dsp_print_u32(overhead);
+    dsp_puts(")\n");
+
     if (pulp_cycles > 0) {
-        printf("[PASS] TC-DSP-004: Execution cycles measured via mcycle CSR: %u cycles\n", pulp_cycles);
+        dsp_puts("[PASS] TC-DSP-004: Execution cycles measured via mcycle CSR: ");
+        dsp_print_u32(pulp_cycles);
+        dsp_puts(" cycles\n");
         pass_count++;
     } else {
-        printf("[FAIL] TC-DSP-004: mcycle CSR returned 0 on RISC-V target!\n");
+        dsp_puts("[FAIL] TC-DSP-004: mcycle CSR returned 0 on RISC-V target!\n");
         fail_count++;
     }
 #else
-    printf("[PASS] TC-DSP-004: Non-RISC-V host build; mcycle measurement stubbed cleanly\n");
-    pass_count++;
+    dsp_puts("[SKIP] TC-DSP-004: Hardware cycle measurement via mcycle CSR skipped on host (requires RISC-V target)\n");
+    skip_count++;
 #endif
 
     // -------------------------------------------------------------------------
@@ -151,10 +193,12 @@ int main(void) {
         int32_t squared = (sq64 > 0x7FFF) ? 0x7FFF : (int32_t)sq64;
 
         if (squared == 0x7FFF && sq64 > 0) {
-            printf("[PASS] TC-DSP-005: 64-bit widening prevents squaring overflow for |deriv| > 46340\n");
+            dsp_puts("[PASS] TC-DSP-005: 64-bit widening prevents squaring overflow for |deriv| > 46340\n");
             pass_count++;
         } else {
-            printf("[FAIL] TC-DSP-005: Squaring overflow detected! Result: %d\n", squared);
+            dsp_puts("[FAIL] TC-DSP-005: Squaring overflow detected! Result: ");
+            dsp_print_i32(squared);
+            dsp_puts("\n");
             fail_count++;
         }
     }
@@ -172,7 +216,6 @@ int main(void) {
         // Feed 400 baseline samples followed by a sharp QRS impulse at sample 250
         for (uint32_t s = 0; s < 400; s++) {
             int32_t sample_val = 0;
-            // Synthetic QRS complex: steep upward deflection around sample 250
             if (s >= 248 && s <= 254) {
                 sample_val = 12000;
             } else if (s >= 255 && s <= 260) {
@@ -183,18 +226,25 @@ int main(void) {
             if (is_qrs) {
                 qrs_detections++;
                 detected_at_sample = s;
-                printf("  INFO: QRS detected at sample %u (RR = %u)\n", s, pt.rr_interval);
+                dsp_puts("  INFO: QRS detected at sample ");
+                dsp_print_u32(s);
+                dsp_puts(" (RR = ");
+                dsp_print_u32(pt.rr_interval);
+                dsp_puts(")\n");
             }
         }
 
-        // QRS should be detected once, aligned with the synthetic complex (around sample 250..280)
         if ((qrs_detections == 1) && (detected_at_sample >= 250) && (detected_at_sample <= 290)) {
-            printf("[PASS] TC-DSP-006: Pan-Tompkins detector identified QRS complex at sample %u\n",
-                   detected_at_sample);
+            dsp_puts("[PASS] TC-DSP-006: Pan-Tompkins detector identified QRS complex at sample ");
+            dsp_print_u32(detected_at_sample);
+            dsp_puts("\n");
             pass_count++;
         } else {
-            printf("[FAIL] TC-DSP-006: QRS detection failure! count=%d, sample=%u (expected 1 detection @ 250-290)\n",
-                   qrs_detections, detected_at_sample);
+            dsp_puts("[FAIL] TC-DSP-006: QRS detection failure! count=");
+            dsp_print_i32(qrs_detections);
+            dsp_puts(", sample=");
+            dsp_print_u32(detected_at_sample);
+            dsp_puts(" (expected 1 detection @ 250-290)\n");
             fail_count++;
         }
     }
@@ -202,11 +252,15 @@ int main(void) {
     // -------------------------------------------------------------------------
     // Summary
     // -------------------------------------------------------------------------
-    printf("\n================================================================\n");
-    printf("  DSP VERIFICATION SUMMARY\n");
-    printf("  PASSED: %d / %d\n", pass_count, (pass_count + fail_count));
-    printf("  FAILED: %d\n", fail_count);
-    printf("================================================================\n");
+    dsp_puts("\n================================================================\n");
+    dsp_puts("  DSP VERIFICATION SUMMARY\n");
+    dsp_puts("  PASSED:  ");
+    dsp_print_i32(pass_count);
+    dsp_puts("\n  FAILED:  ");
+    dsp_print_i32(fail_count);
+    dsp_puts("\n  SKIPPED: ");
+    dsp_print_i32(skip_count);
+    dsp_puts("\n================================================================\n");
 
     return (fail_count == 0) ? 0 : 1;
 }

@@ -4,19 +4,29 @@
 **Document ID:** `REP-MAMBA-20261006-V1`  
 **Date:** 2026-10-06  
 **Target Platform:** Digilent Arty A7-100T (Xilinx Artix-7 `xc7a100tcsg324-1`)  
-**Clock Frequency:** 50.0 MHz (generated from 100 MHz board oscillator via MMCME2_BASE)  
+**Clock Frequency:** 50.0 MHz target (current routed achievement ~48.04 MHz, WNS -0.815 ns)
 **Evidence Standard:** Strict compliance with `Instruction/claim_integrity.md` and `Instruction/evidence_contract.md`  
+
+> ### ⚠️ Mandatory Audit Correction Notice (2026-10-06)
+> Pursuant to audit `reports/review/2026-10-06-core-next-decision-audit/audit.md` and `docs/plans/2026-10-06-core-next-decision-audit.md`:
+> 1. **FPGA Timing Status:** Routed implementation (`run_20261006_093347`) completed and produced bitstream `cv32e40p_ecg_soc.bit`, but failed static setup timing ($WNS = -0.815\text{ ns}$, $TNS = -63.389\text{ ns}$, 215 failing endpoints at 20.000 ns). Positive hold slack ($WHS = +0.044\text{ ns}$) does not establish setup closure. Physical closure at 50.0 MHz remains pending Task 3. **Status: TIMING_FAIL**.
+> 2. **Coprocessor Offload Status:** In simulation run `run_20261006_090915`, `mamba_bridge.sv` executes a 64-cycle timer and returns fixed class 2 / confidence `0x7800`. The 4-lane `mamba_fir_sidecar.sv` is a standalone prototype uninstantiated in the SoC netlist. **Status: DIAGNOSTIC_STUB**.
+> 3. **Hierarchical Cascade Status:** Simulation run `run_20261006_091539` verified firmware control flow using a fixed synthetic RR sequence `{800, 800, 480}` triggering the diagnostic bridge opcode. Closed-loop Pan-Tompkins QRS detection feeding full ResUMamba inference on real stream data is pending Task 6. **Status: DIAGNOSTIC_STUB**.
+> 4. **Quantization Parity Status:** Experiment `scripts/quantize_resumamba.py` executed PyTorch float inference with dequantized weights; it did not execute the C integer firmware. Target integer parity against frozen C headers is pending Task 5. **Status: PARTIAL_FLOAT_EXPERIMENT (C Integer: NOT_VERIFIED)**.
+> 5. **Cycle & Utilization Metrics:** Latency figures (12,718,000 cycles, 254.36 ms, 12.72% load, <0.2% surveillance) are analytical estimates, not measured on-target CV32E40P `mcycle` cycle counts. Target profiling is pending Task 4. **Status: NOT_VERIFIED**.
+>
+> All historical logs and artifacts are preserved under their actual execution boundaries per `reports/verification/current_requirement_census.json`.
 
 ---
 
 ## 1. Executive Summary
 
-This report establishes the complete implementation, verification, and benchmark validation of a **Tri-Modal Real-Time Biosignal Processing Architecture** executing the **ResUMamba-30K** sequence model (30,420 parameters) for clinical-grade ECG arrhythmia classification on the CV32E40P RISC-V processor core.
+This report documents the architectural concepts, prototype RTL implementations, and benchmark evaluation framework for a **Tri-Modal Real-Time Biosignal Processing Architecture** designed for the **ResUMamba-30K** sequence model (30,420 parameters) targeting ECG arrhythmia classification on the CV32E40P RISC-V processor core.
 
-All three requested methods have been implemented, code-anchored, and verified in hardware and firmware:
-1. **Method 1 (In-Core Software DSP):** Pure software execution on the CV32E40P core leveraging CORE-V `Xpulpv2` DSP extensions (hardware loops `lp.setup`, vector dot products `pv.dotsp.h`, single-cycle MAC), running in an expanded 128 KB Data TCM.
-2. **Method 2 (Hardware Coprocessor Offload):** Dedicated APB3 control bridge (`mamba_bridge.sv`) and 4-lane pipelined 128-tap DiagSSM1D depthwise FIR sidecar accelerator (`mamba_fir_sidecar.sv`), executing state-space sequence convolutions in **1.39 ms** (well within the 80 ms real-time window).
-3. **Method 3 (Two-Stage Hierarchical Cascade):** Continuous sub-milliwatt Stage 1 Pan-Tompkins QRS surveillance (< 0.2% CPU load) triggering deep Stage 2 ResUMamba-30K classification only upon detected ectopic anomaly (premature ventricular contraction, PVC), achieving **> 95% energy reduction**.
+The three investigated methods comprise:
+1. **Method 1 (In-Core Software DSP Prototype):** Pure software execution path on the CV32E40P core leveraging CORE-V `Xpulpv2` DSP extensions (hardware loops `lp.setup`, vector dot products `pv.dotsp.h`, single-cycle MAC), with target cycle profiling pending on-core benchmark measurement (Task 4).
+2. **Method 2 (Hardware Coprocessor Offload Prototype):** Dedicated APB3 control bridge (`mamba_bridge.sv`) and standalone 4-lane pipelined 128-tap DiagSSM1D depthwise FIR sidecar accelerator (`mamba_fir_sidecar.sv`), currently verified as an APB handshake diagnostic stub; true pipeline offload integration is gated by Task 6.
+3. **Method 3 (Two-Stage Hierarchical Cascade Prototype):** Stage 1 Pan-Tompkins QRS surveillance triggering Stage 2 ResUMamba classification upon detected ectopic anomaly (PVC), currently verified with diagnostic test vectors; full streaming integration is gated by Task 6.
 
 ---
 

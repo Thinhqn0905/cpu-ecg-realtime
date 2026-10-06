@@ -1,0 +1,294 @@
+// Copyright 2026 RISC-V ECG Project
+// SPDX-License-Identifier: Apache-2.0
+//
+// Description: Full SoC Co-Simulation Testbench for CV32E40P ECG SoC.
+//              Integrates:
+//              - cv32e40p_ecg_soc_top (Core, Memories, Buses, Peripherals)
+//              - ads1292r_model (Behavioral TI ADS1292R AFE)
+//              - Real UART Bit-Level Telemetry Receiver and Protocol Validator
+//              - Exact self-checking testcases per Instruction/claim_integrity.md
+
+`timescale 1ns / 1ps
+
+module soc_tb;
+
+  // ---------------------------------------------------------------------------
+  // Clock and Reset Signals
+  // ---------------------------------------------------------------------------
+  logic clk_sys;
+  logic rst_sys_n;
+
+  // 50 MHz System Clock (20 ns period)
+  initial begin
+    clk_sys = 1'b0;
+    forever #10 clk_sys = ~clk_sys;
+  end
+
+  // ---------------------------------------------------------------------------
+  // Interconnect Signals between SoC and AFE Model
+  // ---------------------------------------------------------------------------
+  wire        afe_sclk;
+  wire        afe_cs_n;
+  wire        afe_mosi;
+  wire        afe_miso;
+  wire        afe_drdy_n;
+  wire        afe_reset_n;
+  wire        afe_start;
+  wire        afe_pwdn_n;
+
+  wire        uart_tx;
+  logic       uart_rx;
+
+  wire [7:0]  gpio_out;
+  wire [7:0]  gpio_oe;
+  logic [7:0] gpio_in;
+
+  wire        core_sleep;
+
+  // ---------------------------------------------------------------------------
+  // Instantiate Device Under Test (DUT): cv32e40p_ecg_soc_top
+  // ---------------------------------------------------------------------------
+  cv32e40p_ecg_soc_top #(
+    .I_MEM_SIZE_BYTES(32768),
+    .D_MEM_SIZE_BYTES(131072),
+    .TARGET_ASIC     (1'b0),
+    .BOOT_HEX        ("Firmware/build/hello.hex")
+  ) u_dut (
+    .clk_sys_i   (clk_sys),
+    .rst_sys_ni  (rst_sys_n),
+    // AFE SPI
+    .afe_sclk_o  (afe_sclk),
+    .afe_cs_no   (afe_cs_n),
+    .afe_mosi_o  (afe_mosi),
+    .afe_miso_i  (afe_miso),
+    .afe_drdy_ni (afe_drdy_n),
+    .afe_reset_no(afe_reset_n),
+    .afe_start_o (afe_start),
+    .afe_pwdn_no (afe_pwdn_n),
+    // UART
+    .uart_tx_o   (uart_tx),
+    .uart_rx_i   (uart_rx),
+    // GPIO
+    .gpio_in_i   (gpio_in),
+    .gpio_out_o  (gpio_out),
+    .gpio_oe_o   (gpio_oe),
+    .core_sleep_o(core_sleep)
+  );
+
+  // ---------------------------------------------------------------------------
+  // Instantiate Behavioral ADS1292R AFE Model
+  // ---------------------------------------------------------------------------
+  ads1292r_model u_afe (
+    .sclk_i   (afe_sclk),
+    .mosi_i   (afe_mosi),
+    .miso_o   (afe_miso),
+    .cs_ni    (afe_cs_n),
+    .drdy_no  (afe_drdy_n),
+    .reset_ni (afe_reset_n),
+    .start_i  (afe_start)
+  );
+
+  // ---------------------------------------------------------------------------
+  // Real UART Receiver (115200 Baud @ 50 MHz = 434 clock cycles per bit)
+  // ---------------------------------------------------------------------------
+  localparam int UART_BIT_CYCLES = 434;
+  localparam time UART_BIT_PERIOD = UART_BIT_CYCLES * 20ns; // 8680 ns
+
+  string uart_buffer = "";
+  logic seen_alive       = 1'b0;
+  logic seen_data_fail   = 1'b0;
+  logic seen_canary_fail = 1'b0;
+  logic seen_irq_timeout = 1'b0;
+  logic seen_irq_pass     = 1'b0;
+  logic seen_complete     = 1'b0;
+  logic seen_cascade_pass = 1'b0;
+
+  int pass_count = 0;
+  int fail_count = 0;
+
+  // UART Byte Capture and Stream Monitor
+  always begin
+    @(negedge uart_tx);
+    // Wait to the middle of the start bit
+    #(UART_BIT_PERIOD / 2);
+    if (uart_tx == 1'b0) begin
+      logic [7:0] rx_byte;
+      for (int b = 0; b < 8; b++) begin
+        #UART_BIT_PERIOD;
+        rx_byte[b] = uart_tx;
+      end
+      #UART_BIT_PERIOD; // Stop bit
+
+      // Print received character live to stdout
+      $write("%c", rx_byte);
+      $fflush();
+
+      // Append to buffer and check string markers
+      uart_buffer = {uart_buffer, string'(rx_byte)};
+
+      if (!seen_alive && (str_contains(uart_buffer, "ECG BOOT: CV32E40P ALIVE"))) begin
+        seen_alive = 1'b1;
+        $display("\n[PASS] TC-BOOT-001: CV32E40P Core Boot and UART Alive String Received");
+        pass_count++;
+      end
+
+      if (!seen_data_fail && (str_contains(uart_buffer, "ECG BOOT: DATA INIT FAIL"))) begin
+        seen_data_fail = 1'b1;
+        $display("\n[FAIL] TC-DATA-002: Data Section Initialization Mismatch in Firmware!");
+        fail_count++;
+      end
+
+      if (!seen_canary_fail && (str_contains(uart_buffer, "ECG BOOT: CANARY FAIL"))) begin
+        seen_canary_fail = 1'b1;
+        $display("\n[FAIL] TC-MRET-004: Register Canary Corrupted across IRQ/MRET!");
+        fail_count++;
+      end
+
+      if (!seen_irq_timeout && (str_contains(uart_buffer, "ECG BOOT: IRQ TIMEOUT"))) begin
+        seen_irq_timeout = 1'b1;
+        $display("\n[FAIL] TC-TIMER-003: Hardware Timer IRQ Did Not Trigger (Timeout)!");
+        fail_count++;
+      end
+
+      if (!seen_irq_pass && (str_contains(uart_buffer, "ECG BOOT: IRQ PASS"))) begin
+        seen_irq_pass = 1'b1;
+        $display("\n[PASS] TC-TIMER-003: Hardware Machine Timer IRQ (Line 7) Triggered and Serviced");
+        $display("[PASS] TC-MRET-004: ISR Context Preserved and Clean Return via MRET");
+        pass_count += 2;
+      end
+
+      if (!seen_complete && (str_contains(uart_buffer, "ECG BOOT: COMPLETE"))) begin
+        seen_complete = 1'b1;
+        if (!seen_data_fail) begin
+          $display("\n[PASS] TC-DATA-002: Data Section Initialization and Access Verified");
+          pass_count++;
+        end
+        $display("[PASS] TC-DONE-005: Full Real Boot and IRQ Verification Complete");
+        pass_count++;
+      end
+
+      if (!seen_cascade_pass && (str_contains(uart_buffer, "CASCADE: PASS") || str_contains(uart_buffer, "TC-CASCADE-006: PASS"))) begin
+        seen_cascade_pass = 1'b1;
+        $display("\n[PASS] TC-CASCADE-006: Two-Stage Hierarchical Pan-Tompkins to ResUMamba Cascade Verified");
+        pass_count++;
+      end
+    end
+  end
+
+  // Substring helper function
+  function automatic bit str_contains(string haystack, string needle);
+    int h_len = haystack.len();
+    int n_len = needle.len();
+    if (n_len > h_len) return 1'b0;
+    for (int i = 0; i <= h_len - n_len; i++) begin
+      if (haystack.substr(i, i + n_len - 1) == needle) return 1'b1;
+    end
+    return 1'b0;
+  endfunction
+
+  // ---------------------------------------------------------------------------
+  // Main Simulation Sequence
+  // ---------------------------------------------------------------------------
+  initial begin
+    $dumpfile("reports/simulation/soc_tb.vcd");
+    $dumpvars(0, soc_tb);
+
+    $display("================================================================");
+    $display("  STARTING CV32E40P ECG SoC CO-SIMULATION TESTBENCH");
+    $display("  Mandatory Evidence Verification per Instruction/claim_integrity.md");
+    $display("================================================================");
+
+    // Initial signal state
+    rst_sys_n = 1'b0;
+    uart_rx   = 1'b1;
+    gpio_in   = 8'h00;
+
+    // 1. Reset Phase: Assert reset for 200 ns
+    #200;
+    rst_sys_n = 1'b1;
+    $display("[TB INFO] System reset released. Core fetching from I-TCM @ 0x0000_0000.");
+    $display("[TB INFO] I-TCM mem[0]=0x%08x mem[1]=0x%08x mem[2]=0x%08x mem[3]=0x%08x",
+             u_dut.u_i_tcm.mem[0], u_dut.u_i_tcm.mem[1], u_dut.u_i_tcm.mem[2], u_dut.u_i_tcm.mem[3]);
+
+    fork
+      begin
+        logic [31:0] prev_pc = '0;
+        int stall_cycles = 0;
+        forever begin
+          @(posedge clk_sys);
+          if (u_dut.gen_cv32e40p_core.u_core.core_i.pc_id != prev_pc) begin
+            prev_pc = u_dut.gen_cv32e40p_core.u_core.core_i.pc_id;
+            stall_cycles = 0;
+          end else begin
+            stall_cycles++;
+            if (stall_cycles == 10 || stall_cycles == 100 || stall_cycles == 1000) begin
+              $display("[STALL/LOOP DETECTED] Time=%0t ns: PC=0x%08x stall_cycles=%0d | d_req=%0b d_gnt=%0b d_rv=%0b d_addr=0x%08x | i_req=%0b i_gnt=%0b i_rv=%0b i_addr=0x%08x",
+                       $time/1000.0, prev_pc, stall_cycles,
+                       u_dut.data_req, u_dut.data_gnt, u_dut.data_rvalid, u_dut.data_addr,
+                       u_dut.instr_req, u_dut.instr_gnt, u_dut.instr_rvalid, u_dut.instr_addr);
+            end
+          end
+        end
+      end
+    join_none
+
+    // 2. Wait for full boot verification sequence
+    fork : wait_boot_complete
+      begin
+        wait (seen_complete == 1'b1);
+        #100_000; // 100 us to flush UART buffer
+        disable wait_boot_complete;
+      end
+      begin
+        #10_000_000; // 10 ms timeout
+        disable wait_boot_complete;
+      end
+    join
+
+    // 3. Phase 2: TC-CASCADE-006 Two-Stage Hierarchical Cascade Verification
+    $display("\n[TEST] TC-CASCADE-006: Verifying Two-Stage Hierarchical Pan-Tompkins to ResUMamba Cascade...");
+    fork : wait_cascade_complete
+      begin
+        wait (seen_cascade_pass == 1'b1);
+        #100_000; // 100 us
+        disable wait_cascade_complete;
+      end
+      begin
+        #20_000_000; // 20 ms timeout
+        disable wait_cascade_complete;
+      end
+    join
+
+    $display("\n================================================================");
+    $display("  SIMULATION RESULTS SUMMARY");
+    $display("  PASSED: %0d", pass_count);
+    $display("  FAILED: %0d", fail_count);
+    $display("================================================================");
+
+    if (seen_complete && seen_cascade_pass && (fail_count == 0) && (pass_count >= 6) && seen_alive && seen_irq_pass && !seen_data_fail && !seen_canary_fail && !seen_irq_timeout) begin
+      $display("[SUCCESS] All 6 Verification Test Cases (TC-BOOT-001 through TC-CASCADE-006) PASSED!");
+      $finish(0);
+    end else begin
+      if (!seen_alive) begin
+        $display("[FAIL] TC-BOOT-001: Timeout waiting for 'ECG BOOT: CV32E40P ALIVE'");
+        fail_count++;
+      end
+      if (!seen_irq_pass) begin
+        $display("[FAIL] TC-TIMER-003: Timeout waiting for Timer IRQ trigger");
+        $display("[FAIL] TC-MRET-004: Timeout waiting for MRET return");
+        fail_count += 2;
+      end
+      if (!seen_complete) begin
+        $display("[FAIL] TC-DONE-005: Timeout waiting for 'ECG BOOT: COMPLETE'");
+        fail_count++;
+      end
+      if (!seen_cascade_pass) begin
+        $display("[FAIL] TC-CASCADE-006: Timeout waiting for Two-Stage Hierarchical Cascade PASS!");
+        fail_count++;
+      end
+      $display("[FATAL] Co-Simulation failed verification checks!");
+      $fatal(1, "Co-Simulation failed verification checks!");
+    end
+  end
+
+endmodule : soc_tb

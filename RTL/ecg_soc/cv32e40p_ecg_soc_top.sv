@@ -19,7 +19,7 @@ module cv32e40p_ecg_soc_top
   parameter int unsigned D_MEM_SIZE_BYTES = 131072, // 128 KB Data Memory (ResUMamba weights & activations)
   parameter bit          TARGET_ASIC      = 1'b0,  // 0: FPGA, 1: ASIC
   parameter bit          USE_REAL_CORE    = 1'b1,  // 0: Synthesizable bus harness, 1: cv32e40p_top
-  parameter bit          ENABLE_MAMBA     = 1'b1,  // 1: Enable hardware CNN-MAMBA coprocessor offload
+  parameter bit          ENABLE_MAMBA     = 1'b0,  // 0: baseline (5 slaves), 1: enable experimental CNN-MAMBA coprocessor
   parameter string       BOOT_HEX         = ""     // Boot hex image file path
 ) (
   input  wire logic        clk_sys_i,
@@ -174,9 +174,10 @@ module cv32e40p_ecg_soc_top
   // [2] Instruction Tightly Coupled Memory (I-TCM) (32 KB @ 0x0000_0000)
   // ---------------------------------------------------------------------------
   tcm_sram #(
-    .MEM_SIZE_BYTES(I_MEM_SIZE_BYTES),
-    .TARGET_ASIC   (TARGET_ASIC),
-    .INIT_FILE     (BOOT_HEX)
+    .MEM_SIZE_BYTES    (I_MEM_SIZE_BYTES),
+    .TARGET_ASIC       (TARGET_ASIC),
+    .ALLOW_PLUSARG_INIT(1'b1),
+    .INIT_FILE         (BOOT_HEX)
   ) u_i_tcm (
     .clk_i         (clk_sys_i),
     .rst_ni        (rst_sys_ni),
@@ -201,9 +202,10 @@ module cv32e40p_ecg_soc_top
   // [3] Data Tightly Coupled Memory (D-TCM) (32 KB @ 0x0001_0000)
   // ---------------------------------------------------------------------------
   tcm_sram #(
-    .MEM_SIZE_BYTES(D_MEM_SIZE_BYTES),
-    .TARGET_ASIC   (TARGET_ASIC),
-    .INIT_FILE     ("")
+    .MEM_SIZE_BYTES    (D_MEM_SIZE_BYTES),
+    .TARGET_ASIC       (TARGET_ASIC),
+    .ALLOW_PLUSARG_INIT(1'b0),
+    .INIT_FILE         ("")
   ) u_d_tcm (
     .clk_i         (clk_sys_i),
     .rst_ni        (rst_sys_ni),

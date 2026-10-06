@@ -1,0 +1,21 @@
+================================================================
+  MAMBA COPROCESSOR BRIDGE VERIFICATION TESTBENCH
+================================================================
+[TEST] TC-BRG-001: Checking Reset State...
+       [PASS] TC-BRG-001: Bridge is idle with no pending IRQ
+[TEST] TC-BRG-002: Writing SRC_ADDR, DST_ADDR, LEN registers...
+       [PASS] TC-BRG-002: APB register write & readback verified across SRC_ADDR, DST_ADDR, LEN
+[TEST] TC-BRG-003: Dispatching DiagSSM1D FIR command (OPCODE=1, IRQ_EN=1)...
+       [PASS] TC-BRG-003: Execution completed in 65 cycles and IRQ asserted
+[TEST] TC-BRG-004: Clearing DONE flag via W1C...
+       [PASS] TC-BRG-004: DONE flag cleared and IRQ deasserted
+[TEST] TC-BRG-005: Dispatching Full Inference (OPCODE=3, IRQ_EN=1) - Expect Fail-Closed ERROR...
+       Status register after Opcode 3: 0x00000006 (error=1, done=1)
+       Result class code: 0
+       [PASS] TC-BRG-005: Fail-closed contract verified - Opcode 3 rejected as NOT_IMPLEMENTED with ERROR status
+
+================================================================
+  TEST SUMMARY: 5 PASSED, 0 FAILED
+================================================================
+[SUCCESS] All mamba_bridge tests PASSED!
+

@@ -128,11 +128,14 @@ module mamba_bridge (
           busy_q <= 1'b0;
           done_q <= 1'b1;
           if (opcode_q == 4'h3) begin
-            // Full inference: Premature Ventricular Contraction (PVC, class 2), 93.75% confidence
-            result_class_q <= 4'd2;
-            result_conf_q  <= 16'h7800;
+            // Opcode 0x3 (Full ResUMamba Inference) is NOT IMPLEMENTED in hardware sidecar
+            // Fail closed: assert error_q, clear class and confidence
+            error_q        <= 1'b1;
+            result_class_q <= 4'd0;
+            result_conf_q  <= 16'h0000;
           end else begin
-            // FIR / Conv offload completion
+            // Opcode 0x1 (DiagSSM1D FIR Offload completion)
+            error_q        <= 1'b0;
             result_class_q <= 4'd1;
             result_conf_q  <= 16'h7FFF;
           end
@@ -152,9 +155,21 @@ module mamba_bridge (
               error_q  <= 1'b0;
             end else if (pwdata_i[0]) begin
               // Start dispatch
-              busy_q      <= 1'b1;
-              done_q      <= 1'b0;
-              cycle_cnt_q <= 32'h0000_0000;
+              if (pwdata_i[7:4] == 4'h3) begin
+                // Full neural network inference is NOT IMPLEMENTED in coprocessor bridge
+                // Fail closed: immediately assert ERROR and DONE, clear class/confidence
+                busy_q         <= 1'b0;
+                done_q         <= 1'b1;
+                error_q        <= 1'b1;
+                cycle_cnt_q    <= 32'h0000_0000;
+                result_class_q <= 4'h0;
+                result_conf_q  <= 16'h0000;
+              end else begin
+                busy_q      <= 1'b1;
+                done_q      <= 1'b0;
+                error_q     <= 1'b0;
+                cycle_cnt_q <= 32'h0000_0000;
+              end
             end
           end
 

@@ -10,9 +10,16 @@ set ROOT_DIR   [file normalize [file join $SCRIPT_DIR "../../.."]]
 
 set PART "xc7a100tcsg324-1"
 set TOP  "ecg_arty_top"
-set OUT_DIR [file join $SCRIPT_DIR "reports"]
+if {[info exists ::env(VIVADO_OUT_DIR)] && $::env(VIVADO_OUT_DIR) ne ""} {
+    set OUT_DIR [file normalize $::env(VIVADO_OUT_DIR)]
+} else {
+    set OUT_DIR [file join $SCRIPT_DIR "reports"]
+}
 
 file mkdir $OUT_DIR
+
+# Limit thread count to 2 to prevent Vivado router out-of-memory on 16GB host
+set_param general.maxThreads 2
 
 puts "================================================================"
 puts "  VIVADO SYNTHESIS & IMPLEMENTATION: CV32E40P ECG SOC          "
@@ -83,7 +90,7 @@ read_xdc [file join $SCRIPT_DIR "arty_a7_100t.xdc"]
 # 3. Synthesize Design
 # ------------------------------------------------------------------------------
 puts "=== [1/5] RUNNING SYNTHESIS FOR $TOP ON $PART ==="
-synth_design -top $TOP -part $PART -flatten_hierarchy rebuilt -retiming -generic "BOOT_HEX=$BOOT_HEX"
+synth_design -top $TOP -part $PART -flatten_hierarchy rebuilt -directive PerformanceOptimized -generic "BOOT_HEX=$BOOT_HEX"
 
 report_utilization -file [file join $OUT_DIR "utilization_synth.rpt"]
 report_timing_summary -file [file join $OUT_DIR "timing_synth.rpt"]
@@ -106,8 +113,13 @@ route_design -directive Explore
 set setup_slack [get_property SLACK [get_timing_paths -max_paths 1 -nworst 1 -setup]]
 puts "=== POST-ROUTE SETUP SLACK: $setup_slack ns ==="
 if {$setup_slack < 0.0} {
-    puts "=== RE-ROUTING WITH HIGHER EFFORT / TNS CLEANUP TO CLOSE TIMING ==="
-    catch { route_design -directive MoreGlobalIterations -tns_cleanup }
+    puts "=== SETUP SLACK NEGATIVE ($setup_slack ns): EXECUTING POST-ROUTE PHYS_OPT & RE-ROUTE ==="
+    phys_opt_design -directive AggressiveExplore
+    set post_phys_slack [get_property SLACK [get_timing_paths -max_paths 1 -nworst 1 -setup]]
+    puts "=== POST-PHYS-OPT SETUP SLACK: $post_phys_slack ns ==="
+
+    puts "=== RE-ROUTING (MoreGlobalIterations + TNS cleanup) ==="
+    route_design -directive MoreGlobalIterations -tns_cleanup
     set setup_slack [get_property SLACK [get_timing_paths -max_paths 1 -nworst 1 -setup]]
     puts "=== FINAL ROUTE SETUP SLACK: $setup_slack ns ==="
 }

@@ -76,8 +76,10 @@ void isr_timer(void) {
     asm volatile(
         "li t0, 0xDEADBEEF\n"
         "li t1, 0xFEEDFACE\n"
+        "li t2, 0xDEAD0002\n"
+        "li t3, 0xDEAD0003\n"
         "li a0, 0xBAD0F00D\n"
-        ::: "t0", "t1", "a0"
+        ::: "t0", "t1", "t2", "t3", "a0"
     );
     // Increment global IRQ counter
     g_irq_count++;
@@ -105,10 +107,15 @@ int main(void) {
     }
 
     // 4. Set up register canary values across IRQ
+    // Callee-saved registers (s2-s5)
     register uint32_t canary_s2 asm("s2") = 0xA5A5A5A5;
     register uint32_t canary_s3 asm("s3") = 0x5A5A5A5A;
     register uint32_t canary_s4 asm("s4") = 0x12345678;
     register uint32_t canary_s5 asm("s5") = 0x87654321;
+
+    // Caller-saved registers (t2-t3) - verified to ensure crt0.S SAVE/RESTORE_CONTEXT preserves them
+    register uint32_t canary_t2 asm("t2") = 0xC001CAFE;
+    register uint32_t canary_t3 asm("t3") = 0xBEEFCAFE;
 
     // 5. Configure Timer for fast countdown to verify real hardware IRQ
     // Countdown = 60 cycles (~1.2 microseconds at 50 MHz)
@@ -120,7 +127,8 @@ int main(void) {
     // 6. Wait for timer interrupt to fire and increment g_irq_count
     uint32_t timeout = 50000;
     while ((g_irq_count == 0) && (--timeout > 0)) {
-        asm volatile("nop" : "+r"(canary_s2), "+r"(canary_s3), "+r"(canary_s4), "+r"(canary_s5));
+        asm volatile("nop" : "+r"(canary_s2), "+r"(canary_s3), "+r"(canary_s4), "+r"(canary_s5),
+                             "+r"(canary_t2), "+r"(canary_t3));
     }
 
     if (g_irq_count == 0) {
@@ -132,7 +140,9 @@ int main(void) {
     if ((canary_s2 != 0xA5A5A5A5) ||
         (canary_s3 != 0x5A5A5A5A) ||
         (canary_s4 != 0x12345678) ||
-        (canary_s5 != 0x87654321)) {
+        (canary_s5 != 0x87654321) ||
+        (canary_t2 != 0xC001CAFE) ||
+        (canary_t3 != 0xBEEFCAFE)) {
         uart_puts("ECG BOOT: CANARY FAIL\r\n");
         while (1) { asm volatile("wfi"); }
     }
@@ -141,7 +151,8 @@ int main(void) {
     uart_puts("ECG BOOT: IRQ PASS\r\n");
     uart_puts("ECG BOOT: COMPLETE\r\n");
 
-    // 9. TC-CASCADE-006: Two-Stage Hierarchical Pan-Tompkins to ResUMamba Cascade
+#ifdef ENABLE_CASCADE_DIAGNOSTIC
+    // 9. TC-CASCADE-006: Two-Stage Hierarchical Pan-Tompkins to ResUMamba Cascade (Diagnostic Stub)
     // Stage 1: Continuous lightweight surveillance (< 0.2% CPU)
     // Tracks running RR intervals. Normal sinus rhythm: 800 ms (200 samples @ 250 Hz).
     // An ectopic PVC induces a premature beat with RR < 75% of baseline.
@@ -184,6 +195,7 @@ int main(void) {
     } else {
         uart_puts("CASCADE: FAIL (NO ANOMALY)\r\n");
     }
+#endif
 
     // 10. Low-power idle state
     while (1) {

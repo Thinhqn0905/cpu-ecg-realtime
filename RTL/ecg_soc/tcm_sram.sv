@@ -6,10 +6,11 @@
 //              or ASIC (interfacing to Foundry SRAM compiler macros).
 
 module tcm_sram #(
-  parameter int unsigned MEM_SIZE_BYTES = 32768, // 32 KB default
-  parameter int unsigned ADDR_WIDTH     = $clog2(MEM_SIZE_BYTES),
-  parameter bit          TARGET_ASIC    = 1'b0,
-  parameter string       INIT_FILE      = ""
+  parameter int unsigned MEM_SIZE_BYTES     = 32768, // 32 KB default
+  parameter int unsigned ADDR_WIDTH         = $clog2(MEM_SIZE_BYTES),
+  parameter bit          TARGET_ASIC        = 1'b0,
+  parameter bit          ALLOW_PLUSARG_INIT = 1'b0,  // Only I-TCM should load +firmware plusarg
+  parameter string       INIT_FILE          = ""
 ) (
   input  logic                  clk_i,
   input  logic                  rst_ni,
@@ -68,7 +69,7 @@ module tcm_sram #(
 `ifdef SIMULATION
     begin
       string fw_file;
-      if ($value$plusargs("firmware=%s", fw_file)) begin
+      if (ALLOW_PLUSARG_INIT && $value$plusargs("firmware=%s", fw_file)) begin
         $display("[TCM_SRAM] %m: Loading firmware from plusarg: %s", fw_file);
         $readmemh(fw_file, mem);
       end else if (INIT_FILE != "") begin

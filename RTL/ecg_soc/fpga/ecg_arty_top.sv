@@ -12,7 +12,8 @@
 `default_nettype none
 
 module ecg_arty_top #(
-  parameter string BOOT_HEX = "Firmware/build/hello.hex"
+  parameter bit    ENABLE_MAMBA = 1'b0,
+  parameter string BOOT_HEX     = "Firmware/build/hello.hex"
 ) (
   // 100 MHz Oscillator Input from Arty A7-100T (Pin E3)
   input  wire logic        clk_100m_i,
@@ -131,6 +132,7 @@ module ecg_arty_top #(
     .I_MEM_SIZE_BYTES(32768),
     .D_MEM_SIZE_BYTES(131072),
     .TARGET_ASIC     (1'b0),
+    .ENABLE_MAMBA    (ENABLE_MAMBA),
     .BOOT_HEX        (BOOT_HEX)
   ) u_soc_top (
     .clk_sys_i   (clk_50m),

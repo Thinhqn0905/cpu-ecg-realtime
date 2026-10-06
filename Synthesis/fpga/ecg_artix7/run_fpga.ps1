@@ -105,11 +105,13 @@ foreach ($sf in $staleFiles) {
 
 Push-Location $scriptDir
 $startTime = Get-Date
+$env:VIVADO_OUT_DIR = $OutDir
 try {
     $proc = Start-Process -FilePath $VivadoPath -ArgumentList @("-mode", "batch", "-source", "run_synth.tcl", "-notrace") -RedirectStandardOutput $LogFile -RedirectStandardError "$OutDir/vivado_err.log" -Wait -PassThru -NoNewWindow
     $vivadoExit = $proc.ExitCode
 } finally {
     Pop-Location
+    $env:VIVADO_OUT_DIR = $null
 }
 
 $duration = ((Get-Date) - $startTime).TotalSeconds
@@ -119,26 +121,26 @@ $duration = ((Get-Date) - $startTime).TotalSeconds
 # ------------------------------------------------------------------------------
 $artifacts = @()
 $reportFiles = @(
-    "$scriptDir/reports/utilization_synth.rpt",
-    "$scriptDir/reports/timing_synth.rpt",
-    "$scriptDir/reports/utilization_placed.rpt",
-    "$scriptDir/reports/timing_routed.rpt",
-    "$scriptDir/reports/timing_min_max.rpt",
-    "$scriptDir/reports/timing_setup.rpt",
-    "$scriptDir/reports/timing_hold.rpt",
-    "$scriptDir/reports/check_timing.rpt",
-    "$scriptDir/reports/utilization_hierarchical.rpt",
-    "$scriptDir/reports/drc_routed.rpt",
-    "$scriptDir/reports/power_routed.rpt",
-    "$scriptDir/reports/routed.dcp",
-    "$scriptDir/reports/cv32e40p_ecg_soc.bit",
+    "$OutDir/utilization_synth.rpt",
+    "$OutDir/timing_synth.rpt",
+    "$OutDir/utilization_placed.rpt",
+    "$OutDir/timing_routed.rpt",
+    "$OutDir/timing_min_max.rpt",
+    "$OutDir/timing_setup.rpt",
+    "$OutDir/timing_hold.rpt",
+    "$OutDir/check_timing.rpt",
+    "$OutDir/utilization_hierarchical.rpt",
+    "$OutDir/drc_routed.rpt",
+    "$OutDir/power_routed.rpt",
+    "$OutDir/routed.dcp",
+    "$OutDir/cv32e40p_ecg_soc.bit",
     $LogFile
 )
 
 foreach ($rf in $reportFiles) {
     if (Test-Path $rf) {
-        $copyTarget = "$OutDir/" + (Split-Path $rf -Leaf)
-        if ($rf -ne $copyTarget -and (Test-Path $rf)) {
+        $copyTarget = "$scriptDir/reports/" + (Split-Path $rf -Leaf)
+        if ($rf -ne $copyTarget) {
             Copy-Item $rf $copyTarget -Force -ErrorAction SilentlyContinue
         }
         $h = (Get-FileHash -Path $rf -Algorithm SHA256).Hash.ToLower()
@@ -169,4 +171,28 @@ if ($vivadoExit -ne 0) {
     exit $vivadoExit
 }
 
-Write-Host "[SUCCESS] Vivado Implementation complete with exit code 0. Manifest: $JsonOut"
+# ------------------------------------------------------------------------------
+# 5. Fail-Closed FPGA Evidence Gate Verification
+# ------------------------------------------------------------------------------
+Write-Host "================================================================"
+Write-Host "  VALIDATING FPGA EVIDENCE GATE & STATIC TIMING ACCEPTANCE      "
+Write-Host "================================================================"
+$gateScript = "$rootDir/scripts/check_fpga_evidence.py"
+$ioContractDoc = "$rootDir/reports/evidence/core_50mhz/io_contract.md"
+$drcReviewDoc = "$rootDir/reports/evidence/core_50mhz/drc_review.md"
+$gateArgs = @($gateScript, "--manifest", $JsonOut, "--expect-period-ns", "20.0")
+if (Test-Path $ioContractDoc) {
+    $gateArgs += @("--io-contract", $ioContractDoc)
+}
+if (Test-Path $drcReviewDoc) {
+    $gateArgs += @("--drc-review", $drcReviewDoc)
+}
+$gateProc = Start-Process -FilePath "python" -ArgumentList $gateArgs -Wait -PassThru -NoNewWindow
+$gateExit = $gateProc.ExitCode
+
+if ($gateExit -ne 0) {
+    Write-Error "[FAIL] FPGA evidence gate rejected implementation with exit code $gateExit (Manifest: $JsonOut)"
+    exit $gateExit
+}
+
+Write-Host "[SUCCESS] Vivado Implementation verified, timing constraints met. Manifest: $JsonOut"

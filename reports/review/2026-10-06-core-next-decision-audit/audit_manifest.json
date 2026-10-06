@@ -1,0 +1,1236 @@
+{
+    "audit_id":  "2026-10-06-core-next-decision-audit",
+    "created_utc":  "2026-10-06T10:34:24.9564908Z",
+    "boundary":  "static source and retained artifact audit; no project builds/tests/EDA run",
+    "root_head":  "d1659874120fcb6bd09366212dd699dae0011926",
+    "root_status_at_start":  "clean",
+    "core_head":  "97086e9565f8145522ad6d62852123c0e5537529",
+    "core_status":  "clean",
+    "core_describe":  "cv32e40p_v1.8.3-6-g97086e9",
+    "files":  [
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_aligner.sv",
+                      "sha256":  "45aac71dd7ba9d58dd552d9dcfa8ab4daf6a718459616d3fcfc52fb320a3eb19",
+                      "bytes":  10217,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_aligner.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_alu.sv",
+                      "sha256":  "c0234b6228532cf1234b070a2fa01e7001f85969d6d7bed15368219256b38014",
+                      "bytes":  36417,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_alu.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_alu_div.sv",
+                      "sha256":  "c4c4e53ab0b71f944f3d36bd69faae289b8189490f3115a83d01adc8e425d8b9",
+                      "bytes":  7378,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_alu_div.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_apu_disp.sv",
+                      "sha256":  "466b12aebb9cc6a389e5189667c1c6904cfb06a471a7839ed80f9ae6c566af33",
+                      "bytes":  9646,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_apu_disp.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_compressed_decoder.sv",
+                      "sha256":  "d1f11381b78e89f33ca5ccd404a3e3278f9abfc02b63777faeb991bc10f8a922",
+                      "bytes":  19835,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_compressed_decoder.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_controller.sv",
+                      "sha256":  "7206745d0764ff24f383b491accbb9ac6cb27e274a3f5fa4e50745471e3d6f0b",
+                      "bytes":  62068,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_controller.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_core.sv",
+                      "sha256":  "d1ad108c16a80a24403eeadc8ea3cd20f28701b4e8cd6d4302dba6feea3dc91d",
+                      "bytes":  50456,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_core.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_cs_registers.sv",
+                      "sha256":  "ea73da23681836a141c47b21c8785e720e837acc9d10ac74c741523fee18854b",
+                      "bytes":  62354,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_cs_registers.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_decoder.sv",
+                      "sha256":  "b6184048b55a978723b5df88bb71e16ff2474d245f44af1f738b8f13e2303d86",
+                      "bytes":  134151,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_decoder.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_ex_stage.sv",
+                      "sha256":  "365ea3c8bb180d48ceb4137a21e2b5451b7bab1b784ab8657dd98dc9f78a03f6",
+                      "bytes":  19334,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_ex_stage.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_ff_one.sv",
+                      "sha256":  "e0033cf9e38c4a63ebec3cd31ebd3ac7cbb1509faff191c5d7c17e6385296742",
+                      "bytes":  4569,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_ff_one.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_fifo.sv",
+                      "sha256":  "b6d199e1398f3ce0a10e51490ef96588496b3cfd5b85a6a3803325eb033df498",
+                      "bytes":  6658,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_fifo.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_fp_wrapper.sv",
+                      "sha256":  "7d0fb59be10fee93eaaf1473b1af2b4f2ae2437fab32e8c545302d1870ccb6fb",
+                      "bytes":  4489,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_fp_wrapper.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_hwloop_regs.sv",
+                      "sha256":  "f12f1ebaba063039ac3d92fc5daa019931a482ff878e95483818fb360c975154",
+                      "bytes":  5103,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_hwloop_regs.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_id_stage.sv",
+                      "sha256":  "9002df7002145d5e8c8f221b680416e26bd8b82edc75296ca723c7320e30b1b3",
+                      "bytes":  70184,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_id_stage.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_if_stage.sv",
+                      "sha256":  "c08b7411f21bbfda94127777c18610e0d51a1c866957da9ce58b80c264b9f3b5",
+                      "bytes":  11920,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_if_stage.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_int_controller.sv",
+                      "sha256":  "4471fc83880ae5026d295b98576a8c54bb186f9b365dfdf2b235870744404dc0",
+                      "bytes":  7411,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_int_controller.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_load_store_unit.sv",
+                      "sha256":  "61617042d886f60018b2effcd6d871580c453faaccb3668029b8477685a7ad07",
+                      "bytes":  22763,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_load_store_unit.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_mult.sv",
+                      "sha256":  "c6f2b0f2273a26c134d7ddde6d29c18698042623b4f70287e3090b6a5d89c6a5",
+                      "bytes":  14068,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_mult.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_obi_interface.sv",
+                      "sha256":  "f133668887acae65ff68df6f14216793c7f5372f5c4849ec09a3f6ae5551efa0",
+                      "bytes":  8431,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_obi_interface.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_popcnt.sv",
+                      "sha256":  "ba71335fdc2fd86c7d8d5a09f81f3677743abd71caa5016fc9b8e915400795dd",
+                      "bytes":  2684,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_popcnt.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_prefetch_buffer.sv",
+                      "sha256":  "b64ee004bebf2d808cd5aedd1346c6020e36d4de64f964cbb512b7e11e3b6f55",
+                      "bytes":  10007,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_prefetch_buffer.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_prefetch_controller.sv",
+                      "sha256":  "a4b93f90bceb0f1345ab556bd8ed8e0510186981c9c14180fd90fe052e515eee",
+                      "bytes":  17015,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_prefetch_controller.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_register_file_ff.sv",
+                      "sha256":  "0ca0e541a7989dc96707ae89d2875ee25b8ceaa8c2fd4c447a6d6fbac3c55f90",
+                      "bytes":  6319,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_register_file_ff.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_register_file_latch.sv",
+                      "sha256":  "dc3db001893fcbf8c5f1681c47cd6484fbc97ac22e66648e03bf14f3847ce1f8",
+                      "bytes":  8036,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_register_file_latch.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_sleep_unit.sv",
+                      "sha256":  "de71deacdef21a22aa1733e92fd16530ec330de83aae5a9d5fa03738d2c1c854",
+                      "bytes":  12697,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_sleep_unit.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/cv32e40p_top.sv",
+                      "sha256":  "b0d9341cc231d72333b196748a3500c32f3335b6e24092f8565dce776720aeed",
+                      "bytes":  7025,
+                      "snapshot":  "snapshot/cv32e40p/rtl/cv32e40p_top.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/include/cv32e40p_apu_core_pkg.sv",
+                      "sha256":  "094187ebc720b8636efc7779349b334db00af03a986db8798cd9f5a707b758d7",
+                      "bytes":  1727,
+                      "snapshot":  "snapshot/cv32e40p/rtl/include/cv32e40p_apu_core_pkg.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/include/cv32e40p_fpu_pkg.sv",
+                      "sha256":  "e5f46fa1ef236a07aa331ce610989a2a9efc68f4593857c459f94261ab7cb2c6",
+                      "bytes":  4148,
+                      "snapshot":  "snapshot/cv32e40p/rtl/include/cv32e40p_fpu_pkg.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/include/cv32e40p_pkg.sv",
+                      "sha256":  "332faa387f4351b65d76af6233e847846ec864fc901ae440e624bc2f32d7dfe8",
+                      "bytes":  26194,
+                      "snapshot":  "snapshot/cv32e40p/rtl/include/cv32e40p_pkg.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/addr_decode.sv",
+                      "sha256":  "67752a481385769db49f6bbfa8266029e6ae9f050b2b7dd77143dd45acba4f3f",
+                      "bytes":  7442,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/addr_decode.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/binary_to_gray.sv",
+                      "sha256":  "04dd865d00b8b8c575f65b871aeeecd6b487972256098f2c784d263265403b6f",
+                      "bytes":  926,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/binary_to_gray.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/cb_filter.sv",
+                      "sha256":  "3bc822dd6735e6f4a4d83883e829b61648970c9aa65d78bd87e2fafc760a52df",
+                      "bytes":  9981,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/cb_filter.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/cb_filter_pkg.sv",
+                      "sha256":  "9e04755c91c6c40ced4df7b6eba88d88aab69992364641a1c67009ead8e7e805",
+                      "bytes":  1201,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/cb_filter_pkg.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/cdc_2phase.sv",
+                      "sha256":  "da8f621e9e5f1a498c8bffb1cfc30d9400a76ce04c1b945587c5dd4b165a1c23",
+                      "bytes":  5123,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/cdc_2phase.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/cdc_fifo_2phase.sv",
+                      "sha256":  "509b260cf92e3722c9159ebc0912b7a0a418d83878c242600e30378bfa35d61c",
+                      "bytes":  4747,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/cdc_fifo_2phase.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/cdc_fifo_gray.sv",
+                      "sha256":  "994c30296220c7626f59238a6d8a88fe0342c4b876d51b2ed442c16bd59c2e4c",
+                      "bytes":  9467,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/cdc_fifo_gray.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/cf_math_pkg.sv",
+                      "sha256":  "8680aaeb726e7f7de4b465f3100d05b4b71b5cef7699185718f3ffd3f17cd1f4",
+                      "bytes":  2794,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/cf_math_pkg.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/clk_div.sv",
+                      "sha256":  "e4002c36e5d926b3b4381d905351c1258994efe2eecd42fd63673430b5def59c",
+                      "bytes":  1704,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/clk_div.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/counter.sv",
+                      "sha256":  "a2aa528985aec4da4851a61f7e56c9635eaea84c8e1e22f01e1917cb0c98fd62",
+                      "bytes":  1627,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/counter.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/delta_counter.sv",
+                      "sha256":  "51a9690cfa99473cc05f6a66ae75adbc9f65d1a04323ebf214c15aebe9c55c48",
+                      "bytes":  2863,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/delta_counter.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/clock_divider.sv",
+                      "sha256":  "ad89d76d991ec7994df69ffa8f71dda6f8b16d122cf2bcdf9bca0bf5040ac873",
+                      "bytes":  6932,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/clock_divider.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/clock_divider_counter.sv",
+                      "sha256":  "fe8aa264ebf81abf100e8af58c031408f10224a7ce484bcf68cb26b3f3c4a919",
+                      "bytes":  7663,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/clock_divider_counter.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/fifo_v1.sv",
+                      "sha256":  "898d81c4e7f7e8cffdb2c06da922113f255bca81466306a1e73c88cfc9a602f9",
+                      "bytes":  2836,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/fifo_v1.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/fifo_v2.sv",
+                      "sha256":  "67e301adc9acd9651d6f0344854888fc2fa608007a5e11dde68ac5df32266dd2",
+                      "bytes":  3599,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/fifo_v2.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/find_first_one.sv",
+                      "sha256":  "a3843be0fe41da8ff2cae7aa34bd5bdfb9c6bf29700eb619c35d4b3195e91820",
+                      "bytes":  3467,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/find_first_one.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/generic_fifo.sv",
+                      "sha256":  "cd47ab245261822cd25d8e7f4b18e4b8c1d74b8b39fbd827739a107778074c1b",
+                      "bytes":  9571,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/generic_fifo.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/generic_fifo_adv.sv",
+                      "sha256":  "1b43cf49d4591db6e72d564d1edee15e1f51ef2667d2358dc63bf78167be9482",
+                      "bytes":  8052,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/generic_fifo_adv.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/generic_LFSR_8bit.sv",
+                      "sha256":  "64726b9ac2af3bbc909a89ada667f420a33cf8df94da680bbdbeb6dc94d03210",
+                      "bytes":  2085,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/generic_LFSR_8bit.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/prioarbiter.sv",
+                      "sha256":  "a2af9f4ae11c468a1b14ca9052aeea918b59e6d40be7e390d5e2ede2a7714b6d",
+                      "bytes":  3212,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/prioarbiter.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/pulp_sync.sv",
+                      "sha256":  "f1d1b1091da9b43f045886579980f8bd0b73117ded0b9c12a71dc1b601a777be",
+                      "bytes":  1171,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/pulp_sync.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/pulp_sync_wedge.sv",
+                      "sha256":  "047301f0c29f1f580a1cd492a564aa1226036b2bbe4bcd459a444120214b0fa3",
+                      "bytes":  1668,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/pulp_sync_wedge.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/rrarbiter.sv",
+                      "sha256":  "b40e618ad50138b26ea9dcaa301bf008485dda37b9bae5b717b44b41efc3d7ab",
+                      "bytes":  2386,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/rrarbiter.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/sram.sv",
+                      "sha256":  "88c8a3da9ba98174eaa226f68a531f2a6c4b07bc95efc9fbd81d6bbd81ba790a",
+                      "bytes":  1734,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/deprecated/sram.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/ecc_decode.sv",
+                      "sha256":  "072ffd94beedeb61cf506db7566b7fb98e36f90a6e8733de8be5fe203ceed3a4",
+                      "bytes":  5711,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/ecc_decode.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/ecc_encode.sv",
+                      "sha256":  "3d7c5b20e226da25ca2883a27ff064bb35c6e4c9149367fb18acc39b3d90d2e3",
+                      "bytes":  2977,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/ecc_encode.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/ecc_pkg.sv",
+                      "sha256":  "a9cadeeb5d3cebdb54fa41c3b67cd46ad283c3d2cf62c145cdd3db3373703fb8",
+                      "bytes":  1441,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/ecc_pkg.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/edge_detect.sv",
+                      "sha256":  "73ef908d92b0a0a833ecb793b60039d2df1630e5b1c464a1675a356497dc3f27",
+                      "bytes":  1330,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/edge_detect.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/edge_propagator.sv",
+                      "sha256":  "043aac362753c3e8a128fc66c732ab1800539c716b4b97a4ddeccb6ced433c93",
+                      "bytes":  1716,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/edge_propagator.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/edge_propagator_rx.sv",
+                      "sha256":  "4925992cad40b01e5dd07243e2dd005b9c4c5872d918fe1eda63ce4ccec2d8b6",
+                      "bytes":  1168,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/edge_propagator_rx.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/edge_propagator_tx.sv",
+                      "sha256":  "17ef6407419509404234ce6a2612d27b0013f3b188b4355346d1a79baf81b54a",
+                      "bytes":  1389,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/edge_propagator_tx.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/exp_backoff.sv",
+                      "sha256":  "789782c49c5471bb7813284acc586ced72632cbbea025514148b5d5cb1fe7e28",
+                      "bytes":  3580,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/exp_backoff.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/fall_through_register.sv",
+                      "sha256":  "48bcffcfaf3cb2d6b90144ab70fb44cdf34682f5973e9f6b7e7886204aad11e1",
+                      "bytes":  2347,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/fall_through_register.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/fifo_v3.sv",
+                      "sha256":  "a0bfd58ebc8f9769f38b350d102cda85ee76dbef6db3a8cdec550bc3341af45d",
+                      "bytes":  6462,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/fifo_v3.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/gray_to_binary.sv",
+                      "sha256":  "21b9309cf04688bf91e17731f45e23d745db08d471bb8439c4d6012dc68cd38f",
+                      "bytes":  966,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/gray_to_binary.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/id_queue.sv",
+                      "sha256":  "718b0eb3d04155955d8bcf1a696e4ef9967e80c5982c960cee980b5bf10a6246",
+                      "bytes":  10969,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/id_queue.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/isochronous_spill_register.sv",
+                      "sha256":  "7afc555e5b493c29b7026766f39da4d67f5c9c7a48f183e38c01dcda3c9d9ec0",
+                      "bytes":  3943,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/isochronous_spill_register.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/lfsr.sv",
+                      "sha256":  "710f0ea95fbd5c1d27da54543b15c96f197cee1522ba90e2f389f392f950d460",
+                      "bytes":  12736,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/lfsr.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/lfsr_16bit.sv",
+                      "sha256":  "400b75fee9b14e04f166f7f984d3a5aff534df6757113cfd47d68be09dffccf9",
+                      "bytes":  2134,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/lfsr_16bit.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/lfsr_8bit.sv",
+                      "sha256":  "2f9b82ad470d41a92da3c5ef0618eec3975da3bc2e2342f2836f982f7425cdc6",
+                      "bytes":  2007,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/lfsr_8bit.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/lzc.sv",
+                      "sha256":  "2f5dcae6d1c6dd5af71412c2d7a85e04f9f466633decd0e955748eb9639c3fe0",
+                      "bytes":  4788,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/lzc.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/max_counter.sv",
+                      "sha256":  "eb5ec7ae80824b5e77e1ca5be21e90dc11a2be1c0e7ba22f6efd1b563353ed63",
+                      "bytes":  2612,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/max_counter.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/mv_filter.sv",
+                      "sha256":  "a889df164a803718d5be2c0d0707accd00542551a1a6cce2e6817e375b35c3e6",
+                      "bytes":  1730,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/mv_filter.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/onehot_to_bin.sv",
+                      "sha256":  "08dc7beb607c28befa2fb7cd26b7a0b8752d59eee86b2a1c3eaacfc9e6a6f22f",
+                      "bytes":  1584,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/onehot_to_bin.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/plru_tree.sv",
+                      "sha256":  "e02ca1d49943acbb6530390ca9d393acf979f45956e667b4ccbad0aae4d73342",
+                      "bytes":  5389,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/plru_tree.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/popcount.sv",
+                      "sha256":  "873042d9ec4e9efced871acaee1223ce1c14d04ccbe8c18966749db44fd9f1ee",
+                      "bytes":  2601,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/popcount.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/rr_arb_tree.sv",
+                      "sha256":  "38f5e477b93b6709241de4811163c8af00e94e106f2ac3bbe6251693afb3d0eb",
+                      "bytes":  15292,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/rr_arb_tree.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/rstgen.sv",
+                      "sha256":  "60112bbb94ba37ab32892cf5f25dfca3adafd3fa7bb851cf4f2cdc68ba6b7c23",
+                      "bytes":  1198,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/rstgen.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/rstgen_bypass.sv",
+                      "sha256":  "e2ed229b88574e71f1e51a70093d675a7ae99b7a612be491d6a08a71e9d1cc27",
+                      "bytes":  2038,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/rstgen_bypass.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/serial_deglitch.sv",
+                      "sha256":  "0c0d26de45ff90831795abe2aa3e4dca02cf87bbbc95b1605a8e0c0c9837cb53",
+                      "bytes":  1890,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/serial_deglitch.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/shift_reg.sv",
+                      "sha256":  "1685c1348732a093966253c1c99184da09ec2bff418e3527ae544920f642ccf7",
+                      "bytes":  1946,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/shift_reg.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/spill_register.sv",
+                      "sha256":  "1ab06430c13e8865259ecbedcc20adea116b2152b0123e96fc7bdd4911565262",
+                      "bytes":  3166,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/spill_register.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_arbiter.sv",
+                      "sha256":  "42d253d525ef6ec76b94611ccb2b30c3d6919ceca35df22fd4f9fe13d92130df",
+                      "bytes":  2111,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_arbiter.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_arbiter_flushable.sv",
+                      "sha256":  "53432605afc941be3e14d9f612f917173c199a84971107f64bd4a129944dacbd",
+                      "bytes":  2899,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_arbiter_flushable.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_delay.sv",
+                      "sha256":  "104074dc6929cceccb70bb35e26cadb8899e189cc7d3d1c614229c560ad5775a",
+                      "bytes":  4375,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_delay.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_demux.sv",
+                      "sha256":  "372b9e8ce4e28a85e45d695d1bfcc975a6ac9798bec178114e1716e6703af006",
+                      "bytes":  1579,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_demux.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_fifo.sv",
+                      "sha256":  "f79c7ebb32bd11ae9bab4038ba8e38a0891204fb99375fced8b358a7b159b14b",
+                      "bytes":  2659,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_fifo.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_filter.sv",
+                      "sha256":  "ba8856845a322512d82972914e50d3b2311c5159a72e3f47634fac438c9658cf",
+                      "bytes":  1140,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_filter.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_fork.sv",
+                      "sha256":  "54f280054ba990387f642467e5820953b530359a178bc0c6cc3318118da55352",
+                      "bytes":  4937,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_fork.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_fork_dynamic.sv",
+                      "sha256":  "b6f6c28340064bf36fd31ccd467b08f73f2c0e2fdf9c815383aa82c37508abc7",
+                      "bytes":  3395,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_fork_dynamic.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_intf.sv",
+                      "sha256":  "4a59a7195e4d91d1fe2e655ba5cbb1d8dc5c4f0ea3064c474d05f54364e8e0e9",
+                      "bytes":  1590,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_intf.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_join.sv",
+                      "sha256":  "73d2992b7cd9800f0fd24b29fc090e593aad6d5932f1fa5f4034db4633bb0466",
+                      "bytes":  1851,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_join.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_mux.sv",
+                      "sha256":  "59706bf85a2be351981ba26d17462dcdcd18dcaeab59360f186075ce53919309",
+                      "bytes":  1828,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_mux.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_omega_net.sv",
+                      "sha256":  "00f55500e5ed3661a9ba80a7bdcf9b8d9ad8b59525e9cedb181d5427a251b16d",
+                      "bytes":  14735,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_omega_net.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_register.sv",
+                      "sha256":  "32169edce03f9f9cbfde7531a2f3968ef4321d58ba9fb5a97c53f553da7198ea",
+                      "bytes":  2214,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_register.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_to_mem.sv",
+                      "sha256":  "4013e90f60f8271d1b18aeeb769238e956954828f486c163045d90050f8e118e",
+                      "bytes":  5333,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_to_mem.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_xbar.sv",
+                      "sha256":  "59f2268769c7b66b2b39292bd28a9f396dbf0be761688a60fa34b41a87bdff52",
+                      "bytes":  8297,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/stream_xbar.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/sub_per_hash.sv",
+                      "sha256":  "3ddbbc642b7f858352e21af2f4b19fdcf61ee4e0a662d1d4cd479a284a99decc",
+                      "bytes":  7535,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/sub_per_hash.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/sync.sv",
+                      "sha256":  "44afc4aff2ee728a57ebd7dba64b879fb157bee8c12dcf90586f74caa1aa953f",
+                      "bytes":  1192,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/sync.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/sync_wedge.sv",
+                      "sha256":  "a52527178945c848543b9e9a6942ae980ff89eefa3888cc59a02f000332f925d",
+                      "bytes":  1703,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/sync_wedge.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_common_cells/src/unread.sv",
+                      "sha256":  "c73929970168148ded126e1271d4a7aa78324c61cca9e1fa6ab8f26e4be1d433",
+                      "bytes":  923,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_common_cells/src/unread.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_cast_multi.sv",
+                      "sha256":  "e44303a435ac56e12d560e4edd60d774577699cffae7b6fb1b7baa4aa1230840",
+                      "bytes":  41519,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_cast_multi.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_classifier.sv",
+                      "sha256":  "0b590e29187e4a7b8ab9b3215e9654007589adaeb38682f93d5f59b3185e5ab4",
+                      "bytes":  3013,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_classifier.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_divsqrt_multi.sv",
+                      "sha256":  "0d5c9d0a0ba3ba4f2306f92060bbc5e087fa9f41def77f8c6124129899e412aa",
+                      "bytes":  18148,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_divsqrt_multi.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_divsqrt_th_32.sv",
+                      "sha256":  "3d3dda2e6ec63f5a26f239842de7f192317aca961466c7857b3d161532ab21c4",
+                      "bytes":  23810,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_divsqrt_th_32.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_fma.sv",
+                      "sha256":  "bd184a5d0aef2f69ca5e789e34430d8555aa0f9ff3db4b0120b451bdfad91a2d",
+                      "bytes":  36750,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_fma.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_fma_multi.sv",
+                      "sha256":  "715d6afee2f13e6eec77f6879911c8fe7155ce5996bf8d14eb2c652c7bc9628e",
+                      "bytes":  45493,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_fma_multi.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_noncomp.sv",
+                      "sha256":  "693e49f8f44f37ffe693122db404048e0c21d9e69f969023850765625e8355fc",
+                      "bytes":  19400,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_noncomp.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_opgroup_block.sv",
+                      "sha256":  "267f2cea1f2de0c9a24aff3a97f5b267068938e33e8d309e9916869997840c46",
+                      "bytes":  10568,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_opgroup_block.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_opgroup_fmt_slice.sv",
+                      "sha256":  "67834da032d583a44b877357b5aa41b32e8dbf389fdf9999ae14663f6ccd559f",
+                      "bytes":  13889,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_opgroup_fmt_slice.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_opgroup_multifmt_slice.sv",
+                      "sha256":  "d9303249f428df6ba961b7f3440c4e3bfcae2a83e2fc9612b0c781293483335d",
+                      "bytes":  24631,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_opgroup_multifmt_slice.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_pkg.sv",
+                      "sha256":  "c4fd052c8e12bb1da6d7f9a8b51f7c657165860498d84e42352ac73584dd9052",
+                      "bytes":  18512,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_pkg.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_rounding.sv",
+                      "sha256":  "343e7bcf90731eb94cf2e50b3980d5d482c26779ff489dff245227c2728e4f2f",
+                      "bytes":  3800,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_rounding.sv"
+                  },
+                  {
+                      "path":  "cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_top.sv",
+                      "sha256":  "7ada1bd2deda470ba8e1fbdedc30f57e8d993ef50c796608203ad281ce29db31",
+                      "bytes":  7580,
+                      "snapshot":  "snapshot/cv32e40p/rtl/vendor/pulp_platform_fpnew/src/fpnew_top.sv"
+                  },
+                  {
+                      "path":  "docs/decisions/cv32e40p-candidate.md",
+                      "sha256":  "151546a475169ed1098952190aa942bc69c6c634f0502ae6f9963529644ea263",
+                      "bytes":  4156,
+                      "snapshot":  "snapshot/docs/decisions/cv32e40p-candidate.md"
+                  },
+                  {
+                      "path":  "docs/plans/2026-10-06-tri-modal-dsp-resumamba-plan.md",
+                      "sha256":  "8b5d564993739f5865441e00b34d74ddb569397bace22d7e04c2daea35c803ff",
+                      "bytes":  14511,
+                      "snapshot":  "snapshot/docs/plans/2026-10-06-tri-modal-dsp-resumamba-plan.md"
+                  },
+                  {
+                      "path":  "docs/plans/gem_implement_core.md",
+                      "sha256":  "308240296c04f91ac1db4b04475122827e1d21ceea18cf00c717e9ec312c7eff",
+                      "bytes":  20349,
+                      "snapshot":  "snapshot/docs/plans/gem_implement_core.md"
+                  },
+                  {
+                      "path":  "Firmware/boot/crt0.S",
+                      "sha256":  "73a73a51d8359c3c5acb1fac61a60f2d8f0e43fd6f4314ceac12e2aed318254b",
+                      "bytes":  5687,
+                      "snapshot":  "snapshot/Firmware/boot/crt0.S"
+                  },
+                  {
+                      "path":  "Firmware/boot/hello.c",
+                      "sha256":  "1f31d71fe003138588f631704ddc75076a1c92c1a7e22c05b4f55f593b676440",
+                      "bytes":  7457,
+                      "snapshot":  "snapshot/Firmware/boot/hello.c"
+                  },
+                  {
+                      "path":  "Firmware/boot/link.ld",
+                      "sha256":  "219a66dad79ea326e07f598473b2f30dc9a0e070f64a3bfc1b4f6b471b23381c",
+                      "bytes":  1455,
+                      "snapshot":  "snapshot/Firmware/boot/link.ld"
+                  },
+                  {
+                      "path":  "Firmware/build/hello.bin",
+                      "sha256":  "6b73cd0a4c8b2604dee9b7da889c25f821d6b9f3abfe4c4ec1015bd336977ea1",
+                      "bytes":  2108,
+                      "snapshot":  "snapshot/Firmware/build/hello.bin"
+                  },
+                  {
+                      "path":  "Firmware/build/hello.dump",
+                      "sha256":  "f642d68ebcb581f0060542826a3d4ea5f5dabae876ee28316a0b7621073875ad",
+                      "bytes":  41209,
+                      "snapshot":  "snapshot/Firmware/build/hello.dump"
+                  },
+                  {
+                      "path":  "Firmware/build/hello.elf",
+                      "sha256":  "a03a413b9aa1c7b8173d934a7a0776620efc51e802f12bc1f5adfaf3697ce48d",
+                      "bytes":  17576,
+                      "snapshot":  "snapshot/Firmware/build/hello.elf"
+                  },
+                  {
+                      "path":  "Firmware/build/hello.hex",
+                      "sha256":  "bc931c029e3d5a686ec25b929f3bc1972b6bbe0fdffdfdfd776a455a8a21fe64",
+                      "bytes":  81920,
+                      "snapshot":  "snapshot/Firmware/build/hello.hex"
+                  },
+                  {
+                      "path":  "Firmware/build/hello.map",
+                      "sha256":  "1884751c53bc4f9b16f14c1a713d7e9a33b5e0d51f20330d4bfe70f95ad50824",
+                      "bytes":  7281,
+                      "snapshot":  "snapshot/Firmware/build/hello.map"
+                  },
+                  {
+                      "path":  "Firmware/build/hello.nm",
+                      "sha256":  "c5dc47cf03e50577d02b62ccf1aaf659d881de6a14a3b418aee004638edace5f",
+                      "bytes":  825,
+                      "snapshot":  "snapshot/Firmware/build/hello.nm"
+                  },
+                  {
+                      "path":  "Firmware/build/hello.readelf",
+                      "sha256":  "e58b21832317f94347f220cef8e9a80a181261e57a228cab998e9cad05fe9b71",
+                      "bytes":  2614,
+                      "snapshot":  "snapshot/Firmware/build/hello.readelf"
+                  },
+                  {
+                      "path":  "Firmware/build/hello.sha256",
+                      "sha256":  "6bc730f21b98824244223dc5b4b686ec353e90cbd4528fcc111f410862b5118e",
+                      "bytes":  543,
+                      "snapshot":  "snapshot/Firmware/build/hello.sha256"
+                  },
+                  {
+                      "path":  "Firmware/build_boot_image.py",
+                      "sha256":  "6b244013a2bff8c3cc43a8c66d744ef178b75033c24eac08297507a380ac3573",
+                      "bytes":  8283,
+                      "snapshot":  "snapshot/Firmware/build_boot_image.py"
+                  },
+                  {
+                      "path":  "Firmware/dsp/dsp_test.c",
+                      "sha256":  "a185de2eddcfa5a1394ccffa482b762a2cec22258bc1c7e1aa72ec31d5350b96",
+                      "bytes":  8886,
+                      "snapshot":  "snapshot/Firmware/dsp/dsp_test.c"
+                  },
+                  {
+                      "path":  "Firmware/dsp/ecg_fir_pulp.S",
+                      "sha256":  "5fb66d17b389b8f118888735c2a3e26a754d6b113c7dce99ecb578e288f229de",
+                      "bytes":  3210,
+                      "snapshot":  "snapshot/Firmware/dsp/ecg_fir_pulp.S"
+                  },
+                  {
+                      "path":  "Firmware/dsp/resumamba_bias.h",
+                      "sha256":  "316c63aaa26f5c4c6f990ff3158542336be84835b3c2507cd4885897c5d756d9",
+                      "bytes":  6825,
+                      "snapshot":  "snapshot/Firmware/dsp/resumamba_bias.h"
+                  },
+                  {
+                      "path":  "Firmware/dsp/resumamba_infer.c",
+                      "sha256":  "573147d77f9b1e6ac2deb79b71e6d42199c082525b12a7e0ed0605224981850c",
+                      "bytes":  10642,
+                      "snapshot":  "snapshot/Firmware/dsp/resumamba_infer.c"
+                  },
+                  {
+                      "path":  "Firmware/dsp/resumamba_infer.h",
+                      "sha256":  "ed3048c3db09f1ccda3732c8deef589bcba63c316e7e1237cd17e6b2ba15c6ba",
+                      "bytes":  1138,
+                      "snapshot":  "snapshot/Firmware/dsp/resumamba_infer.h"
+                  },
+                  {
+                      "path":  "Firmware/dsp/resumamba_kernels_pulp.S",
+                      "sha256":  "0fcc209fed16d318b661724f08a44f207d7b15cb0cd678bd3560f11d72916379",
+                      "bytes":  1537,
+                      "snapshot":  "snapshot/Firmware/dsp/resumamba_kernels_pulp.S"
+                  },
+                  {
+                      "path":  "Firmware/dsp/resumamba_weights.h",
+                      "sha256":  "7a7c489c32e476d95bcdc220eda594c3cedd13b9e530315387b80c30082131b1",
+                      "bytes":  228272,
+                      "snapshot":  "snapshot/Firmware/dsp/resumamba_weights.h"
+                  },
+                  {
+                      "path":  "Firmware/dsp/test_resumamba_infer.c",
+                      "sha256":  "a5cf6351c8d07f592505835ad5ed6140bbc280386629981a5e3b9cf6b1190d2b",
+                      "bytes":  4997,
+                      "snapshot":  "snapshot/Firmware/dsp/test_resumamba_infer.c"
+                  },
+                  {
+                      "path":  "Firmware/Makefile",
+                      "sha256":  "1b1b0254685ee4e0d3b7847cd691cad34dc07060de0ca6815d57715ecb02d8fb",
+                      "bytes":  4430,
+                      "snapshot":  "snapshot/Firmware/Makefile"
+                  },
+                  {
+                      "path":  "Instruction/architecture.md",
+                      "sha256":  "0f7b6f8af9369139a5e294dc68083703ea31b8c4cabfc6213928deeb4d3a6d8c",
+                      "bytes":  6686,
+                      "snapshot":  "snapshot/Instruction/architecture.md"
+                  },
+                  {
+                      "path":  "Instruction/claim_integrity.md",
+                      "sha256":  "e1e5e9d8230629bfc567fc2ef73b2f69d39e245a82f75055497695c441453597",
+                      "bytes":  2901,
+                      "snapshot":  "snapshot/Instruction/claim_integrity.md"
+                  },
+                  {
+                      "path":  "Instruction/evidence_contract.md",
+                      "sha256":  "047f8d55dbfee3498794136715e70d4202ebb5d594dc82413925683889b7ab66",
+                      "bytes":  3955,
+                      "snapshot":  "snapshot/Instruction/evidence_contract.md"
+                  },
+                  {
+                      "path":  "Instruction/research_spec.md",
+                      "sha256":  "ea14f820fca35d25ca579482f539c1f87bdfb8c7b8148fcd358eaf53d413637e",
+                      "bytes":  6269,
+                      "snapshot":  "snapshot/Instruction/research_spec.md"
+                  },
+                  {
+                      "path":  "Instruction/roadmap.md",
+                      "sha256":  "ad6e3647111686e7489e0c95d44ad7f9f5b5787cd2da6df7f10f9c1d6b9b0502",
+                      "bytes":  5400,
+                      "snapshot":  "snapshot/Instruction/roadmap.md"
+                  },
+                  {
+                      "path":  "Instruction/session_checklist.md",
+                      "sha256":  "ca6ceae16ea3d9552261cf70d7bde6342ef239ad286da994d2f2fe7e475b7f16",
+                      "bytes":  4098,
+                      "snapshot":  "snapshot/Instruction/session_checklist.md"
+                  },
+                  {
+                      "path":  "reports/benchmark/tri_modal_resumamba_report.md",
+                      "sha256":  "74b1e1e73fbd1e06b93cea7353132651a92a53d6bbcb68f0fb3060226df16f4c",
+                      "bytes":  10158,
+                      "snapshot":  "snapshot/reports/benchmark/tri_modal_resumamba_report.md"
+                  },
+                  {
+                      "path":  "reports/benchmark_report.md",
+                      "sha256":  "31d93c051059302dea68ec8e01790382d0d085abf60c5d91a4c215953e99d08b",
+                      "bytes":  6020,
+                      "snapshot":  "snapshot/reports/benchmark_report.md"
+                  },
+                  {
+                      "path":  "reports/manifest.json",
+                      "sha256":  "14668935a5ac3dfe159da7335df5e872fd238886bfda1f1e773c8e7de1106ee3",
+                      "bytes":  4614,
+                      "snapshot":  "snapshot/reports/manifest.json"
+                  },
+                  {
+                      "path":  "reports/simulation/run_20261006_090915/soc_tb.log",
+                      "sha256":  "051f9b1be434d34308f840747d3dba09fb6670e1193e023bdf9b1508f26526a2",
+                      "bytes":  2522,
+                      "snapshot":  "snapshot/reports/simulation/run_20261006_090915/soc_tb.log"
+                  },
+                  {
+                      "path":  "reports/simulation/run_20261006_091539/compile.log",
+                      "sha256":  "dc1bb95446015fd3f40531e5641438c6d2e4ce4d3f8db9e170159e7acb14d682",
+                      "bytes":  12334,
+                      "snapshot":  "snapshot/reports/simulation/run_20261006_091539/compile.log"
+                  },
+                  {
+                      "path":  "reports/simulation/run_20261006_091539/sim_results.json",
+                      "sha256":  "a02a3d7a740e13ff5ff9bbffd1a2d44117322ee5d560a90ab016588103d4157f",
+                      "bytes":  891,
+                      "snapshot":  "snapshot/reports/simulation/run_20261006_091539/sim_results.json"
+                  },
+                  {
+                      "path":  "reports/simulation/run_20261006_091539/soc_tb.log",
+                      "sha256":  "21e4a5f399f0af96b6f51bac22d2715110d70ab6f0bd6302419fe3e2a16301bb",
+                      "bytes":  2271,
+                      "snapshot":  "snapshot/reports/simulation/run_20261006_091539/soc_tb.log"
+                  },
+                  {
+                      "path":  "reports/simulation/tcm_run_20261006_080148/tcm_tb.log",
+                      "sha256":  "8324d4a88e19caa58d7c28be021211699bba10fcb6c0b57c844dc42bb33402aa",
+                      "bytes":  1462,
+                      "snapshot":  "snapshot/reports/simulation/tcm_run_20261006_080148/tcm_tb.log"
+                  },
+                  {
+                      "path":  "reports/verification/rtm_dashboard.md",
+                      "sha256":  "e53e124f17f25d587dd85f595525e8e1240f9a609c0ac9829a96e9be66d3d0d2",
+                      "bytes":  8008,
+                      "snapshot":  "snapshot/reports/verification/rtm_dashboard.md"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/apb_interconnect.sv",
+                      "sha256":  "d4115cc388c3861c3de57733267a6d7cd3dd0de7010ec885d78bb0a174aa09b5",
+                      "bytes":  3361,
+                      "snapshot":  "snapshot/RTL/ecg_soc/apb_interconnect.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/cv32e40p_ecg_soc_top.sv",
+                      "sha256":  "5dcc2b543c8e35a783312b5b2cc8a66ad8d81e0e6b19c10a4610a82beb0327d2",
+                      "bytes":  15915,
+                      "snapshot":  "snapshot/RTL/ecg_soc/cv32e40p_ecg_soc_top.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/ecg_dma.sv",
+                      "sha256":  "b86e97721053b1c5afda3cbfd5e7c2314e91d182164a5d3ff482c9da99238368",
+                      "bytes":  8133,
+                      "snapshot":  "snapshot/RTL/ecg_soc/ecg_dma.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/ecg_soc_pkg.sv",
+                      "sha256":  "815f9bf5a3a23fe67cf1a8185f7cb6fb8e1c77f06aed4e0786e4e4534b986079",
+                      "bytes":  4395,
+                      "snapshot":  "snapshot/RTL/ecg_soc/ecg_soc_pkg.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/ecg_soc_top.sv",
+                      "sha256":  "d6e211eab1a6d67fd86aa8b06379bde0c82f104f2827899915a9575c95f686e7",
+                      "bytes":  9335,
+                      "snapshot":  "snapshot/RTL/ecg_soc/ecg_soc_top.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/fpga/cv32e40p_fpga_clock_gate.sv",
+                      "sha256":  "5f5c860600f7b396b3b75de7fb20a0b62bfc8e01ee225dae16bfe3c7820907e1",
+                      "bytes":  609,
+                      "snapshot":  "snapshot/RTL/ecg_soc/fpga/cv32e40p_fpga_clock_gate.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/fpga/ecg_arty_top.sv",
+                      "sha256":  "babde73a0059c3e33f56a8dfc3fd01988189e9d16984e1b0b20e3951d45c4fef",
+                      "bytes":  4943,
+                      "snapshot":  "snapshot/RTL/ecg_soc/fpga/ecg_arty_top.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/gpio_apb.sv",
+                      "sha256":  "859206617d81d806e28188987cf665bcd9dfe47c297d47db4cff6f2f44bf2fba",
+                      "bytes":  3567,
+                      "snapshot":  "snapshot/RTL/ecg_soc/gpio_apb.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/mamba_bridge.sv",
+                      "sha256":  "552dd09083e3ef2b14c013a2a0d1ce0c1aa7b4cad86ce5158df431838718632c",
+                      "bytes":  6623,
+                      "snapshot":  "snapshot/RTL/ecg_soc/mamba_bridge.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/mamba_fir_sidecar.sv",
+                      "sha256":  "d36fd175ba272b0223b830c1c96bb24650d6d9ca8c3eed03916a17c6cca2762f",
+                      "bytes":  8082,
+                      "snapshot":  "snapshot/RTL/ecg_soc/mamba_fir_sidecar.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/obi_to_apb.sv",
+                      "sha256":  "2b741d7789ea6acccac1e96d44b7aaac5208879cd40a717c4613793c96dc8b4e",
+                      "bytes":  3100,
+                      "snapshot":  "snapshot/RTL/ecg_soc/obi_to_apb.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/spi_master.sv",
+                      "sha256":  "5df248b0eb093e51e0611f84597860445ed36b229f74fe4220b56c05282501f4",
+                      "bytes":  8891,
+                      "snapshot":  "snapshot/RTL/ecg_soc/spi_master.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/spi_master_apb.sv",
+                      "sha256":  "0b064b46619cc3551795e46ddd4e8b2f73ad7049688cba6927b23fd51b088bb3",
+                      "bytes":  6112,
+                      "snapshot":  "snapshot/RTL/ecg_soc/spi_master_apb.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/sva/obi_to_apb_bind.sv",
+                      "sha256":  "6b52d2617e148316891dfed9bb9a8cad8de1dc7d2ee47ff14bfa1d32980d3c6c",
+                      "bytes":  748,
+                      "snapshot":  "snapshot/RTL/ecg_soc/sva/obi_to_apb_bind.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/sva/obi_to_apb_sva.sv",
+                      "sha256":  "97e4da124b3c3661445f84700001e48082cc69fa2a1c01f8a4ec80b0598643c0",
+                      "bytes":  3361,
+                      "snapshot":  "snapshot/RTL/ecg_soc/sva/obi_to_apb_sva.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/sva/spi_master_bind.sv",
+                      "sha256":  "509658889d79f6df594846753e8b27c08b9af72290cb2a2bf3b617dabcff7694",
+                      "bytes":  540,
+                      "snapshot":  "snapshot/RTL/ecg_soc/sva/spi_master_bind.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/sva/spi_master_sva.sv",
+                      "sha256":  "c0c859bd9b1b0751c2a0c6ba2aa00ae92a63cc4c832df726bd251a0a8c128678",
+                      "bytes":  2332,
+                      "snapshot":  "snapshot/RTL/ecg_soc/sva/spi_master_sva.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/sync_fifo.sv",
+                      "sha256":  "d7d5f42113a7dc84500ca1ee0bdc59dd84eef0b9cf739c77b7d4c2603a285308",
+                      "bytes":  3923,
+                      "snapshot":  "snapshot/RTL/ecg_soc/sync_fifo.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/tcm_sram.sv",
+                      "sha256":  "f6c962541f6a184b5d69ec25fe95aab9ca81af1cca968e6468dd5daa1e7cf505",
+                      "bytes":  3844,
+                      "snapshot":  "snapshot/RTL/ecg_soc/tcm_sram.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/timer_apb.sv",
+                      "sha256":  "2af8f39087ad93b9465568ca596234a88a7bbfaa654b91cfdd569e93fb13a191",
+                      "bytes":  2696,
+                      "snapshot":  "snapshot/RTL/ecg_soc/timer_apb.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/uart_apb.sv",
+                      "sha256":  "91dcfb74bfb2829aa5851f7b0f25e6a8ae6112b1ee8b2e2bbd693c02d4408e6b",
+                      "bytes":  3880,
+                      "snapshot":  "snapshot/RTL/ecg_soc/uart_apb.sv"
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/uart_controller.sv",
+                      "sha256":  "dc9b94adecdc6173e7c73038880108d654925503d586ac94405e43caf9e77ed5",
+                      "bytes":  8406,
+                      "snapshot":  "snapshot/RTL/ecg_soc/uart_controller.sv"
+                  },
+                  {
+                      "path":  "scripts/check_evidence.py",
+                      "sha256":  "e4b825bf0ff921569ca4e57e2aa6c26fc19c8d7c9a4983748018e0a4d4b2039c",
+                      "bytes":  11488,
+                      "snapshot":  "snapshot/scripts/check_evidence.py"
+                  },
+                  {
+                      "path":  "scripts/quantize_resumamba.py",
+                      "sha256":  "c76732a2fc2f783753bc4d4df303abcfa4aa494e9800a2a7c2c91eeaea75d7b2",
+                      "bytes":  13746,
+                      "snapshot":  "snapshot/scripts/quantize_resumamba.py"
+                  },
+                  {
+                      "path":  "scripts/run_sim.ps1",
+                      "sha256":  "23500e0700c813020e9cd56654f2590f6d0729ea70e57bd03e9871c4ea0b90a1",
+                      "bytes":  9589,
+                      "snapshot":  "snapshot/scripts/run_sim.ps1"
+                  },
+                  {
+                      "path":  "scripts/run_sim.sh",
+                      "sha256":  "a1ff32bd245c98bfc1c238b973935dff25982a8df16954c1216bb5d0bf2fed2b",
+                      "bytes":  3728,
+                      "snapshot":  "snapshot/scripts/run_sim.sh"
+                  },
+                  {
+                      "path":  "scripts/test_quantization_parity.py",
+                      "sha256":  "74d7f052c134669c914f7dafd8a3240d06cb336f9ded03938dcb9ea9d35f1e51",
+                      "bytes":  3985,
+                      "snapshot":  "snapshot/scripts/test_quantization_parity.py"
+                  },
+                  {
+                      "path":  "Simulation/mamba_fir_tb.sv",
+                      "sha256":  "8110041f922a8398ca66be07ccde16fb5fcc73e21e7affa102d4553822959a44",
+                      "bytes":  8206,
+                      "snapshot":  "snapshot/Simulation/mamba_fir_tb.sv"
+                  },
+                  {
+                      "path":  "Simulation/run_spi.ps1",
+                      "sha256":  "221819e0ac851532839b136627317f6b893a0b68f6885a26a60e1e9a225335b9",
+                      "bytes":  5605,
+                      "snapshot":  "snapshot/Simulation/run_spi.ps1"
+                  },
+                  {
+                      "path":  "Simulation/run_tcm.ps1",
+                      "sha256":  "64a854f849adb73ac00d97587fc11b2693a2b2c9af6085a190c1cedb43c1df27",
+                      "bytes":  5443,
+                      "snapshot":  "snapshot/Simulation/run_tcm.ps1"
+                  },
+                  {
+                      "path":  "Simulation/soc_tb.sv",
+                      "sha256":  "b5f9e7eac19222bdbd1226ca4551c2ff30feeea52f47f9cc600bb5412b36701c",
+                      "bytes":  10660,
+                      "snapshot":  "snapshot/Simulation/soc_tb.sv"
+                  },
+                  {
+                      "path":  "Simulation/spi_master_tb.sv",
+                      "sha256":  "7db9f57434c0b469b931becddb7cc119fadf19513333c3b71396092d64b43b5b",
+                      "bytes":  12628,
+                      "snapshot":  "snapshot/Simulation/spi_master_tb.sv"
+                  },
+                  {
+                      "path":  "Simulation/tcm_router_tb.sv",
+                      "sha256":  "9729788b87f1b9aaf45f90a8d698bc6a26dbd7392dcc1505f4271da03f008cff",
+                      "bytes":  13595,
+                      "snapshot":  "snapshot/Simulation/tcm_router_tb.sv"
+                  },
+                  {
+                      "path":  "spec/ecg_soc_reqs.json",
+                      "sha256":  "6f2dfe51e43e81adf6e1ed7be6250d3b4c9b00fe5d6add0d81cfd19b6c813886",
+                      "bytes":  5627,
+                      "snapshot":  "snapshot/spec/ecg_soc_reqs.json"
+                  },
+                  {
+                      "path":  "spec/ecg_soc_spec.md",
+                      "sha256":  "f9cf58d0d27dc86a2d2334caf9024800c12709a17969376f1181f352b050777b",
+                      "bytes":  9515,
+                      "snapshot":  "snapshot/spec/ecg_soc_spec.md"
+                  },
+                  {
+                      "path":  "Synthesis/cv32e40p_soc.prj",
+                      "sha256":  "e156c09c3afd4b59d51406d138e0857843566e977391050c5861083328a03f0b",
+                      "bytes":  2106,
+                      "snapshot":  "snapshot/Synthesis/cv32e40p_soc.prj"
+                  },
+                  {
+                      "path":  "Synthesis/flist_cv32e40p_soc.f",
+                      "sha256":  "a1186f65eb10a05e6f03c130573a8bbcfa004731e41820bc9808bac6cdc26d5b",
+                      "bytes":  1880,
+                      "snapshot":  "snapshot/Synthesis/flist_cv32e40p_soc.f"
+                  },
+                  {
+                      "path":  "Synthesis/flist_spi_master_tb.f",
+                      "sha256":  "11f58c3ab45c79833bc7fe82e85b52de5e7c8e7238d35c69c5d5d07b4fb5ff01",
+                      "bytes":  284,
+                      "snapshot":  "snapshot/Synthesis/flist_spi_master_tb.f"
+                  },
+                  {
+                      "path":  "Synthesis/fpga/ecg_artix7/arty_a7_100t.xdc",
+                      "sha256":  "55af51277e91e81c9edb2e39ab916b05646efa23b8ce255ae3e9a992c3f4887a",
+                      "bytes":  4145,
+                      "snapshot":  "snapshot/Synthesis/fpga/ecg_artix7/arty_a7_100t.xdc"
+                  },
+                  {
+                      "path":  "Synthesis/fpga/ecg_artix7/reports/run_20261006_071047/timing_routed.rpt",
+                      "sha256":  "147faad27aecfa7dbe2d74442717076d1e308c3294b3860f69684e7f7e50e6b7",
+                      "bytes":  75459,
+                      "snapshot":  "snapshot/Synthesis/fpga/ecg_artix7/reports/run_20261006_071047/timing_routed.rpt"
+                  },
+                  {
+                      "path":  "Synthesis/fpga/ecg_artix7/reports/run_20261006_093347/check_timing.rpt",
+                      "sha256":  "5b8b75fadeaea022629f0060c976aa01923b0601a12461b9ed0eaad3d102faba",
+                      "bytes":  3303,
+                      "snapshot":  "snapshot/Synthesis/fpga/ecg_artix7/reports/run_20261006_093347/check_timing.rpt"
+                  },
+                  {
+                      "path":  "Synthesis/fpga/ecg_artix7/reports/run_20261006_093347/drc_routed.rpt",
+                      "sha256":  "2fbc732f42374e203f836624039f9b48c004176654cd8755de1f9d955f6186a0",
+                      "bytes":  28747,
+                      "snapshot":  "snapshot/Synthesis/fpga/ecg_artix7/reports/run_20261006_093347/drc_routed.rpt"
+                  },
+                  {
+                      "path":  "Synthesis/fpga/ecg_artix7/reports/run_20261006_093347/fpga_manifest.json",
+                      "sha256":  "606e5b8729dfa5316265c4531677f23a7a041bc0f152f6f631b0040fbcd3d952",
+                      "bytes":  4560,
+                      "snapshot":  "snapshot/Synthesis/fpga/ecg_artix7/reports/run_20261006_093347/fpga_manifest.json"
+                  },
+                  {
+                      "path":  "Synthesis/fpga/ecg_artix7/reports/run_20261006_093347/timing_routed.rpt",
+                      "sha256":  "15be4f6e08bfdfbe3a7468053ca65badb3ab6b88d73fc019961f722507c3358e",
+                      "bytes":  73362,
+                      "snapshot":  "snapshot/Synthesis/fpga/ecg_artix7/reports/run_20261006_093347/timing_routed.rpt"
+                  },
+                  {
+                      "path":  "Synthesis/fpga/ecg_artix7/reports/run_20261006_093347/timing_setup.rpt",
+                      "sha256":  "0217b18a7a1001ab5e931d86897b7228e78a33b08e013991a63e023cb921efde",
+                      "bytes":  290719,
+                      "snapshot":  "snapshot/Synthesis/fpga/ecg_artix7/reports/run_20261006_093347/timing_setup.rpt"
+                  },
+                  {
+                      "path":  "Synthesis/fpga/ecg_artix7/reports/run_20261006_093347/utilization_hierarchical.rpt",
+                      "sha256":  "7663a05e4ed4f13140e1fe73f38791026f00f251c9ef14a2e1b05155fe329190",
+                      "bytes":  8959,
+                      "snapshot":  "snapshot/Synthesis/fpga/ecg_artix7/reports/run_20261006_093347/utilization_hierarchical.rpt"
+                  },
+                  {
+                      "path":  "Synthesis/fpga/ecg_artix7/run_fpga.ps1",
+                      "sha256":  "d581749e45d575380104030230f77cf48a6c8a257cf23888bd482f754acae214",
+                      "bytes":  6727,
+                      "snapshot":  "snapshot/Synthesis/fpga/ecg_artix7/run_fpga.ps1"
+                  },
+                  {
+                      "path":  "Synthesis/fpga/ecg_artix7/run_fpga.sh",
+                      "sha256":  "071e20e1c2bb99565673e38670eaed805d1165a057649b9bf322e6c29a87f99f",
+                      "bytes":  2662,
+                      "snapshot":  "snapshot/Synthesis/fpga/ecg_artix7/run_fpga.sh"
+                  },
+                  {
+                      "path":  "Synthesis/fpga/ecg_artix7/run_synth.tcl",
+                      "sha256":  "396929fda25804953c99ed8158ceb09480ccbf7ab1bdd020619d1063b37a43cb",
+                      "bytes":  6635,
+                      "snapshot":  "snapshot/Synthesis/fpga/ecg_artix7/run_synth.tcl"
+                  }
+              ],
+    "external_references":  [
+                                {
+                                    "path":  "E:/ResearchOnWork/Backup/PhD_VNU/ecgr_torch/model.py",
+                                    "sha256":  "c3caf66af1710809b6343c2b7eed83a0ac240dd0370ad2b00b978150a8dd65f6",
+                                    "boundary":  "external source/checkpoint fingerprint only; model/checkpoint not executed"
+                                },
+                                {
+                                    "path":  "E:/ResearchOnWork/Backup/PhD_VNU/checkpoints_pt/resumamba_30k.pt",
+                                    "sha256":  "d03428dbb3bde57cbabf94d6e44a22e5a5eb1323ac76a457be035652262726bc",
+                                    "boundary":  "external source/checkpoint fingerprint only; model/checkpoint not executed"
+                                }
+                            ]
+}

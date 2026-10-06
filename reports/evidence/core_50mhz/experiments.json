@@ -1,0 +1,62 @@
+{
+  "target_frequency_mhz": 50.0,
+  "clock_period_ns": 20.0,
+  "target_part": "xc7a100tcsg324-1",
+  "board": "Digilent Arty A7-100T",
+  "runs": [
+    {
+      "run_id": "run_20261006_093347",
+      "timestamp": "2026-10-06T16:45:41Z",
+      "candidate_description": "Historical D1 candidate: CV32E40P HEAD 97086e9, 128KB D-TCM, ENABLE_MAMBA=1, rebuilt hierarchy, pre-route phys_opt only",
+      "core_sha256": "3cb40d58849bbf930438cf5a9d8ad3b6ee979b9b59d997a485542b6a2267b140",
+      "boot_hex_sha256": "4b6bbec8f86f78eaee039d91f868c2f16ee0a7be2aa2ba8fb6a54f0a996f5b9d",
+      "route_complete": true,
+      "wns_ns": -0.815,
+      "tns_ns": -63.389,
+      "setup_failing_endpoints": 215,
+      "whs_ns": 0.044,
+      "ths_ns": 0.0,
+      "hold_failing_endpoints": 0,
+      "unconstrained_internal_endpoints": 0,
+      "acceptance_status": "TIMING_FAIL",
+      "rejection_reason": "Setup timing violated: WNS = -0.815 ns with 215 failing endpoints on ID-to-EX forwarding datapath",
+      "critical_path": "u_soc_top/gen_cv32e40p_core.u_core/core_i/id_stage_i/alu_operator_ex_o_reg[5]/C -> u_soc_top/gen_cv32e40p_core.u_core/core_i/id_stage_i/mult_operand_b_ex_o_reg[26]/D (27 logic levels, 20.576 ns data path delay)"
+    },
+    {
+      "run_id": "run_20261006_105354",
+      "timestamp": "2026-10-06T18:03:58Z",
+      "candidate_description": "Baseline control with PerformanceOptimized synthesis: ENABLE_MAMBA=0, 8-thread route",
+      "core_sha256": "b0d9341cc231d72333b196748a3500c32f3335b6e24092f8565dce776720aeed",
+      "boot_hex_sha256": "9d8e5be2a90d57ff6cb9f61abee0dc0f4df756ce6d4f5a8310ab75c0b6d49810",
+      "route_complete": false,
+      "wns_ns": null,
+      "tns_ns": null,
+      "setup_failing_endpoints": null,
+      "whs_ns": null,
+      "ths_ns": null,
+      "hold_failing_endpoints": null,
+      "unconstrained_internal_endpoints": null,
+      "acceptance_status": "REJECTED_OOM",
+      "rejection_reason": "Router out-of-memory error [Route 35-302] under 8-thread concurrency (placement WNS was positive: +0.853 ns)",
+      "critical_path": "N/A (Routing aborted prior to completion)"
+    },
+    {
+      "run_id": "run_20261006_110810",
+      "timestamp": "2026-10-06T11:29:29Z",
+      "candidate_description": "Production baseline: CV32E40P HEAD 97086e9, 32KB I-TCM, 128KB D-TCM, ENABLE_MAMBA=0, PerformanceOptimized synthesis, 2-thread cap, post-route phys_opt + MoreGlobalIterations re-route",
+      "core_sha256": "b0d9341cc231d72333b196748a3500c32f3335b6e24092f8565dce776720aeed",
+      "boot_hex_sha256": "9d8e5be2a90d57ff6cb9f61abee0dc0f4df756ce6d4f5a8310ab75c0b6d49810",
+      "route_complete": true,
+      "wns_ns": 0.001,
+      "tns_ns": 0.0,
+      "setup_failing_endpoints": 0,
+      "whs_ns": 0.119,
+      "ths_ns": 0.0,
+      "hold_failing_endpoints": 0,
+      "unconstrained_internal_endpoints": 0,
+      "acceptance_status": "ACCEPTED",
+      "rejection_reason": null,
+      "critical_path": "u_soc_top/gen_cv32e40p_core.u_core/core_i/id_stage_i/alu_operator_ex_o_reg[5]/C -> u_soc_top/gen_cv32e40p_core.u_core/core_i/id_stage_i/mult_dot_op_b_ex_o_reg[24]/D (30 logic levels, 19.735 ns data path delay, slack +0.001 ns)"
+    }
+  ]
+}

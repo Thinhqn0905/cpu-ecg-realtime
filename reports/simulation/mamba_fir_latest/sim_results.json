@@ -1,0 +1,24 @@
+﻿{
+    "run_id":  "20261006_130500",
+    "timestamp":  "2026-10-06T13:05:27Z",
+    "compiler":  "E:/iverilog/bin/iverilog.exe",
+    "runtime":  "E:/iverilog/bin/vvp.exe",
+    "compile_exit":  0,
+    "simulation_exit":  0,
+    "duration_seconds":  625.5,
+    "log_file":  "reports/simulation/mamba_fir_run_20261006_130500/mamba_fir_tb.log",
+    "artifacts":  [
+                      {
+                          "sha256":  "a7671e0116468941b35c50bd61ba580e43cc3d88ef008361e9c2015bd973b36e",
+                          "path":  "reports/simulation/mamba_fir_run_20261006_130500/mamba_fir_tb.vvp"
+                      },
+                      {
+                          "sha256":  "48f96c0d325f7902087b56caf8ff0cd5b2ee6fd22ac19514f47d017b3d05ef2f",
+                          "path":  "reports/simulation/mamba_fir_run_20261006_130500/compile.log"
+                      },
+                      {
+                          "sha256":  "abff239bc47598a3f2b86adb452efe1b1782bacfa7e521f7b1553e28bb7820c9",
+                          "path":  "reports/simulation/mamba_fir_run_20261006_130500/mamba_fir_tb.log"
+                      }
+                  ]
+}

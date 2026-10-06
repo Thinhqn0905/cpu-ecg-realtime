@@ -1,38 +1,31 @@
-# CV32E40P Real-Time ECG Core Implementation & Verification Plan (V3 Frozen)
+# CV32E40P Core Implementation Plan (V4 Audit-Gated Decision)
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** Execute, verify, and sign off the end-to-end CV32E40P RISC-V SoC pipeline from evidence gate contracts and real bare-metal firmware compilation to dual-port TCM, OBI-to-APB3 bridging, 1.0 MHz ADS1292R initialization and 72-clock acquisition, 12-byte ping-pong BRAM DMA streaming, bit-exact DSP Pan-Tompkins QRS detection, and routed FPGA timing closure on Artix-7.
+**Goal:** Establish truthful evidence and routed acceptance for the existing CV32E40P at 50 MHz before advancing DSP inference or hardware offload claims.
 
-**Architecture:** 
-- **Processor Core:** OpenHW Group CV32E40P release `cv32e40p_v1.8.3` operating at 50 MHz.
-- **Memory Subsystem:** Harvard OBI architecture. I-OBI connects to 32 KB I-TCM (`0x0000_0000 - 0x0000_7FFF`). D-OBI connects to Memory Router, decoding:
-  - D-TCM: `0x0001_0000 - 0x0001_7FFF` (32 KB, zero-wait-state acceptance, 1-cycle read)
-  - APB3 Peripherals: `0x1A10_0000 - 0x1A10_4FFF` (Variable wait-state via `PREADY`, serialized APB access)
-  - ECG Ping-Pong DMA Window: `0x2000_0000 - 0x2000_1FFF` (Direct D-OBI read access to Buffer A and Buffer B)
-- **Interrupt Architecture:** 
-  - `boot_addr_i = 0x0000_0000`
-  - `mtvec_addr_i = 0x0000_0100` (256-byte aligned base)
-  - Vectored trap handling: $PC_{\text{IRQ}} = \text{mtvec} + 4 \times \text{IRQ\_ID}$
-  - `irq_i[7]`: Machine Timer IRQ (Vectors to `0x0000_011C`)
-  - `irq_i[16]`: Fast UART RX
-  - `irq_i[17]`: Fast UART TX
-  - `irq_i[18]`: Fast SPI Diagnostic / Error
-  - `irq_i[19]`: Fast Ping-Pong DMA Buffer Ready (`BUFFER_DONE`)
-  - `irq_i[20]`: Fast GPIO Event
-  - Reserved lines (`0–2`, `4–6`, `8–10`, `12–15`) tied to `1'b0`.
-- **AFE & Acquisition Engine:** ADS1292R biopotential analog front-end running on internal 512 kHz clock. SPI Master SCLK frozen at **1.0 MHz** ($t_{\text{SCLK}} = 1000\,\text{ns}$, CPOL=0, CPHA=1) satisfying TI datasheet register read/write limit ($f_{\text{SCLK}} \le 2 \times f_{\text{CLK}} = 1.024\,\text{MHz}$).
-- **Autonomous Hardware Ingress:** DRDY# falling edge triggers a 2-stage synchronizer and hardware acquisition FSM. SCLK runs for exactly 72 capture clocks. Samples push to an ingress FIFO, and the Ping-Pong DMA unpacks them into 12-byte frames (`uint32_t status`, `int32_t ch1`, `int32_t ch2`).
-- **Interrupt Decoupling:** CPU is NOT interrupted per sample. CPU receives `irq_i[19]` only when a full 256-frame buffer completes ($1.95\,\text{IRQs/s}$ at 500 SPS), freeing $>99.5\%$ of CPU cycles for DSP filtering and Pan-Tompkins analysis.
-- **Physical Clocking:** Xilinx 7-Series `MMCME2_BASE` synthesizes a 50.0 MHz system clock from the 100 MHz board oscillator (Pin E3), with synchronous reset release conditioned on MMCM lock.
+**Architecture:** Reuse immutable CV32E40P HEAD `97086e9565f8145522ad6d62852123c0e5537529`, the current local OBI/APB/peripherals and explicit 128 KiB D-TCM control. Separate diagnostic MAMBA behavior from the core baseline. Trained-model and offload work require independent numerical, memory and measured-workload gates.
 
-**Tech Stack:** 
-- Cross-Compiler: `riscv32-unknown-elf-gcc` (RV32IMC) & CORE-V GCC (`cv.sdotsp.h`)
-- RTL & Testbenches: SystemVerilog IEEE 1800-2017 compliant
-- Simulators: Verilator (primary full-core/SoC engine), Icarus Verilog (unit testbenches)
-- Physical Implementation: Xilinx Vivado (2020.2+) targeting Digilent Arty A7-100T (`xc7a100tcsg324-1`)
+**Tech Stack:** Existing RISC-V GCC/binutils, compatible CORE-V compiler, SystemVerilog/XSIM and Vivado 2023.2 on Artix-7 100T.
 
 ---
+
+## Current decision — 2026-10-06
+
+Use [Core Next Decision Audit Implementation Plan](2026-10-06-core-next-decision-audit.md) as the active execution sequence. Its **Tasks 1–3** are the recommended next scope for `gem_implement_core`; return actual evidence and a new decision before model/offload work. This audit turn did not execute those tasks.
+
+Evidence: [updated source/artifact audit](../../reports/review/2026-10-06-core-next-decision-audit/audit.md), `audit_manifest.json` and `inspection_results.json` beside it.
+
+- **Core choice: KEEP CV32E40P.** Actual clean HEAD is six commits beyond `cv32e40p_v1.8.3`, not the exact release tag. No full core/SoC rewrite is required.
+- **Latest 50 MHz routed timing: NO_GO / FAIL.** Run `20261006_093347`: WNS −0.815 ns, TNS −63.389 ns, 215 failing setup endpoints; positive WHS +0.044 ns does not establish closure. Preserve bitstream/DCP as routed artifacts with failed setup acceptance.
+- **Boot firmware/artifacts: useful retained evidence.** Seven firmware hashes and ELF→bin→hex bytes match. Existing XSIM boot/IRQ smoke supports that boundary; source/run binding and negative-proof gaps remain.
+- **Cascade/model/offload: NOT_VERIFIED.** The current bridge returns fixed class/confidence; the sidecar is not instantiated in the routed SoC. Partial floating-point sensitivity and host-reference tests do not establish integer C or in-core SIMD inference.
+- **Next action:** correct claims and fail-closed gates → isolate source-bound real-core baseline → close matched routed timing at 20.000 ns. Then actual target kernel profiling determines the need for offload.
+
+The previous V3 “FULL GO / frozen & verified” decision is superseded. The original document is preserved in `reports/review/2026-10-06-core-next-decision-audit/snapshot/docs/plans/gem_implement_core.md`. Historical task commands below are not current instructions and must not substitute for the active plan or its evidence gates.
+
+<details>
+<summary>Historical V3 body — retained for traceability, superseded</summary>
 
 ## Contradiction Table: Evolution Across Plan Revisions
 
@@ -368,3 +361,5 @@ Before advancing from planning to automated execution, all criteria in this gate
 | **FPGA Physical** | 50 MHz MMCM, 2-stage synchronizers on reset/DRDY, BRAM36-equivalent $< 135$, WNS/WHS $\ge 0$ | **GO** |
 
 **FINAL GATE VERDICT: FULL GO — ARCHITECTURAL SPECIFICATION FROZEN & VERIFIED.**
+
+</details>

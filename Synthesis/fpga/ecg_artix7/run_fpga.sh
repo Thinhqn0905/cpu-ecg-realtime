@@ -76,4 +76,23 @@ if [ "${vivado_exit}" -ne 0 ]; then
     exit "${vivado_exit}"
 fi
 
-echo "[SUCCESS] Vivado Implementation complete with exit code 0."
+# 4. Fail-Closed FPGA Evidence Gate Verification
+echo "================================================================"
+echo "  VALIDATING FPGA EVIDENCE GATE & STATIC TIMING ACCEPTANCE      "
+echo "================================================================"
+gate_exit=0
+gate_args=("${ROOT_DIR}/scripts/check_fpga_evidence.py" --manifest "${JSON_OUT}" --expect-period-ns 20.0)
+if [ -f "${ROOT_DIR}/reports/evidence/core_50mhz/io_contract.md" ]; then
+    gate_args+=(--io-contract "${ROOT_DIR}/reports/evidence/core_50mhz/io_contract.md")
+fi
+if [ -f "${ROOT_DIR}/reports/evidence/core_50mhz/drc_review.md" ]; then
+    gate_args+=(--drc-review "${ROOT_DIR}/reports/evidence/core_50mhz/drc_review.md")
+fi
+python3 "${gate_args[@]}" || gate_exit=$?
+
+if [ "${gate_exit}" -ne 0 ]; then
+    echo "[FAIL] FPGA evidence gate rejected implementation with exit code ${gate_exit}" >&2
+    exit "${gate_exit}"
+fi
+
+echo "[SUCCESS] Vivado Implementation verified, timing constraints met. Manifest: ${JSON_OUT}"

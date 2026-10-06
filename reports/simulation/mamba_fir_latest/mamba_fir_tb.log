@@ -1,0 +1,52 @@
+﻿================================================================
+  128-TAP DIAGSSM1D FIR HARDWARE SIDECAR VERIFICATION
+  Gated Evidence Standard per docs/plans/2026-10-06-core-next-decision-audit.md
+================================================================
+[TEST] TC-FIR-001: Checking Reset State and Readiness...
+       [PASS] TC-FIR-001: Engine idle in reset state
+[TEST] TC-FIR-002: Testing Exact Impulse Response on All 24 Channels...
+       Ch  0: Output =    6 (Golden =    6) [MATCH]
+       Ch  1: Output =    1 (Golden =    1) [MATCH]
+       Ch  2: Output =   12 (Golden =   12) [MATCH]
+       Ch  3: Output =    5 (Golden =    5) [MATCH]
+       Ch  4: Output =   -5 (Golden =   -5) [MATCH]
+       Ch  5: Output =  -11 (Golden =  -11) [MATCH]
+       Ch  6: Output =   -9 (Golden =   -9) [MATCH]
+       Ch  7: Output =   14 (Golden =   14) [MATCH]
+       Ch  8: Output =   15 (Golden =   15) [MATCH]
+       Ch  9: Output =   -6 (Golden =   -6) [MATCH]
+       Ch 10: Output =    9 (Golden =    9) [MATCH]
+       Ch 11: Output =    0 (Golden =    0) [MATCH]
+       Ch 12: Output =    5 (Golden =    5) [MATCH]
+       Ch 13: Output =   -3 (Golden =   -3) [MATCH]
+       Ch 14: Output =   11 (Golden =   11) [MATCH]
+       Ch 15: Output =   -3 (Golden =   -3) [MATCH]
+       Ch 16: Output =    0 (Golden =    0) [MATCH]
+       Ch 17: Output =  -11 (Golden =  -11) [MATCH]
+       Ch 18: Output =  -40 (Golden =  -40) [MATCH]
+       Ch 19: Output =    2 (Golden =    2) [MATCH]
+       Ch 20: Output =    3 (Golden =    3) [MATCH]
+       Ch 21: Output =    1 (Golden =    1) [MATCH]
+       Ch 22: Output =   23 (Golden =   23) [MATCH]
+       Ch 23: Output =  -11 (Golden =  -11) [MATCH]
+       [PASS] TC-FIR-002: Exact integer impulse response verified across all 24 channels
+[TEST] TC-FIR-003: Testing Signed Extrema & Saturation Clamping ([-32768, 32767])...
+       [PASS] TC-FIR-003: Saturation clamping verified with zero underflow/overflow wrap
+[TEST] TC-FIR-004: Testing Backpressure Ready Stalls & Output Stability...
+       [PASS] TC-FIR-004: Output signals remained strictly stable during backpressure stall
+[TEST] TC-FIR-005: Benchmarking Raw 500-Step Execution Latency (No Extrapolation)...
+       [PROGRESS] Completed 100/500 steps...
+       [PROGRESS] Completed 200/500 steps...
+       [PROGRESS] Completed 300/500 steps...
+       [PROGRESS] Completed 400/500 steps...
+       [PROGRESS] Completed 500/500 steps...
+       Exact measured 500-step latency: 408503 clock cycles
+       Target budget: < 4,000,000 cycles (50 MHz, 80 ms)
+       [PASS] TC-FIR-005: Raw measured 500-step latency meets budget (408503 cycles)
+
+================================================================
+  TEST SUMMARY: 5 PASSED, 0 FAILED
+================================================================
+[SUCCESS] All 128-tap DiagSSM1D FIR sidecar tests PASSED!
+
+

@@ -1,0 +1,50 @@
+{
+  "baseline_name": "cv32e40p_ecg_soc_baseline",
+  "version": "1.0.0",
+  "target_platform": "Digilent Arty A7-100T",
+  "target_part": "xc7a100tcsg324-1",
+  "core": {
+    "name": "CV32E40P",
+    "architecture": "RV32IMC",
+    "head_commit": "97086e9565f8145522ad6d62852123c0e5537529",
+    "git_describe": "cv32e40p_v1.8.3-6-g97086e9",
+    "real_core": 1,
+    "COREV_PULP": 1,
+    "COREV_CLUSTER": 0,
+    "FPU": 0
+  },
+  "clock": {
+    "oscillator_mhz": 100.0,
+    "compute_freq_mhz": 50.0,
+    "compute_period_ns": 20.0
+  },
+  "memory": {
+    "i_tcm_bytes": 32768,
+    "i_tcm_base": "0x0000_0000",
+    "d_tcm_bytes": 131072,
+    "d_tcm_base": "0x0001_0000",
+    "d_tcm_limit": "0x0002_FFFF",
+    "d_tcm_ramb36_primitives": 32
+  },
+  "accelerator": {
+    "mamba_enabled": 0,
+    "reason": "Production baseline disables diagnostic bridge stub; ResUMamba sidecar uninstantiated until profiling justifies offload"
+  },
+  "verification": {
+    "baseline_expected_testcases": [
+      "TC-BOOT-001",
+      "TC-DATA-002",
+      "TC-TIMER-003",
+      "TC-MRET-004",
+      "TC-DONE-005"
+    ],
+    "diagnostic_stub_testcases": [
+      "TC-BOOT-001",
+      "TC-DATA-002",
+      "TC-TIMER-003",
+      "TC-MRET-004",
+      "TC-DONE-005",
+      "TC-CASCADE-006"
+    ]
+  }
+}

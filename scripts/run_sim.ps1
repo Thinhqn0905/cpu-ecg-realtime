@@ -8,7 +8,8 @@ param(
     [string]$Simulator = "",
     [string]$VivadoBin = "E:/Vivado/2023.2/bin",
     [string]$IverilogPath = "",
-    [string]$VvpPath = ""
+    [string]$VvpPath = "",
+    [switch]$CascadeDiagnostic = $false
 )
 
 $ErrorActionPreference = "Stop"
@@ -89,7 +90,11 @@ if ($Simulator -eq "vivado") {
     Write-Host "[PASS] Elaboration successful."
 
     Write-Host "[2/4] Executing Co-Simulation with Vivado xsim..."
-    $xsimArgs = @("soc_tb_sim", "-R")
+    if ($CascadeDiagnostic) {
+        $xsimArgs = @("soc_tb_sim", "-R", "-testplusarg", "EXPECT_CASCADE")
+    } else {
+        $xsimArgs = @("soc_tb_sim", "-R")
+    }
     $simProcess = Start-Process -FilePath $XsimBat -ArgumentList $xsimArgs -RedirectStandardOutput $SimLog -RedirectStandardError "$OutDir/sim_err.log" -Wait -PassThru -NoNewWindow
     $simExit = $simProcess.ExitCode
 
@@ -214,7 +219,12 @@ if ($Simulator -eq "vivado") {
     Write-Host "[PASS] Compilation successful: $VvpOut"
 
     Write-Host "[2/4] Executing Co-Simulation..."
-    $simProcess = Start-Process -FilePath $VvpPath -ArgumentList @($VvpOut) -RedirectStandardOutput $SimLog -RedirectStandardError "$OutDir/sim_err.log" -Wait -PassThru -NoNewWindow
+    if ($CascadeDiagnostic) {
+        $vvpArgs = @($VvpOut, "+EXPECT_CASCADE")
+    } else {
+        $vvpArgs = @($VvpOut)
+    }
+    $simProcess = Start-Process -FilePath $VvpPath -ArgumentList $vvpArgs -RedirectStandardOutput $SimLog -RedirectStandardError "$OutDir/sim_err.log" -Wait -PassThru -NoNewWindow
     $simExit = $simProcess.ExitCode
 
     if (Test-Path $SimLog) {
@@ -257,7 +267,11 @@ if ($Simulator -eq "vivado") {
 
 Write-Host "[4/4] Validating Evidence Gate with check_evidence.py..."
 $pythonExe = "python"
-$expectedCases = @("TC-BOOT-001", "TC-DATA-002", "TC-TIMER-003", "TC-MRET-004", "TC-DONE-005", "TC-CASCADE-006")
+if ($CascadeDiagnostic) {
+    $expectedCases = @("TC-BOOT-001", "TC-DATA-002", "TC-TIMER-003", "TC-MRET-004", "TC-DONE-005", "TC-CASCADE-006")
+} else {
+    $expectedCases = @("TC-BOOT-001", "TC-DATA-002", "TC-TIMER-003", "TC-MRET-004", "TC-DONE-005")
+}
 $gateArgs = @("scripts/check_evidence.py", $JsonOut) + $expectedCases + @("--run-id", $RunId)
 $gateProcess = Start-Process -FilePath $pythonExe -ArgumentList $gateArgs -Wait -PassThru -NoNewWindow
 $gateExit = $gateProcess.ExitCode

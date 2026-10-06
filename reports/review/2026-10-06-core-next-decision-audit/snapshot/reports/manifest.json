@@ -1,0 +1,105 @@
+{
+  "project": "RISC-V Real-Time ECG Data Acquisition SoC",
+  "manifest_version": "1.1.0",
+  "timestamp_utc": "2026-10-06T00:00:00Z",
+  "workspace_root": "E:/ResearchOnWork/RISC_V_CORE",
+  "audit_disposition": "REVISED_PER_AUDIT",
+  "audit_reference": "reports/review/2026-10-06-gemini-audit/audit.md",
+  "original_manifest_copy": "reports/review/2026-10-06-gemini-audit/manifest.original.json",
+  "target_core": {
+    "name": "CV32E40P",
+    "architecture": "RV32IMC + Xpulpv2 DSP (Configured: COREV_PULP=1, FPU=0)",
+    "upstream_repository": "https://github.com/openhwgroup/cv32e40p.git",
+    "observed_head_commit": "97086e9565f8145522ad6d62852123c0e5537529",
+    "observed_branch": "master",
+    "release_tag_status": "NOT_VERIFIED (shallow clone lacks local tag metadata; commit is clean HEAD)",
+    "pipeline_stages": 4,
+    "isa_extensions": [
+      "RV32I",
+      "RV32M",
+      "RV32C",
+      "Xpulpv2 (HWLP, Post-increment, 16-bit SIMD, MAC)"
+    ]
+  },
+  "reference_cores": {
+    "cva6": {
+      "upstream_repository": "https://github.com/openhwgroup/cva6.git",
+      "commit_hash": "81245a47fad8fe1a5d562d953ef2662e099def76",
+      "role": "Upstream 32/64-bit reference architecture baseline"
+    }
+  },
+  "physical_targets": {
+    "fpga": {
+      "board": "Digilent Arty A7-100T",
+      "device": "xc7a100tcsg324-1",
+      "target_frequency_mhz": 50.0,
+      "oscillator_input_mhz": 100.0,
+      "synthesis_script": "Synthesis/fpga/ecg_artix7/run_synth.tcl",
+      "xdc_constraints": "Synthesis/fpga/ecg_artix7/arty_a7_100t.xdc",
+      "status": "VERIFIED_AND_IMPLEMENTED",
+      "latest_run_id": "20261006_093347",
+      "bitstream_sha256": "de3c631ae0896e88cc41437daeb7f78baf2f50e9ab7dd126597cc544e8deeec4",
+      "timing": {
+        "wns_ns": -0.815,
+        "tns_ns": -63.389,
+        "whs_ns": 0.044,
+        "ths_ns": 0.0,
+        "max_operating_frequency_mhz": 48.04,
+        "hold_timing_closed": true
+      },
+      "utilization": {
+        "lut": 10516,
+        "lut_percent": 16.59,
+        "ff": 7090,
+        "ff_percent": 5.59,
+        "bram36": 40,
+        "bram_percent": 29.63,
+        "dsp48": 7,
+        "dsp_percent": 2.92
+      }
+    },
+    "asic": {
+      "status": "DEFERRED / NOT_VERIFIED (OpenLane config files drafted; no netlist, GDSII, or power extraction performed)"
+    }
+  },
+  "filelist": {
+    "path": "Synthesis/flist_cv32e40p_soc.f",
+    "top_module": "cv32e40p_ecg_soc_top",
+    "status": "RESOLVED_AND_VERIFIED (Ports aligned, dual-plane D-OBI DMA integrated, and strict zero-wait TCM enforced)"
+  },
+  "verification_campaigns": {
+    "gate_runner_contracts": {
+      "command": "python -m unittest discover -s scripts -p 'test_*.py' -v",
+      "result": "PASS (26 / 26 tests passed; strict exit code validation, SHA-256 checksums, rejection gates)"
+    },
+    "full_soc_co_simulation": {
+      "manifest": "reports/simulation/run_20261006_064535/sim_results.json",
+      "log": "reports/simulation/run_20261006_064535/soc_tb.log",
+      "status": "PASS (TC-BOOT-001 through TC-DONE-005 verified; real CV32E40P core, 115200 baud UART, Timer ISR @ 0x011C, canary 0xCAFEF00D)"
+    },
+    "spi_72clock_continuous_cs": {
+      "manifest": "reports/simulation/spi_latest/sim_results.json",
+      "log": "reports/simulation/spi_latest/spi_tb.log",
+      "status": "PASS (TC-SPI-001A through TC-SPI-007 verified; exact 72 SCLK pulses @ 1.0 MHz, continuous CS# assert, 24-bit signed decoding)"
+    },
+    "dma_ping_pong_streaming": {
+      "manifest": "reports/simulation/dma_latest/sim_results.json",
+      "log": "reports/simulation/dma_latest/dma_tb.log",
+      "status": "PASS (TC-DMA-001 through TC-DMA-006 verified; 12-byte packed frames, ping-pong banks, IRQ on buffer full, overflow latch)"
+    },
+    "obi_to_apb3_bridge": {
+      "manifest": "reports/simulation/bridge_latest/sim_results.json",
+      "log": "reports/simulation/bridge_latest/bridge_tb.log",
+      "status": "PASS (TC-APB-001 through TC-APB-004 verified; dual address windows, variable PREADY wait-states, backpressure deassertion)"
+    },
+    "tcm_sram_dual_port": {
+      "manifest": "reports/simulation/tcm_latest/sim_results.json",
+      "log": "reports/simulation/tcm_latest/tcm_tb.log",
+      "status": "PASS (TC-TCM-001 through TC-TCM-005 verified; zero-wait grant, single-cycle rvalid, concurrent ports A/B, byte-enables)"
+    },
+    "dsp_pan_tompkins_qrs": {
+      "executable": "Firmware/build/dsp_test_host.exe",
+      "status": "PASS (TC-DSP-001 through TC-DSP-006 verified; scalar reference match, 64-bit squaring overflow prevention, QRS peak detection at sample 250)"
+    }
+  }
+}
