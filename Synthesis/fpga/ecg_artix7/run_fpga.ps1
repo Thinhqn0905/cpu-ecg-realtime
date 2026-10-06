@@ -90,8 +90,19 @@ if ($VivadoPath -eq "" -or (-not (Test-Path $VivadoPath))) {
 Write-Host "Found Vivado at: $VivadoPath"
 
 # ------------------------------------------------------------------------------
-# 3. Execute Vivado Batch Implementation
+# 3. Clean Stale Root Reports & Execute Vivado Batch Implementation
 # ------------------------------------------------------------------------------
+$staleFiles = @("utilization_synth.rpt", "timing_synth.rpt", "utilization_placed.rpt",
+                "timing_routed.rpt", "timing_min_max.rpt", "timing_setup.rpt",
+                "timing_hold.rpt", "check_timing.rpt", "utilization_hierarchical.rpt",
+                "drc_routed.rpt", "power_routed.rpt", "routed.dcp", "cv32e40p_ecg_soc.bit")
+foreach ($sf in $staleFiles) {
+    $target = "$scriptDir/reports/$sf"
+    if (Test-Path $target) {
+        Remove-Item -Force $target -ErrorAction SilentlyContinue
+    }
+}
+
 Push-Location $scriptDir
 $startTime = Get-Date
 try {

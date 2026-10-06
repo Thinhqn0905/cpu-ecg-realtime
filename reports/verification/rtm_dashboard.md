@@ -14,7 +14,7 @@
 
 | Total Requirements | Anchored in RTL & Testbenches | Verified by Gate Contract Suite | Terminal Evidence Gate Status | Overall Status |
 | :---: | :---: | :---: | :---: | :---: |
-| **26** | **25** | **10 / 10 Gates Passed** | **25 / 26 Verified (1 Deferred)** | **FULL VERIFICATION PASS** |
+| **29** | **29** | **10 / 10 Gates Passed** | **29 / 29 Verified (0 Deferred)** | **FULL TRI-MODAL VERIFICATION PASS** |
 
 ---
 
@@ -47,7 +47,10 @@
 | `REQ-CORE-004`| Fast IRQ | `cv32e40p_ecg_soc_top`| `TC-TIMER-003`, `TC-MRET-004` (`Simulation/soc_tb.sv:152-157`: Line 7 timer IRQ @ 0x011C)| `reports/simulation/run_20261006_064535/soc_tb.log` | **PASS (Sim / HW-SW)** |
 | `REQ-DSP-001` | Filter DSP | `ecg_fir_pulp.S` | `TC-DSP-001`..`TC-DSP-004` (`Firmware/dsp/dsp_test.c:60-143`: Scalar reference match & cycles)| `Firmware/build/dsp_test_host.exe` | **PASS (Host / Algorithmic)** |
 | `REQ-DSP-002` | Detection | `pan_tompkins.c` | `TC-DSP-005`, `TC-DSP-006` (`Firmware/dsp/dsp_test.c:145-201`: 64-bit squaring & peak detection)| `Firmware/build/dsp_test_host.exe` | **PASS (Host / Algorithmic)** |
-| `REQ-MAMBA-001`| Accelerator| `mamba_bridge` | Parameter `ENABLE_MAMBA = 0` in baseline (`RTL/ecg_soc/ecg_soc_top.sv:10`) | Co-simulation deferred | **DEFERRED** |
+| `REQ-MAMBA-001`| Accelerator| `mamba_bridge` / `mamba_fir_sidecar` | `TC-MAMBA-001`..`007` & `TC-MAMBA-ACCEL-005` (`Simulation/soc_tb.sv`: 69,632 cycle DiagSSM1D offload) | `reports/simulation/run_20261006_090915/soc_tb.log` | **PASS (Sim & Co-sim)** |
+| `REQ-TCM-128K` | Memory | `tcm_sram` (128 KB) | `TC-TCM-006` (`Simulation/tcm_router_tb.sv:310-335`: Upper bank 0x0002_8000 read/write) | `reports/simulation/tcm_run_20261006_080148/tcm_tb.log` | **PASS (Sim)** |
+| `REQ-CASCADE-001`| Cascade DSP| `hello.c` / `resumamba_infer` | `TC-CASCADE-006` (`Simulation/soc_tb.sv`: Stage 1 PT PVC anomaly triggering Stage 2 ResUMamba) | `reports/simulation/run_20261006_091539/soc_tb.log` | **PASS (Sim / HW-SW)** |
+| `REQ-FPGA-001` | Physical FPGA | `ecg_arty_top` (Artix-7 100T)| Non-project batch flow bitstream generation (`cv32e40p_ecg_soc.bit`, 40 BRAMs, 7 DSPs) | `Synthesis/fpga/ecg_artix7/reports/run_20261006_093347/fpga_manifest.json` | **PASS (Bitstream Generated)** |
 
 ---
 

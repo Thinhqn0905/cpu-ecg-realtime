@@ -1,0 +1,32 @@
+================================================================
+  STARTING TCM ROUTER AND MEMORY SUBSYSTEM VERIFICATION
+  Adhering to Task 4 of Gemini Recovery Plan
+================================================================
+
+[TEST] TC-TCM-001: Testing Concurrent Instruction Fetch & Data Read...
+[PASS] TC-TCM-001: Concurrent Port A and Port B access succeeded cleanly
+
+[TEST] TC-TCM-002: Verifying Data Port Read Access to I-TCM Address Space...
+[PASS] TC-TCM-002: CPU data master successfully read load image from I-TCM
+
+[TEST] TC-TCM-003: Testing Byte-Enable Masked Stores into D-TCM...
+[PASS] TC-TCM-003: Byte-enable masking exact: read 0x123455a5 (expected 0x123455A5)
+
+[TEST] TC-TCM-004: Testing Memory Boundary Edge Words...
+[PASS] TC-TCM-004: Memory boundary edge word at offset 0x7FFC verified
+
+[TEST] TC-TCM-005: Verifying Zero-Wait-State Grant & Single-Cycle RVALID Timing...
+[PASS] TC-TCM-005: Zero-wait-state grant and single-cycle rvalid verified
+
+[TEST] TC-TCM-006: Testing 128 KB D-TCM Expansion & Non-Aliasing Boundary Access...
+[FAIL] TC-TCM-006: Aliasing detected at 0x7FFC! Read 0xdead128a (expected 0xB00DFACE)
+[FAIL] TC-TCM-006: 128 KB boundary read failed: got 0xdead128a, expected 0xDEAD128A
+
+================================================================
+  TCM ROUTER TEST SUMMARY
+  PASSED: 5 / 6
+  FAILED: 1
+================================================================
+[FATAL] TCM Subsystem verification failed: pass_count=5, fail_count=1
+FATAL: Simulation/tcm_router_tb.sv:368: TCM Subsystem verification failed!
+       Time: 590000  Scope: tcm_router_tb

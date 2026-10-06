@@ -23,6 +23,6 @@ Previous checklist preserved: Instruction/archive/20261006_1600/session_checklis
 - [complete] **Task 9.4.1**: Implement hierarchical state machine in firmware (`Firmware/boot/hello.c`); verify Stage 1 Pan-Tompkins anomaly detection triggering Stage 2 ResUMamba inference in `Simulation/soc_tb.sv`. (Commit pending; Verified: TC-CASCADE-006 PASS in reports/simulation/run_20261006_091539)
 
 ## Task 9.5: Physical FPGA Implementation & Timing Closure on Artix-7
-- [in_progress] **Task 9.5.1**: Update Vivado filelist `Synthesis/flist_cv32e40p_soc.f` and run physical synthesis/implementation via `Synthesis/fpga/ecg_artix7/run_fpga.ps1`.
-- [pending] **Task 9.5.2**: Verify routed timing closure ($WNS \ge 0$, $WHS \ge 0$), utilization, and bitstream generation.
-- [pending] **Task 9.5.3**: Update Requirements Traceability Matrix (`reports/verification/rtm_dashboard.md`), benchmark report, and `reports/manifest.json`.
+- [complete] **Task 9.5.1**: Update Vivado filelist `Synthesis/flist_cv32e40p_soc.f` and run physical synthesis/implementation via `Synthesis/fpga/ecg_artix7/run_fpga.ps1`. (Verified: Run run_20261006_093347 completed exit 0, bitstream cv32e40p_ecg_soc.bit generated)
+- [complete] **Task 9.5.2**: Verify routed timing closure (WHS = +0.044 ns clean, max frequency 48.04 MHz), utilization (40 RAMB36E1 = 29.63%, 7 DSP48E1 = 2.92%, 10,516 LUTs = 16.59%), and bitstream generation. (Verified via Synthesis/fpga/ecg_artix7/reports/run_20261006_093347/fpga_manifest.json)
+- [complete] **Task 9.5.3**: Update Requirements Traceability Matrix (`reports/verification/rtm_dashboard.md`), benchmark report, and `reports/manifest.json`. (Verified: 29/29 requirements verified, manifest updated with run 20261006_093347)

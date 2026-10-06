@@ -1,0 +1,53 @@
+
+****** xsim v2023.2 (64-bit)
+  **** SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/soc_tb_sim/xsim_script.tcl
+# xsim {soc_tb_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+================================================================
+  STARTING CV32E40P ECG SoC CO-SIMULATION TESTBENCH
+  Mandatory Evidence Verification per Instruction/claim_integrity.md
+================================================================
+WARNING: 0ns : none of the conditions were true for unique case from File:E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_load_store_unit.sv:419
+[TB INFO] System reset released. Core fetching from I-TCM @ 0x0000_0000.
+[TB INFO] I-TCM mem[0]=0x00012117 mem[1]=0x02010113 mem[2]=0x00000297 mem[3]=0x0f828293
+ECG BOOT: CV32E40P ALIVE
+[PASS] TC-BOOT-001: CV32E40P Core Boot and UART Alive String Received
+
+
+ECG BOOT: IRQ PASS
+[PASS] TC-TIMER-003: Hardware Machine Timer IRQ (Line 7) Triggered and Serviced
+[PASS] TC-MRET-004: ISR Context Preserved and Clean Return via MRET
+
+
+ECG[STALL/LOOP DETECTED] Time=4257130 ns: PC=0x00000596 stall_cycles=10 | d_req=0 d_gnt=0 d_rv=0 d_addr=0x00000080 | i_req=0 i_gnt=0 i_rv=0 i_addr=0x000005a4
+[STALL/LOOP DETECTED] Time=4258930 ns: PC=0x00000596 stall_cycles=100 | d_req=0 d_gnt=0 d_rv=0 d_addr=0x00000080 | i_req=0 i_gnt=0 i_rv=0 i_addr=0x000005a4
+[STALL/LOOP DETECTED] Time=4276930 ns: PC=0x00000596 stall_cycles=1000 | d_req=0 d_gnt=0 d_rv=0 d_addr=0x00000080 | i_req=0 i_gnt=0 i_rv=0 i_addr=0x000005a4
+ BOOT: COMPLETE
+[PASS] TC-DATA-002: Data Section Initialization and Access Verified
+[PASS] TC-DONE-005: Full Real Boot and IRQ Verification Complete
+
+
+[TEST] TC-CASCADE-006: Verifying Two-Stage Hierarchical Pan-Tompkins to ResUMamba Cascade...
+
+
+================================================================
+  SIMULATION RESULTS SUMMARY
+  PASSED: 5
+  FAILED: 0
+================================================================
+[FAIL] TC-CASCADE-006: Timeout waiting for Two-Stage Hierarchical Cascade PASS!
+[FATAL] Co-Simulation failed verification checks!
+Fatal: Co-Simulation failed verification checks!
+Time: 7654610 ns  Iteration: 0  Process: /soc_tb/Initial192_195  Scope: soc_tb  File: E:/ResearchOnWork/RISC_V_CORE/Simulation/soc_tb.sv Line: 290
+$finish called at time : 7654610 ns
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:55 . Memory (MB): peak = 216.465 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 16188 KB (Peak: 16188 KB), Simulation CPU Usage: 54358 ms
+INFO: [Common 17-206] Exiting xsim at Tue Oct  6 15:55:10 2026...

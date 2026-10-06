@@ -83,7 +83,7 @@ read_xdc [file join $SCRIPT_DIR "arty_a7_100t.xdc"]
 # 3. Synthesize Design
 # ------------------------------------------------------------------------------
 puts "=== [1/5] RUNNING SYNTHESIS FOR $TOP ON $PART ==="
-synth_design -top $TOP -part $PART -flatten_hierarchy rebuilt -generic "BOOT_HEX=$BOOT_HEX"
+synth_design -top $TOP -part $PART -flatten_hierarchy rebuilt -retiming -generic "BOOT_HEX=$BOOT_HEX"
 
 report_utilization -file [file join $OUT_DIR "utilization_synth.rpt"]
 report_timing_summary -file [file join $OUT_DIR "timing_synth.rpt"]
@@ -94,7 +94,7 @@ report_timing_summary -file [file join $OUT_DIR "timing_synth.rpt"]
 puts "=== [2/5] RUNNING OPT & PLACE ==="
 opt_design -directive Explore
 place_design -directive Explore
-phys_opt_design -directive Explore
+phys_opt_design -directive AggressiveExplore
 report_utilization -file [file join $OUT_DIR "utilization_placed.rpt"]
 
 # ------------------------------------------------------------------------------
@@ -102,7 +102,15 @@ report_utilization -file [file join $OUT_DIR "utilization_placed.rpt"]
 # ------------------------------------------------------------------------------
 puts "=== [3/5] RUNNING ROUTE ==="
 route_design -directive Explore
-phys_opt_design -directive Explore
+
+set setup_slack [get_property SLACK [get_timing_paths -max_paths 1 -nworst 1 -setup]]
+puts "=== POST-ROUTE SETUP SLACK: $setup_slack ns ==="
+if {$setup_slack < 0.0} {
+    puts "=== RE-ROUTING WITH HIGHER EFFORT / TNS CLEANUP TO CLOSE TIMING ==="
+    catch { route_design -directive MoreGlobalIterations -tns_cleanup }
+    set setup_slack [get_property SLACK [get_timing_paths -max_paths 1 -nworst 1 -setup]]
+    puts "=== FINAL ROUTE SETUP SLACK: $setup_slack ns ==="
+}
 
 puts "=== [4/5] GENERATING TIMING & DRC REPORTS ==="
 check_timing -file [file join $OUT_DIR "check_timing.rpt"]

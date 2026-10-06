@@ -129,7 +129,7 @@ module ecg_arty_top #(
 
   cv32e40p_ecg_soc_top #(
     .I_MEM_SIZE_BYTES(32768),
-    .D_MEM_SIZE_BYTES(32768),
+    .D_MEM_SIZE_BYTES(131072),
     .TARGET_ASIC     (1'b0),
     .BOOT_HEX        (BOOT_HEX)
   ) u_soc_top (
