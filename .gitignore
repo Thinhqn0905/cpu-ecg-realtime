@@ -30,6 +30,11 @@ Thumbs.db
 .DS_Store
 desktop.ini
 
+# Local tools and archives
+tools/
+*.zip
+*.tar.gz
+
 # IDE
 .vscode/
 .idea/
