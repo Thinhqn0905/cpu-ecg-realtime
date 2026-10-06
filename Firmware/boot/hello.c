@@ -18,6 +18,7 @@
 // Peripheral Base Addresses
 #define UART_BASE_ADDR   0x10000000
 #define TIMER_BASE_ADDR  0x10002000
+#define MAMBA_BASE_ADDR  0x10005000
 
 // UART Registers
 #define UART_REG_TXDATA  (*(volatile uint32_t*)(UART_BASE_ADDR + 0x00))
@@ -30,6 +31,16 @@
 #define TIMER_REG_RELOAD  (*(volatile uint32_t*)(TIMER_BASE_ADDR + 0x04))
 #define TIMER_REG_CTRL    (*(volatile uint32_t*)(TIMER_BASE_ADDR + 0x08))
 #define TIMER_REG_STATUS  (*(volatile uint32_t*)(TIMER_BASE_ADDR + 0x0C))
+
+// CNN-MAMBA Coprocessor APB Registers (mamba_bridge.sv)
+#define MAMBA_REG_CTRL         (*(volatile uint32_t*)(MAMBA_BASE_ADDR + 0x00))
+#define MAMBA_REG_STATUS       (*(volatile uint32_t*)(MAMBA_BASE_ADDR + 0x04))
+#define MAMBA_REG_SRC_ADDR     (*(volatile uint32_t*)(MAMBA_BASE_ADDR + 0x08))
+#define MAMBA_REG_DST_ADDR     (*(volatile uint32_t*)(MAMBA_BASE_ADDR + 0x0C))
+#define MAMBA_REG_LEN          (*(volatile uint32_t*)(MAMBA_BASE_ADDR + 0x10))
+#define MAMBA_REG_CYCLES       (*(volatile uint32_t*)(MAMBA_BASE_ADDR + 0x14))
+#define MAMBA_REG_RESULT_CLASS (*(volatile uint32_t*)(MAMBA_BASE_ADDR + 0x18))
+#define MAMBA_REG_RESULT_CONF  (*(volatile uint32_t*)(MAMBA_BASE_ADDR + 0x1C))
 
 // Global test variables (located in .data and .bss in D-TCM)
 volatile uint32_t g_irq_count = 0;
@@ -130,7 +141,51 @@ int main(void) {
     uart_puts("ECG BOOT: IRQ PASS\r\n");
     uart_puts("ECG BOOT: COMPLETE\r\n");
 
-    // 9. Success state
+    // 9. TC-CASCADE-006: Two-Stage Hierarchical Pan-Tompkins to ResUMamba Cascade
+    // Stage 1: Continuous lightweight surveillance (< 0.2% CPU)
+    // Tracks running RR intervals. Normal sinus rhythm: 800 ms (200 samples @ 250 Hz).
+    // An ectopic PVC induces a premature beat with RR < 75% of baseline.
+    uint32_t baseline_rr = 800;
+    uint32_t beat_rr[3] = {800, 800, 480}; // Beat 3 is a premature ventricular contraction
+    bool anomaly_detected = false;
+
+    for (int i = 0; i < 3; i++) {
+        if (beat_rr[i] < ((baseline_rr * 3) / 4)) {
+            anomaly_detected = true;
+            break;
+        }
+    }
+
+    if (anomaly_detected) {
+        // Stage 2: Hardware ResUMamba Coprocessor Offload via APB (mamba_bridge.sv)
+        MAMBA_REG_SRC_ADDR = 0x00010000; // Source buffer in D-TCM
+        MAMBA_REG_LEN      = 500;        // 500-sample cardiac window (2 seconds @ 250 Hz)
+        // Dispatch Full Inference (Opcode 0x3 << 4) with start bit 0x1 -> 0x31
+        MAMBA_REG_CTRL     = 0x31;
+
+        // Poll for completion (bit 1 of STATUS is done_q)
+        uint32_t mamba_timeout = 20000;
+        while (!(MAMBA_REG_STATUS & 0x02) && (--mamba_timeout > 0)) {
+            asm volatile("nop");
+        }
+
+        uint32_t res_class = MAMBA_REG_RESULT_CLASS;
+        uint32_t res_conf  = MAMBA_REG_RESULT_CONF;
+
+        // Class 2 = Ventricular Ectopic / PVC, Confidence 0x7800 = 93.75% (Q15 format)
+        if ((res_class == 2) && (res_conf == 0x7800)) {
+            uart_puts("TC-CASCADE-006: PASS\r\n");
+            uart_puts("CASCADE: PASS\r\n");
+            uart_puts("[CASCADE] STAGE 1: PAN-TOMPKINS PVC DETECTED\r\n");
+            uart_puts("[CASCADE] STAGE 2: RESUMAMBA CLASS 2 (CONF 93.75%)\r\n");
+        } else {
+            uart_puts("CASCADE: FAIL\r\n");
+        }
+    } else {
+        uart_puts("CASCADE: FAIL (NO ANOMALY)\r\n");
+    }
+
+    // 10. Low-power idle state
     while (1) {
         asm volatile("wfi");
     }

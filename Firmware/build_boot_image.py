@@ -32,6 +32,10 @@ BOOT_DIR = FIRMWARE_DIR / "boot"
 
 def find_toolchain(prefix_override: str = None) -> tuple:
     """Find and validate required RISC-V cross-compilation binaries."""
+    pio_path = Path.home() / ".platformio" / "packages" / "toolchain-riscv32-esp" / "bin"
+    if pio_path.exists() and str(pio_path) not in os.environ.get("PATH", ""):
+        os.environ["PATH"] = f"{pio_path}{os.pathsep}{os.environ.get('PATH', '')}"
+
     candidates = []
     if prefix_override:
         candidates.append(prefix_override)
@@ -43,6 +47,7 @@ def find_toolchain(prefix_override: str = None) -> tuple:
             "riscv-none-elf-",
             "riscv64-unknown-elf-",
             "riscv32-none-elf-",
+            "riscv32-esp-elf-",
         ])
 
     required_tools = ["gcc", "objcopy", "objdump", "nm", "readelf"]
@@ -98,10 +103,15 @@ def build_firmware(out_dir: Path, prefix_override: str = None) -> int:
     readelf_file = out_dir / "hello.readelf"
     sha256_file = out_dir / "hello.sha256"
 
-    # Step 1: Compile with GCC
+    # Step 1: Compile with GCC (detect ISA support for _zicsr)
+    isa = "-march=rv32imc_zicsr"
+    probe_proc = subprocess.run([tools["gcc"], isa, "-E", "-x", "c", os.devnull], capture_output=True)
+    if probe_proc.returncode != 0:
+        isa = "-march=rv32imc"
+
     c_flags = [
         tools["gcc"],
-        "-march=rv32imc_zicsr",
+        isa,
         "-mabi=ilp32",
         "-O2",
         "-g",

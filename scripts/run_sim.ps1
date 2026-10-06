@@ -257,7 +257,7 @@ if ($Simulator -eq "vivado") {
 
 Write-Host "[4/4] Validating Evidence Gate with check_evidence.py..."
 $pythonExe = "python"
-$expectedCases = @("TC-BOOT-001", "TC-DATA-002", "TC-TIMER-003", "TC-MRET-004", "TC-DONE-005")
+$expectedCases = @("TC-BOOT-001", "TC-DATA-002", "TC-TIMER-003", "TC-MRET-004", "TC-DONE-005", "TC-CASCADE-006")
 $gateArgs = @("scripts/check_evidence.py", $JsonOut) + $expectedCases + @("--run-id", $RunId)
 $gateProcess = Start-Process -FilePath $pythonExe -ArgumentList $gateArgs -Wait -PassThru -NoNewWindow
 $gateExit = $gateProcess.ExitCode

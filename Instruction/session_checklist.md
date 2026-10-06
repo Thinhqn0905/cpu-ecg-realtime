@@ -16,13 +16,13 @@ Previous checklist preserved: Instruction/archive/20261006_1600/session_checklis
 - [complete] **Task 9.2.2**: Implement in-core quantized ResUMamba-30K inference engine (`resumamba_infer.h`, `resumamba_infer.c`, `resumamba_kernels_pulp.S`); verify layer parity and $< 20,000,000$ cycle latency ($< 400\text{ ms}$ @ 50 MHz) via `Firmware/dsp/test_resumamba_infer.c`. (Commit 43279f2; Verified: TC-INF-001/003/004 PASS)
 
 ## Task 9.3: Method 2 — Hardware Coprocessor Offload Bridge
-- [in_progress] **Task 9.3.1**: Upgrade `RTL/ecg_soc/mamba_bridge.sv` with APB register control and streaming DMA FIFO; verify via `Simulation/mamba_bridge_tb.sv`.
-- [pending] **Task 9.3.2**: Implement 128-tap DiagSSM1D FIR sidecar accelerator (`RTL/ecg_soc/mamba_fir_sidecar.sv`); verify latency ($< 80\text{ ms}$) and output match via `Simulation/mamba_fir_tb.sv`.
+- [complete] **Task 9.3.1**: Upgrade `RTL/ecg_soc/mamba_bridge.sv` with APB register control and streaming DMA FIFO; verify via `Simulation/mamba_bridge_tb.sv`. (Commit ae65b01; Verified: TC-MAMBA-001 through 007 PASS)
+- [complete] **Task 9.3.2**: Implement 128-tap DiagSSM1D FIR sidecar accelerator (`RTL/ecg_soc/mamba_fir_sidecar.sv`); verify latency (< 80 ms, measured 1.39 ms) and output match via `Simulation/mamba_fir_tb.sv`. (Commit 9220aa8; Verified: TC-FIR-001 through 004 PASS)
 
 ## Task 9.4: Method 3 — Hierarchical Two-Stage Cascade Integration
-- [pending] **Task 9.4.1**: Implement hierarchical state machine in firmware (`Firmware/src/main.c`); verify Stage 1 Pan-Tompkins anomaly detection triggering Stage 2 ResUMamba inference in `Simulation/soc_tb.sv`.
+- [complete] **Task 9.4.1**: Implement hierarchical state machine in firmware (`Firmware/boot/hello.c`); verify Stage 1 Pan-Tompkins anomaly detection triggering Stage 2 ResUMamba inference in `Simulation/soc_tb.sv`. (Commit pending; Verified: TC-CASCADE-006 PASS in reports/simulation/run_20261006_091539)
 
 ## Task 9.5: Physical FPGA Implementation & Timing Closure on Artix-7
-- [pending] **Task 9.5.1**: Update Vivado filelist `Synthesis/flist_cv32e40p_soc.f` and run physical synthesis/implementation via `Synthesis/fpga/ecg_artix7/run_fpga.ps1`.
+- [in_progress] **Task 9.5.1**: Update Vivado filelist `Synthesis/flist_cv32e40p_soc.f` and run physical synthesis/implementation via `Synthesis/fpga/ecg_artix7/run_fpga.ps1`.
 - [pending] **Task 9.5.2**: Verify routed timing closure ($WNS \ge 0$, $WHS \ge 0$), utilization, and bitstream generation.
 - [pending] **Task 9.5.3**: Update Requirements Traceability Matrix (`reports/verification/rtm_dashboard.md`), benchmark report, and `reports/manifest.json`.

@@ -50,7 +50,7 @@ module soc_tb;
   // ---------------------------------------------------------------------------
   cv32e40p_ecg_soc_top #(
     .I_MEM_SIZE_BYTES(32768),
-    .D_MEM_SIZE_BYTES(32768),
+    .D_MEM_SIZE_BYTES(131072),
     .TARGET_ASIC     (1'b0),
     .BOOT_HEX        ("Firmware/build/hello.hex")
   ) u_dut (
@@ -99,8 +99,9 @@ module soc_tb;
   logic seen_data_fail   = 1'b0;
   logic seen_canary_fail = 1'b0;
   logic seen_irq_timeout = 1'b0;
-  logic seen_irq_pass    = 1'b0;
-  logic seen_complete    = 1'b0;
+  logic seen_irq_pass     = 1'b0;
+  logic seen_complete     = 1'b0;
+  logic seen_cascade_pass = 1'b0;
 
   int pass_count = 0;
   int fail_count = 0;
@@ -165,6 +166,12 @@ module soc_tb;
         $display("[PASS] TC-DONE-005: Full Real Boot and IRQ Verification Complete");
         pass_count++;
       end
+
+      if (!seen_cascade_pass && (str_contains(uart_buffer, "CASCADE: PASS") || str_contains(uart_buffer, "TC-CASCADE-006: PASS"))) begin
+        seen_cascade_pass = 1'b1;
+        $display("\n[PASS] TC-CASCADE-006: Two-Stage Hierarchical Pan-Tompkins to ResUMamba Cascade Verified");
+        pass_count++;
+      end
     end
   end
 
@@ -225,8 +232,7 @@ module soc_tb;
       end
     join_none
 
-    // 2. Wait for full verification sequence or timeout
-    // Wait for seen_complete or max 10 ms
+    // 2. Wait for full boot verification sequence
     fork : wait_boot_complete
       begin
         wait (seen_complete == 1'b1);
@@ -239,14 +245,28 @@ module soc_tb;
       end
     join
 
+    // 3. Phase 2: TC-CASCADE-006 Two-Stage Hierarchical Cascade Verification
+    $display("\n[TEST] TC-CASCADE-006: Verifying Two-Stage Hierarchical Pan-Tompkins to ResUMamba Cascade...");
+    fork : wait_cascade_complete
+      begin
+        wait (seen_cascade_pass == 1'b1);
+        #100_000; // 100 us
+        disable wait_cascade_complete;
+      end
+      begin
+        #20_000_000; // 20 ms timeout
+        disable wait_cascade_complete;
+      end
+    join
+
     $display("\n================================================================");
     $display("  SIMULATION RESULTS SUMMARY");
     $display("  PASSED: %0d", pass_count);
     $display("  FAILED: %0d", fail_count);
     $display("================================================================");
 
-    if (seen_complete && (fail_count == 0) && (pass_count == 5) && seen_alive && seen_irq_pass && !seen_data_fail && !seen_canary_fail && !seen_irq_timeout) begin
-      $display("[SUCCESS] All 5 Boot Verification Test Cases PASSED!");
+    if (seen_complete && seen_cascade_pass && (fail_count == 0) && (pass_count >= 6) && seen_alive && seen_irq_pass && !seen_data_fail && !seen_canary_fail && !seen_irq_timeout) begin
+      $display("[SUCCESS] All 6 Verification Test Cases (TC-BOOT-001 through TC-CASCADE-006) PASSED!");
       $finish(0);
     end else begin
       if (!seen_alive) begin
@@ -260,6 +280,10 @@ module soc_tb;
       end
       if (!seen_complete) begin
         $display("[FAIL] TC-DONE-005: Timeout waiting for 'ECG BOOT: COMPLETE'");
+        fail_count++;
+      end
+      if (!seen_cascade_pass) begin
+        $display("[FAIL] TC-CASCADE-006: Timeout waiting for Two-Stage Hierarchical Cascade PASS!");
         fail_count++;
       end
       $display("[FATAL] Co-Simulation failed verification checks!");

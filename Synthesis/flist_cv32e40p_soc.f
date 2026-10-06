@@ -54,6 +54,7 @@ RTL/ecg_soc/uart_apb.sv
 RTL/ecg_soc/timer_apb.sv
 RTL/ecg_soc/gpio_apb.sv
 RTL/ecg_soc/ecg_dma.sv
+RTL/ecg_soc/mamba_fir_sidecar.sv
 RTL/ecg_soc/mamba_bridge.sv
 RTL/ecg_soc/apb_interconnect.sv
 RTL/ecg_soc/ecg_soc_top.sv
