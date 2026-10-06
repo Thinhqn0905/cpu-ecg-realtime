@@ -1,0 +1,8 @@
+ERROR: [Synth 8-6735] net type must be explicitly specified for 'clk_100m_i' when default_nettype is none [E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/fpga/ecg_arty_top.sv:18]
+ERROR: [Synth 8-6735] net type must be explicitly specified for 'rst_sys_ni' when default_nettype is none [E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/fpga/ecg_arty_top.sv:20]
+ERROR: [Synth 8-6735] net type must be explicitly specified for 'afe_miso_i' when default_nettype is none [E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/fpga/ecg_arty_top.sv:25]
+ERROR: [Synth 8-6735] net type must be explicitly specified for 'afe_drdy_ni' when default_nettype is none [E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/fpga/ecg_arty_top.sv:27]
+ERROR: [Synth 8-6735] net type must be explicitly specified for 'uart_rx_i' when default_nettype is none [E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/fpga/ecg_arty_top.sv:34]
+ERROR: [Synth 8-6735] net type must be explicitly specified for 'gpio_in_i' when default_nettype is none [E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/fpga/ecg_arty_top.sv:40]
+ERROR: [Synth 8-439] module 'ecg_arty_top' not found
+ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details

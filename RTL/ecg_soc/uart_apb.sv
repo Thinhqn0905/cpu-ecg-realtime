@@ -135,7 +135,7 @@ module uart_apb
   always_ff @(posedge clk_i or negedge rst_ni) begin
     if (!rst_ni) begin
       baud_div_q <= 16'd434; // 115200 baud @ 50 MHz
-      ctrl_q     <= 4'b0011; // Enable TX & RX IRQ by default
+      ctrl_q     <= 4'b0000; // Interrupts disabled by default at reset
     end else begin
       baud_div_q <= baud_div_d;
       ctrl_q     <= ctrl_d;

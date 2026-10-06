@@ -1,0 +1,24 @@
+﻿{
+    "run_id":  "20261006_060132",
+    "timestamp":  "2026-10-06T06:01:34Z",
+    "compiler":  "E:/iverilog/bin/iverilog.exe",
+    "runtime":  "E:/iverilog/bin/vvp.exe",
+    "compile_exit":  0,
+    "simulation_exit":  0,
+    "duration_seconds":  2.0708891,
+    "log_file":  "reports/simulation/bridge_run_20261006_060132/bridge_tb.log",
+    "artifacts":  [
+                      {
+                          "sha256":  "8d278e3491aa0a21a5d5cf729be3378605ac4efd07bd3fd9139afc7dd669d14e",
+                          "path":  "reports/simulation/bridge_run_20261006_060132/bridge_tb.vvp"
+                      },
+                      {
+                          "sha256":  "ce2282f5da82e52f540b71d601466a89e30804e6e8aa14eb49b48346caf1e607",
+                          "path":  "reports/simulation/bridge_run_20261006_060132/compile.log"
+                      },
+                      {
+                          "sha256":  "3f9f2d1d65056ea4528b7607055f6724b008e104b4ebc8ca850a3c293163c224",
+                          "path":  "reports/simulation/bridge_run_20261006_060132/bridge_tb.log"
+                      }
+                  ]
+}

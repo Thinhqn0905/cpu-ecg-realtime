@@ -22,6 +22,7 @@ module spi_master_sva #(
 );
 
 `ifndef SYNTHESIS
+`ifndef __ICARUS__
 
   // ---------------------------------------------------------------------------
   // REQ-SPI-001: Clock Polarity Idle State Check
@@ -56,6 +57,7 @@ module spi_master_sva #(
   // Coverage Points
   c_transfer_cycle: cover property (@(posedge clk_i) $fell(cs_no) ##[10:$] done_o);
 
+`endif
 `endif
 
 endmodule : spi_master_sva

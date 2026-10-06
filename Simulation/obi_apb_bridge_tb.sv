@@ -52,6 +52,8 @@ module obi_apb_bridge_tb;
 
   int pass_count = 0;
   int fail_count = 0;
+  bit all_decode_ok;
+  bit backpressure_verified;
 
   // Clock generation
   initial begin
@@ -113,7 +115,8 @@ module obi_apb_bridge_tb;
     .s_pslverr_i (s_pslverr)
   );
 
-  // Bind SVA monitor
+  // Bind SVA monitor (supported on commercial / formal simulators)
+`ifndef __ICARUS__
   bind u_bridge obi_to_apb_sva u_sva (
     .clk_i        (clk_i),
     .rst_ni       (rst_ni),
@@ -135,6 +138,7 @@ module obi_apb_bridge_tb;
     .apb_pready_i (apb_pready_i),
     .apb_pslverr_i(apb_pslverr_i)
   );
+`endif
 
   // Behavioral Slave Models
   // Slave 0 (UART): immediate ready
@@ -145,32 +149,27 @@ module obi_apb_bridge_tb;
   int timer_wait_cycles = 0;
   int timer_cnt = 0;
 
-  always_comb begin
-    for (int i = 0; i < NUM_SLAVES; i++) begin
-      s_psel[i] = u_interconnect.s_psel_o[i];
-      s_pslverr[i] = 1'b0;
-    end
+  assign s_pslverr = '0;
 
-    // Slave 0: UART returns 0x1111_0000 + addr
-    s_prdata[0] = 32'h1111_0000 | {20'h0, s_paddr[0]};
-    s_pready[0] = 1'b1;
+  // Slave 0 (UART): immediate ready, returns 0x1111_0000 + addr
+  assign s_prdata[0] = 32'h1111_0000 | {20'h0, s_paddr[0]};
+  assign s_pready[0] = 1'b1;
 
-    // Slave 1: SPI returns 0x2222_0000 + addr
-    s_prdata[1] = 32'h2222_0000 | {20'h0, s_paddr[1]};
-    s_pready[1] = 1'b1;
+  // Slave 1 (SPI): immediate ready, returns 0x2222_0000 + addr
+  assign s_prdata[1] = 32'h2222_0000 | {20'h0, s_paddr[1]};
+  assign s_pready[1] = 1'b1;
 
-    // Slave 2: Timer with wait-states
-    s_prdata[2] = 32'h3333_0000 | {20'h0, s_paddr[2]};
-    s_pready[2] = (timer_cnt >= timer_wait_cycles);
+  // Slave 2 (Timer): configurable wait-state, returns 0x3333_0000 + addr
+  assign s_prdata[2] = 32'h3333_0000 | {20'h0, s_paddr[2]};
+  assign s_pready[2] = (timer_cnt >= timer_wait_cycles);
 
-    // Slave 3: GPIO returns 0x4444_0000 + addr
-    s_prdata[3] = 32'h4444_0000 | {20'h0, s_paddr[3]};
-    s_pready[3] = 1'b1;
+  // Slave 3 (GPIO): immediate ready, returns 0x4444_0000 + addr
+  assign s_prdata[3] = 32'h4444_0000 | {20'h0, s_paddr[3]};
+  assign s_pready[3] = 1'b1;
 
-    // Slave 4: DMA Control returns 0x5555_0000 + addr
-    s_prdata[4] = 32'h5555_0000 | {20'h0, s_paddr[4]};
-    s_pready[4] = 1'b1;
-  end
+  // Slave 4 (DMA Control): immediate ready, returns 0x5555_0000 + addr
+  assign s_prdata[4] = 32'h5555_0000 | {20'h0, s_paddr[4]};
+  assign s_pready[4] = 1'b1;
 
   always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
@@ -197,11 +196,12 @@ module obi_apb_bridge_tb;
     obi_be    <= 4'hF;
     obi_wdata <= 32'h0;
 
-    // Wait for grant
-    do begin
+    // Wait until grant is active
+    while (!obi_gnt) begin
       @(posedge clk);
-    end while (!obi_gnt);
+    end
 
+    @(posedge clk);
     obi_req <= 1'b0;
 
     // Wait for rvalid
@@ -235,7 +235,7 @@ module obi_apb_bridge_tb;
     $display("\n[TEST] TC-APB-001: Verifying Address Decoding across all 5 Slaves...");
     begin
       logic [31:0] rd;
-      bit all_decode_ok = 1'b1;
+      all_decode_ok = 1'b1;
 
       // 1. UART (0x1000_0000 & 0x1A10_0000)
       obi_read(32'h1000_0004, rd);
@@ -300,7 +300,7 @@ module obi_apb_bridge_tb;
     // -------------------------------------------------------------------------
     $display("\n[TEST] TC-APB-003: Testing Backpressure on Back-to-Back OBI Requests...");
     begin
-      bit backpressure_verified = 1'b0;
+      backpressure_verified = 1'b0;
       timer_wait_cycles = 2; // Timer delays completion
 
       @(posedge clk);

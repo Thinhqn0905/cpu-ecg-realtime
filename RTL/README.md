@@ -25,7 +25,8 @@ RTL/
 │   ├── sync_fifo.sv                 # Generic synchronous circular FIFO buffer
 │   ├── mamba_bridge.sv              # Hardware coprocessor streaming FIFO bridge
 │   ├── fpga/
-│   │   └── ecg_arty_top.sv          # Digilent Arty A7-100T board top with Xilinx MMCM
+│   │   ├── ecg_arty_top.sv          # Digilent Arty A7-100T board top with Xilinx MMCM
+│   │   └── cv32e40p_fpga_clock_gate.sv # Synthesizable direct clock gate for 7-series FPGA
 │   └── sva/                         # SystemVerilog Assertions (SVA) & formal property checkers
 │       ├── obi_to_apb_sva.sv        # Formal protocol assertions for OBI-APB bridge
 │       ├── obi_to_apb_bind.sv       # Bind directive for bridge assertions
@@ -90,6 +91,10 @@ RTL/
 ### 9. `fpga/ecg_arty_top.sv`
 - **Role**: Physical top-level wrapper for the Digilent Arty A7-100T evaluation board.
 - **Components**: Instantiates Xilinx MMCM primitive to synthesize 50 MHz system clock from 100 MHz oscillator.
+
+### 10. `fpga/cv32e40p_fpga_clock_gate.sv`
+- **Role**: Synthesizable FPGA clock-forwarding cell for Xilinx 7-series devices.
+- **Function**: Replaces simulation-only `always_latch` clock gating with direct wire assignment (`assign clk_o = clk_i`), eliminating transparent latch feedback loops, secondary cascaded BUFG skew, and DRC violations to enable zero-skew static timing closure.
 
 ---
 

@@ -206,14 +206,8 @@ module ecg_dma_tb;
 
       // Fill remaining (SAMPLES_PER_BANK - 1) samples into Buffer A
       for (int i = 1; i < SAMPLES_PER_BANK; i++) begin
-        fork
-          begin
-            push_sample(8'hC1, 24'h00_0100 + i, 24'h00_0200 + i);
-          end
-          begin
-            if (buffer_ready_irq) seen_irq = 1'b1;
-          end
-        join
+        push_sample(8'hC1, 24'h00_0100 + i, 24'h00_0200 + i);
+        if (buffer_ready_irq) seen_irq = 1'b1;
       end
 
       // Wait a cycle to observe bank swap and IRQ pulse

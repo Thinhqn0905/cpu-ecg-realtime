@@ -1,0 +1,69 @@
+﻿{
+    "run_id":  "20261006_071047",
+    "timestamp":  "2026-10-06T07:26:10Z",
+    "target_part":  "xc7a100tcsg324-1",
+    "toolchain":  "E:\\Vivado\\2023.2\\bin\\vivado.bat",
+    "exit_code":  0,
+    "duration_seconds":  923.1462285,
+    "log_file":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/run_20261006_071047/vivado.log",
+    "core_sha256":  "b0d9341cc231d72333b196748a3500c32f3335b6e24092f8565dce776720aeed",
+    "boot_hex_sha256":  "c4a318f9b347c13dd8193ccd053a7961ff363597a4782f100617d72d0d2fec67",
+    "artifacts":  [
+                      {
+                          "sha256":  "f649c7a528fb3fdfb6a9ba419f7eeb35a2b6c370e1a711914142f25b07fa1292",
+                          "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/utilization_synth.rpt"
+                      },
+                      {
+                          "sha256":  "91775a96dad37e6e2117880828d8a9023ea49e426d2538612b0c6bf54e42d555",
+                          "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/timing_synth.rpt"
+                      },
+                      {
+                          "sha256":  "0e871b991f05a5aba71121c804d443382a0d3b1d6c948d537fa5596b510cc226",
+                          "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/utilization_placed.rpt"
+                      },
+                      {
+                          "sha256":  "147faad27aecfa7dbe2d74442717076d1e308c3294b3860f69684e7f7e50e6b7",
+                          "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/timing_routed.rpt"
+                      },
+                      {
+                          "sha256":  "540ef661fd076ec1057293bbc5ec9a65afc899a8dca4c00a5a36f333982d3d49",
+                          "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/timing_min_max.rpt"
+                      },
+                      {
+                          "sha256":  "ee2fa71c7eb919aa00b4412b2bac600cff1cc50244903fd175d0e0cfcaf6d73c",
+                          "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/timing_setup.rpt"
+                      },
+                      {
+                          "sha256":  "5ba6e3dd638294bdf471cd2233274afb00a5e5d7a4e476b827ddaf3f3320df7c",
+                          "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/timing_hold.rpt"
+                      },
+                      {
+                          "sha256":  "be32e0a5d2f42aa3169ce996008eb4c2375fb075ff5ee1f57b844cf96327a1da",
+                          "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/check_timing.rpt"
+                      },
+                      {
+                          "sha256":  "bb0ca82f42f55d188d16a812e392aced143bed693e29de9bf2c5f48a02cff06e",
+                          "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/utilization_hierarchical.rpt"
+                      },
+                      {
+                          "sha256":  "0ad75a777665b275b4adcfe44b8048c8496edaed79e1fb992189693f47deb0de",
+                          "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/drc_routed.rpt"
+                      },
+                      {
+                          "sha256":  "b18ee93cf0a151073ced34c26811735aaef3c94e72423c7c62562b0d237a8ca3",
+                          "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/power_routed.rpt"
+                      },
+                      {
+                          "sha256":  "80d35170ef27ef8174aacd278b6a643743ac12a030e9358ca6f034bbcf4e9c5c",
+                          "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/routed.dcp"
+                      },
+                      {
+                          "sha256":  "e03f93bbd38ed38feeb124a1c0ef9bbe37fe63199ceedc61f60c9d5b30f88fb5",
+                          "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/cv32e40p_ecg_soc.bit"
+                      },
+                      {
+                          "sha256":  "15124d867ac6284a3b2bd49349315a9d67039bee0123d95c41c1ab32e5ceef5d",
+                          "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7/reports/run_20261006_071047/vivado.log"
+                      }
+                  ]
+}

@@ -55,13 +55,17 @@ Write-Host "  Boot Hex: $bootHex (SHA256: $bootHexHash)"
 # 2. Locate Vivado Toolchain
 # ------------------------------------------------------------------------------
 if ($VivadoPath -eq "") {
-    $vivadoCmd = Get-Command "vivado" -ErrorAction SilentlyContinue
-    if ($vivadoCmd) {
-        $VivadoPath = $vivadoCmd.Source
+    if (Test-Path "E:\Vivado\2023.2\bin\vivado.bat") {
+        $VivadoPath = "E:\Vivado\2023.2\bin\vivado.bat"
     } else {
-        $possiblePaths = Get-ChildItem -Path "C:\Xilinx\Vivado" -Recurse -Filter "vivado.bat" -ErrorAction SilentlyContinue
-        if ($possiblePaths -and $possiblePaths.Count -gt 0) {
-            $VivadoPath = $possiblePaths[0].FullName
+        $vivadoCmd = Get-Command "vivado" -ErrorAction SilentlyContinue
+        if ($vivadoCmd) {
+            $VivadoPath = $vivadoCmd.Source
+        } else {
+            $possiblePaths = Get-ChildItem -Path @("E:\Vivado", "C:\Xilinx\Vivado") -Recurse -Filter "vivado.bat" -ErrorAction SilentlyContinue
+            if ($possiblePaths -and $possiblePaths.Count -gt 0) {
+                $VivadoPath = $possiblePaths[0].FullName
+            }
         }
     }
 }

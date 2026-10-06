@@ -21,30 +21,30 @@ module cv32e40p_ecg_soc_top
   parameter bit          USE_REAL_CORE    = 1'b1,  // 0: Synthesizable bus harness, 1: cv32e40p_top
   parameter string       BOOT_HEX         = ""     // Boot hex image file path
 ) (
-  input  logic        clk_sys_i,
-  input  logic        rst_sys_ni,
+  input  wire logic        clk_sys_i,
+  input  wire logic        rst_sys_ni,
 
   // External ADS1292R AFE SPI Signals
-  output logic        afe_sclk_o,
-  output logic        afe_cs_no,
-  output logic        afe_mosi_o,
-  input  logic        afe_miso_i,
-  input  logic        afe_drdy_ni,
-  output logic        afe_reset_no,
-  output logic        afe_start_o,
-  output logic        afe_pwdn_no,
+  output logic             afe_sclk_o,
+  output logic             afe_cs_no,
+  output logic             afe_mosi_o,
+  input  wire logic        afe_miso_i,
+  input  wire logic        afe_drdy_ni,
+  output logic             afe_reset_no,
+  output logic             afe_start_o,
+  output logic             afe_pwdn_no,
 
   // External Host UART Telemetry
-  output logic        uart_tx_o,
-  input  logic        uart_rx_i,
+  output logic             uart_tx_o,
+  input  wire logic        uart_rx_i,
 
   // External GPIO Pins (Status LEDs, Debug Probes)
-  input  logic [7:0]  gpio_in_i,
-  output logic [7:0]  gpio_out_o,
-  output logic [7:0]  gpio_oe_o,
+  input  wire logic [7:0]  gpio_in_i,
+  output logic [7:0]       gpio_out_o,
+  output logic [7:0]       gpio_oe_o,
 
   // Optional External OBI/Debug Monitor Interface
-  output logic        core_sleep_o
+  output logic             core_sleep_o
 );
 
   // ---------------------------------------------------------------------------
@@ -100,11 +100,6 @@ module cv32e40p_ecg_soc_top
   logic        apb_bridge_req, apb_bridge_gnt, apb_bridge_rvalid, apb_bridge_err;
   logic [31:0] apb_bridge_rdata;
 
-  assign itcm_data_req  = data_req && is_itcm_addr;
-  assign dtcm_req       = data_req && is_dtcm_addr;
-  assign dma_dobi_req   = data_req && is_dma_buf_addr;
-  assign apb_bridge_req = data_req && is_apb_addr;
-
   // Track accepted transaction target to route rvalid and rdata
   typedef enum logic [2:0] {
     TARGET_NONE,
@@ -116,6 +111,15 @@ module cv32e40p_ecg_soc_top
 
   data_target_e pending_target_q, pending_target_d;
   logic         unmapped_rvalid_q;
+
+  // Serialize multi-target OBI transactions: do not grant a new transaction
+  // while a multi-cycle transaction is still awaiting rvalid
+  wire data_bus_busy = (pending_target_q != TARGET_NONE) && !data_rvalid;
+
+  assign itcm_data_req  = data_req && is_itcm_addr    && !data_bus_busy;
+  assign dtcm_req       = data_req && is_dtcm_addr    && !data_bus_busy;
+  assign dma_dobi_req   = data_req && is_dma_buf_addr && !data_bus_busy;
+  assign apb_bridge_req = data_req && is_apb_addr     && !data_bus_busy;
 
   always_comb begin
     pending_target_d = pending_target_q;
@@ -145,7 +149,8 @@ module cv32e40p_ecg_soc_top
     end
   end
 
-  assign data_gnt    = is_itcm_addr    ? itcm_data_gnt :
+  assign data_gnt    = data_bus_busy   ? 1'b0 :
+                       is_itcm_addr    ? itcm_data_gnt :
                        is_dtcm_addr    ? dtcm_gnt :
                        is_dma_buf_addr ? dma_dobi_gnt :
                        is_apb_addr     ? apb_bridge_gnt : 1'b1;

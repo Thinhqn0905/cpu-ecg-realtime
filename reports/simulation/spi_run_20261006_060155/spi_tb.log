@@ -1,0 +1,40 @@
+=========================================================
+Starting ECG SoC SPI Master Testbench Verification Suite
+Adhering to Task 3 of Gemini Recovery Plan
+=========================================================
+
+[TEST] TC-SPI-001: Testing APB Register Read/Write Integrity...
+[PASS] TC-SPI-001A: CLKDIV register read back matches (10)
+[PASS] TC-SPI-001B: SAMPLE_CNT register read back matches (0x12345678)
+
+[TEST] TC-SPI-002: Triggering Manual 24-bit SPI Command Transfer...
+[FAIL] TC-SPI-002: Unexpected status after transfer: 0x00000000
+
+[TEST] TC-SPI-003: Enabling Auto-Mode (72-bit Frame) and Verifying DRDY# Capture...
+[PASS] TC-SPI-003: Caught DRDY# falling edge interrupt from AFE
+[PASS] TC-SPI-003B: Frame transfer finished, FRAME_VALID asserted
+
+[TEST] TC-SPI-004: Verifying Complete 72-bit Golden Frame Content...
+  INFO: Read Status Word: 0x800000 (Expected: 0xC00000)
+  INFO: Read Channel 1:   0x0000ad (Expected: 0x123456)
+  INFO: Read Channel 2:   0xfdb974 (Expected: 0xFEDCBA)
+  INFO: Decoded Signed CH1: 173 (Expected: +1193046)
+  INFO: Decoded Signed CH2: -149132 (Expected: -74566)
+[FAIL] TC-SPI-004: Golden frame mismatch! w_status=0x00800000, w_ch1=0x000000ad, w_ch2=0x00fdb974
+
+[TEST] TC-SPI-005: Checking CS# Continuous Assertion Across All 72 SCLK Cycles...
+  INFO: Total SCLK clock pulses observed: 72
+[PASS] TC-SPI-005: CS# remained continuously LOW across exactly 72 bits without glitching!
+
+[TEST] TC-SPI-006: Verifying FRAME_VALID flag W1C clear...
+[PASS] TC-SPI-006: FRAME_VALID flag successfully cleared by W1C
+
+[TEST] TC-SPI-007: Verifying Direct Sample Streaming Lines...
+[FAIL] TC-SPI-007: Direct streaming mismatch! stat=0x80, ch1=0x0000ad, ch2=0xfdb974
+
+=========================================================
+VERIFICATION RESULT: 6 PASSED, 3 FAILED
+>>> VERIFICATION FAILED <<<
+[FATAL] Verification failed in spi_master_tb: pass_count=6, fail_count=3
+FATAL: Simulation/spi_master_tb.sv:349: Verification failed in spi_master_tb!
+       Time: 1002930000  Scope: spi_master_tb

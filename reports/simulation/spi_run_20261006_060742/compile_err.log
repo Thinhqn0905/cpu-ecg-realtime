@@ -1,0 +1,9 @@
+RTL/ecg_soc/spi_master.sv:108: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+RTL/ecg_soc/spi_master.sv:108: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+RTL/ecg_soc/spi_master.sv:108: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+RTL/ecg_soc/spi_master.sv:108: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+RTL/ecg_soc/spi_master_apb.sv:138: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+RTL/ecg_soc/spi_master_apb.sv:138: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+RTL/ecg_soc/spi_master_apb.sv:138: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+RTL/ecg_soc/spi_master_apb.sv:138: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+RTL/ecg_soc/spi_master_apb.sv:138: sorry: constant selects in always_* processes are not currently supported (all bits will be included).

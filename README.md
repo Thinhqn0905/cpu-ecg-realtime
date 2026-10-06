@@ -369,6 +369,26 @@ Run non-project batch synthesis and timing closure in Vivado:
 E:\Vivado\2023.2\bin\vivado.bat -mode batch -source Synthesis/fpga/ecg_artix7/run_synth.tcl
 ```
 
+#### Verified Physical Implementation Results (Run `20261006_071047`):
+- **Target Part**: Xilinx Artix-7 `xc7a100tcsg324-1` (Digilent Arty A7-100T)
+- **Clock**: 50.000 MHz ($T = 20.000\text{ ns}$), synthesized via on-chip MMCM from 100.000 MHz oscillator
+- **Static Timing Closure**:
+  - Worst Setup Slack (WNS): **+0.008 ns** (0 failing endpoints / 17,411)
+  - Worst Hold Slack (WHS): **+0.125 ns** (0 failing endpoints / 17,411)
+  - Total Negative Slack (TNS): **0.000 ns**
+  - Total Hold Slack (THS): **0.000 ns**
+  - Worst Pulse Width Slack (WPWS): **+3.000 ns** (0 failing endpoints / 6,984)
+- **Clock Tree & Latch Integrity**:
+  - 0 combinational latch loops; secondary cascaded BUFG skew eliminated via `cv32e40p_fpga_clock_gate.sv`
+- **Device Utilization on Artix-7 100T**:
+  - Slice LUTs: **10,435 / 63,400 (16.46%)**
+  - Slice Registers (FF): **6,946 / 126,800 (5.48%)**
+  - Block RAM (BRAM36E1): **16 / 135 (11.85%)**
+  - DSP Slices (DSP48E1): **7 / 240 (2.92%)**
+  - Bonded IOBs: **20 / 210 (9.52%)**
+- **Bitstream Artifact**:
+  - `Synthesis/fpga/ecg_artix7/reports/cv32e40p_ecg_soc.bit` (SHA-256: `e03f93bbd38ed38feeb124a1c0ef9bbe37fe63199ceedc61f60c9d5b30f88fb5`)
+
 ---
 
 ## License & Attribution

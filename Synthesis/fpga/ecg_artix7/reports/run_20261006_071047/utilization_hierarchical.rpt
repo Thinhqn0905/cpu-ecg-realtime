@@ -1,0 +1,73 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
+| Date         : Tue Oct  6 14:25:31 2026
+| Host         : DESKTOP-5BKHJFE running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file E:/ResearchOnWork/RISC_V_CORE/Synthesis/fpga/ecg_artix7/reports/utilization_hierarchical.rpt
+| Design       : ecg_arty_top
+| Device       : xc7a100tcsg324-1
+| Speed File   : -1
+| Design State : Physopt postRoute
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++-----------------------------------------+------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+|                 Instance                |            Module            | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
++-----------------------------------------+------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+| ecg_arty_top                            |                        (top) |      10442 |      10442 |       0 |    0 | 6946 |     16 |      0 |          7 |
+|   (ecg_arty_top)                        |                        (top) |          2 |          2 |       0 |    0 |   35 |      0 |      0 |          0 |
+|   u_soc_top                             |         cv32e40p_ecg_soc_top |      10440 |      10440 |       0 |    0 | 6911 |     16 |      0 |          7 |
+|     (u_soc_top)                         |         cv32e40p_ecg_soc_top |          0 |          0 |       0 |    0 |    4 |      0 |      0 |          0 |
+|     gen_cv32e40p_core.u_core            |                 cv32e40p_top |       7073 |       7073 |       0 |    0 | 2419 |      0 |      0 |          7 |
+|       (gen_cv32e40p_core.u_core)        |                 cv32e40p_top |        263 |        263 |       0 |    0 |    0 |      0 |      0 |          0 |
+|       core_i                            |                cv32e40p_core |       6853 |       6853 |       0 |    0 | 2419 |      0 |      0 |          7 |
+|         cs_registers_i                  |        cv32e40p_cs_registers |        105 |        105 |       0 |    0 |  461 |      0 |      0 |          0 |
+|         ex_stage_i                      |            cv32e40p_ex_stage |        489 |        489 |       0 |    0 |  118 |      0 |      0 |          7 |
+|           (ex_stage_i)                  |            cv32e40p_ex_stage |         38 |         38 |       0 |    0 |    6 |      0 |      0 |          1 |
+|           alu_i                         |                 cv32e40p_alu |        181 |        181 |       0 |    0 |  108 |      0 |      0 |          0 |
+|             alu_div_i                   |             cv32e40p_alu_div |        145 |        145 |       0 |    0 |  108 |      0 |      0 |          0 |
+|             popcnt_i                    |              cv32e40p_popcnt |         36 |         36 |       0 |    0 |    0 |      0 |      0 |          0 |
+|           mult_i                        |                cv32e40p_mult |        270 |        270 |       0 |    0 |    4 |      0 |      0 |          6 |
+|         id_stage_i                      |            cv32e40p_id_stage |       5022 |       5022 |       0 |    0 | 1558 |      0 |      0 |          0 |
+|           (id_stage_i)                  |            cv32e40p_id_stage |       1170 |       1170 |       0 |    0 |  367 |      0 |      0 |          0 |
+|           controller_i                  |          cv32e40p_controller |        290 |        290 |       0 |    0 |    9 |      0 |      0 |          0 |
+|           gen_hwloop_regs.hwloop_regs_i |         cv32e40p_hwloop_regs |       1008 |       1008 |       0 |    0 |  184 |      0 |      0 |          0 |
+|           int_controller_i              |      cv32e40p_int_controller |        135 |        135 |       0 |    0 |    6 |      0 |      0 |          0 |
+|           register_file_i               |       cv32e40p_register_file |       2420 |       2420 |       0 |    0 |  992 |      0 |      0 |          0 |
+|         if_stage_i                      |            cv32e40p_if_stage |       1210 |       1210 |       0 |    0 |  241 |      0 |      0 |          0 |
+|           (if_stage_i)                  |            cv32e40p_if_stage |        938 |        938 |       0 |    0 |   72 |      0 |      0 |          0 |
+|           aligner_i                     |             cv32e40p_aligner |        104 |        104 |       0 |    0 |   80 |      0 |      0 |          0 |
+|           prefetch_buffer_i             |     cv32e40p_prefetch_buffer |        174 |        174 |       0 |    0 |   89 |      0 |      0 |          0 |
+|             fifo_i                      |                cv32e40p_fifo |        156 |        156 |       0 |    0 |   68 |      0 |      0 |          0 |
+|             instruction_obi_i           |       cv32e40p_obi_interface |          2 |          2 |       0 |    0 |    0 |      0 |      0 |          0 |
+|             prefetch_controller_i       | cv32e40p_prefetch_controller |         16 |         16 |       0 |    0 |   21 |      0 |      0 |          0 |
+|         load_store_unit_i               |     cv32e40p_load_store_unit |         91 |         91 |       0 |    0 |   40 |      0 |      0 |          0 |
+|         sleep_unit_i                    |          cv32e40p_sleep_unit |          0 |          0 |       0 |    0 |    1 |      0 |      0 |          0 |
+|     u_d_tcm                             |     tcm_sram__parameterized0 |          0 |          0 |       0 |    0 |    1 |      8 |      0 |          0 |
+|     u_i_tcm                             |                     tcm_sram |         33 |         33 |       0 |    0 |    2 |      8 |      0 |          0 |
+|     u_obi_to_apb                        |                   obi_to_apb |        384 |        384 |       0 |    0 |   84 |      0 |      0 |          0 |
+|     u_peripherals                       |                  ecg_soc_top |       2952 |       2952 |       0 |    0 | 4401 |      0 |      0 |          0 |
+|       u_dma                             |                      ecg_dma |       2129 |       2129 |       0 |    0 | 3658 |      0 |      0 |          0 |
+|       u_gpio                            |                     gpio_apb |         12 |         12 |       0 |    0 |   47 |      0 |      0 |          0 |
+|       u_spi_master                      |               spi_master_apb |        480 |        480 |       0 |    0 |  263 |      0 |      0 |          0 |
+|         (u_spi_master)                  |               spi_master_apb |          0 |          0 |       0 |    0 |   67 |      0 |      0 |          0 |
+|         u_spi_core                      |                   spi_master |        480 |        480 |       0 |    0 |  196 |      0 |      0 |          0 |
+|       u_timer                           |                    timer_apb |         79 |         79 |       0 |    0 |   68 |      0 |      0 |          0 |
+|       u_uart                            |                     uart_apb |        253 |        253 |       0 |    0 |  365 |      0 |      0 |          0 |
+|         (u_uart)                        |                     uart_apb |          0 |          0 |       0 |    0 |   20 |      0 |      0 |          0 |
+|         u_uart_core                     |              uart_controller |        253 |        253 |       0 |    0 |  345 |      0 |      0 |          0 |
+|           (u_uart_core)                 |              uart_controller |         75 |         75 |       0 |    0 |   63 |      0 |      0 |          0 |
+|           u_rx_fifo                     |                    sync_fifo |         79 |         79 |       0 |    0 |  141 |      0 |      0 |          0 |
+|           u_tx_fifo                     |                  sync_fifo_0 |        100 |        100 |       0 |    0 |  141 |      0 |      0 |          0 |
++-----------------------------------------+------------------------------+------------+------------+---------+------+------+--------+--------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+

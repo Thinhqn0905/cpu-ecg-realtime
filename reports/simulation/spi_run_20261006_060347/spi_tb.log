@@ -1,0 +1,38 @@
+=========================================================
+Starting ECG SoC SPI Master Testbench Verification Suite
+Adhering to Task 3 of Gemini Recovery Plan
+=========================================================
+
+[TEST] TC-SPI-001: Testing APB Register Read/Write Integrity...
+[PASS] TC-SPI-001A: CLKDIV register read back matches (10)
+[PASS] TC-SPI-001B: SAMPLE_CNT register read back matches (0x12345678)
+
+[TEST] TC-SPI-002: Triggering Manual 24-bit SPI Command Transfer...
+[PASS] TC-SPI-002: Single 24-bit SPI Transfer completed (Busy=0, Done=1)
+
+[TEST] TC-SPI-003: Enabling Auto-Mode (72-bit Frame) and Verifying DRDY# Capture...
+[PASS] TC-SPI-003: Caught DRDY# falling edge interrupt from AFE
+[PASS] TC-SPI-003B: Frame transfer finished, FRAME_VALID asserted
+
+[TEST] TC-SPI-004: Verifying Complete 72-bit Golden Frame Content...
+  INFO: Read Status Word: 0xc00000 (Expected: 0xC00000)
+  INFO: Read Channel 1:   0x123456 (Expected: 0x123456)
+  INFO: Read Channel 2:   0xfedcba (Expected: 0xFEDCBA)
+  INFO: Decoded Signed CH1: 1193046 (Expected: +1193046)
+  INFO: Decoded Signed CH2: -74566 (Expected: -74566)
+[PASS] TC-SPI-004: All 72 bits and decoded signed values match exact golden frame!
+
+[TEST] TC-SPI-005: Checking CS# Continuous Assertion Across All 72 SCLK Cycles...
+  INFO: Total SCLK clock pulses observed: 72
+[PASS] TC-SPI-005: CS# remained continuously LOW across exactly 72 bits without glitching!
+
+[TEST] TC-SPI-006: Verifying FRAME_VALID flag W1C clear...
+[PASS] TC-SPI-006: FRAME_VALID flag successfully cleared by W1C
+
+[TEST] TC-SPI-007: Verifying Direct Sample Streaming Lines...
+[PASS] TC-SPI-007: Direct sample streaming outputs contain exact golden frame!
+
+=========================================================
+VERIFICATION RESULT: 9 PASSED, 0 FAILED
+>>> ALL TASK 3 SPI VERIFICATION GATES PASSED <<<
+[PASS] All SPI testcases verified successfully.

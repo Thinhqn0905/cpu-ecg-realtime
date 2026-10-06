@@ -1,0 +1,28 @@
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:34: syntax error
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:39: error: invalid module item.
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:40: syntax error
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:41: error: invalid module item.
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:42: syntax error
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:44: error: invalid module item.
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:50: syntax error
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:50: error: invalid module item.
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:51: syntax error
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:52: error: invalid module item.
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:53: syntax error
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:55: error: invalid module item.
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:61: syntax error
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:61: error: invalid module item.
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:62: syntax error
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:63: error: invalid module item.
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:64: syntax error
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:66: error: invalid module item.
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:72: syntax error
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:72: error: invalid module item.
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:73: syntax error
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:74: error: invalid module item.
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:75: syntax error
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:34: warning: macro if undefined (and assumed null) at this point.
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:79: error: `endif without a matching `ifdef.
+RTL/ecg_soc/sva/obi_to_apb_sva.sv:77: error: invalid module item.
+Simulation/obi_apb_bridge_tb.sv:240: sorry: overriding the default variable lifetime is not yet supported.
+Simulation/obi_apb_bridge_tb.sv:305: sorry: overriding the default variable lifetime is not yet supported.

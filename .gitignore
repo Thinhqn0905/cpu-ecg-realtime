@@ -9,7 +9,9 @@ Firmware/build/*.readelf
 Firmware/build/*.bin
 Firmware/build/dsp_test
 Firmware/build/dsp_test.exe
+Firmware/build/dsp_test_host.exe
 Firmware/build/dsp_test.log
+Firmware/build_runs/
 
 # Simulation VVP and VCD (large binaries — logs are kept as evidence)
 *.vvp
@@ -18,7 +20,18 @@ Firmware/build/dsp_test.log
 # Vivado
 Synthesis/fpga/ecg_artix7/runs/
 Synthesis/fpga/ecg_artix7/.Xil/
+Synthesis/fpga/ecg_artix7/clockInfo.txt
+Synthesis/fpga/ecg_artix7/*.backup.log
+Synthesis/fpga/ecg_artix7/vivado.log
+Synthesis/cv32e40p_soc.prj
 *.jou
+*.wdb
+*.pb
+*.dcp
+xsim.dir/
+xsim*.log
+xelab*.log
+xvlog*.log
 
 # ASIC
 Synthesis/asic/runs/
@@ -40,3 +53,4 @@ tools/
 # IDE
 .vscode/
 .idea/
+.claude/

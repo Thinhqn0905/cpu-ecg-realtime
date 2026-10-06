@@ -1,0 +1,33 @@
+================================================================
+  STARTING PING-PONG DMA & 12-BYTE FRAME VERIFICATION
+  Mandatory Evidence Verification per Instruction/claim_integrity.md
+================================================================
+
+[TEST] TC-DMA-001: Verifying Standardized 12-Byte Frame Layout...
+  INFO: Word 0 Status: 0x000000c0 (Expected: 0x000000C0)
+  INFO: Word 1 CH1:    0x00123456 (Expected: 0x00123456)
+  INFO: Word 2 CH2:    0xfffedcba (Expected: 0xFFFEDCBA)
+[PASS] TC-DMA-001: Exact 12-byte frame unpacking and sign-extension verified
+
+[TEST] TC-DMA-002 & TC-DMA-003: Filling Buffer A to Boundary (16 samples)...
+  INFO: After Bank A fill: Status Register = 0x00000005 (active_bank=1)
+[PASS] TC-DMA-002: Automatic bank swap to Buffer B succeeded
+[PASS] TC-DMA-003: buffer_ready_irq asserted on 16-sample buffer boundary
+
+[TEST] TC-DMA-004: Concurrent CPU D-OBI Readout of Buffer A while Buffer B Fills...
+[PASS] TC-DMA-004: Concurrent D-OBI CPU readout succeeded without contention
+
+[TEST] TC-DMA-005: Testing Overflow Error on Unreleased Buffer Swap...
+  INFO: Status Register after unreleased swap: 0x0000000e (overflow bit 1 = 1)
+[PASS] TC-DMA-005: Overflow error asserted upon unreleased buffer swap
+
+[TEST] TC-DMA-006: Continuous 256-Sample Stress Streaming with Active Releasing...
+  INFO: Total samples registered by DMA: 288
+[PASS] TC-DMA-006: Continuous stress streaming completed with zero sample loss
+
+================================================================
+  SIMULATION RESULTS SUMMARY
+  PASSED: 6
+  FAILED: 0
+================================================================
+[SUCCESS] All 6 Ping-Pong DMA Test Cases PASSED!

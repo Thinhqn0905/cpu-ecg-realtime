@@ -1,0 +1,7 @@
+Simulation/ecg_dma_tb.sv:204: warning: Static variable initialization requires explicit lifetime in this context.
+Simulation/ecg_dma_tb.sv:250: warning: Static variable initialization requires explicit lifetime in this context.
+Simulation/ecg_dma_tb.sv:306: warning: Static variable initialization requires explicit lifetime in this context.
+RTL/ecg_soc/ecg_dma.sv:84: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+RTL/ecg_soc/ecg_dma.sv:84: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+RTL/ecg_soc/ecg_dma.sv:84: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
+RTL/ecg_soc/ecg_dma.sv:186: sorry: constant selects in always_* processes are not currently supported (all bits will be included).

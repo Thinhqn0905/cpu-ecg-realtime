@@ -60,17 +60,27 @@ module tcm_sram #(
   logic [31:0] mem [NUM_WORDS-1:0];
 
   // Initialization: Default to RISC-V NOP (0x0000_0013) to avoid pipeline traps,
-  // then load hex image if INIT_FILE or +firmware plusarg is provided.
+  // then load hex image if +firmware plusarg or INIT_FILE is provided.
   initial begin : init_mem
-    string fw_file;
     for (int i = 0; i < NUM_WORDS; i++) begin
       mem[i] = 32'h0000_0013;
     end
+`ifdef SIMULATION
+    begin
+      string fw_file;
+      if ($value$plusargs("firmware=%s", fw_file)) begin
+        $display("[TCM_SRAM] %m: Loading firmware from plusarg: %s", fw_file);
+        $readmemh(fw_file, mem);
+      end else if (INIT_FILE != "") begin
+        $display("[TCM_SRAM] %m: Loading firmware from INIT_FILE: %s", INIT_FILE);
+        $readmemh(INIT_FILE, mem);
+      end
+    end
+`else
     if (INIT_FILE != "") begin
       $readmemh(INIT_FILE, mem);
-    end else if ($value$plusargs("firmware=%s", fw_file)) begin
-      $readmemh(fw_file, mem);
     end
+`endif
   end
 
   // Port A: Instruction Fetch (Read)

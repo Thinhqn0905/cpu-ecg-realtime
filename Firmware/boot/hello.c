@@ -75,7 +75,7 @@ void isr_timer(void) {
 int main(void) {
     // 1. Initialize UART: 115200 baud @ 50 MHz (divider = 434)
     UART_REG_BAUDDIV = 434;
-    UART_REG_CTRL    = 0x01; // Enable TX
+    UART_REG_CTRL    = 0x00; // Disable UART IRQs (polled mode)
 
     // 2. Emit primary boot alive marker
     uart_puts("ECG BOOT: CV32E40P ALIVE\r\n");

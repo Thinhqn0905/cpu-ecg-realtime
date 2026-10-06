@@ -66,7 +66,7 @@ module ecg_dma
 
   assign pready_o           = 1'b1;
   assign pslverr_o          = 1'b0;
-  assign buffer_ready_irq_o = ready_pulse;
+  assign buffer_ready_irq_o = bank0_ready_q || bank1_ready_q;
   assign overflow_err_o     = overflow_q;
 
   // D-OBI Zero-Wait Grant
@@ -85,7 +85,7 @@ module ecg_dma
     active_bank_d   = active_bank_q;
     wr_idx_d        = wr_idx_q;
     bank0_ready_d   = bank0_ready_q;
-    bank1_ready_d   = bank1_ready_d;
+    bank1_ready_d   = bank1_ready_q;
     overflow_d      = overflow_q;
     ready_pulse     = 1'b0;
     total_samples_d = total_samples_q;
@@ -190,7 +190,7 @@ module ecg_dma
       case (paddr_i[11:8])
         4'h0: begin // Registers
           case (paddr_i)
-            DMA_REG_CTRL:         prdata_o = {28'h0, bank1_ready_q, bank0_ready_q, 2'b00};
+            DMA_REG_CTRL:         prdata_o = {28'h0, 1'b0, overflow_q, bank1_ready_q, bank0_ready_q};
             DMA_REG_STATUS:       prdata_o = {28'h0, bank1_ready_q, bank0_ready_q, overflow_q, active_bank_q};
             DMA_REG_BANK_ADDR:    prdata_o = {31'h0, ~active_bank_q}; // Idle bank available for read
             DMA_REG_SAMPLE_COUNT: prdata_o = total_samples_q;

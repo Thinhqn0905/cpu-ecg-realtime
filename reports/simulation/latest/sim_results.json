@@ -1,0 +1,20 @@
+﻿{
+    "run_id":  "20261006_064535",
+    "timestamp":  "2026-10-06T06:47:13Z",
+    "compiler":  "E:/Vivado/2023.2/bin/xelab.bat",
+    "runtime":  "E:/Vivado/2023.2/bin/xsim.bat",
+    "compile_exit":  0,
+    "simulation_exit":  0,
+    "duration_seconds":  98.1141708,
+    "log_file":  "reports/simulation/run_20261006_064535/soc_tb.log",
+    "artifacts":  [
+                      {
+                          "sha256":  "623841ad2d621520cffab7efe7fb8f267387faadfb245749a7a14cbf148c5aa4",
+                          "path":  "reports/simulation/run_20261006_064535/compile.log"
+                      },
+                      {
+                          "sha256":  "dda066d25950cdba5bc46f71507a06ecf449764b5b747007fc9c1527d4fa0137",
+                          "path":  "reports/simulation/run_20261006_064535/soc_tb.log"
+                      }
+                  ]
+}

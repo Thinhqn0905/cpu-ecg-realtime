@@ -1,0 +1,5 @@
+ERROR: [Synth 8-27] string type not supported [E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/tcm_sram.sv:65]
+ERROR: [Synth 8-6156] failed synthesizing module 'tcm_sram' [E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/tcm_sram.sv:8]
+ERROR: [Synth 8-6156] failed synthesizing module 'cv32e40p_ecg_soc_top' [E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/cv32e40p_ecg_soc_top.sv:15]
+ERROR: [Synth 8-6156] failed synthesizing module 'ecg_arty_top' [E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/fpga/ecg_arty_top.sv:14]
+ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details

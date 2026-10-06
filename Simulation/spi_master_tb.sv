@@ -341,7 +341,7 @@ module spi_master_tb;
     $display("VERIFICATION RESULT: %0d PASSED, %0d FAILED", pass_count, fail_count);
     if ((fail_count == 0) && (pass_count == 9)) begin
       $display(">>> ALL TASK 3 SPI VERIFICATION GATES PASSED <<<");
-      $display("[PASS] All SPI testcases verified successfully.");
+      $display("[SUCCESS] All SPI testcases verified successfully.");
       $finish(0);
     end else begin
       $display(">>> VERIFICATION FAILED <<<");

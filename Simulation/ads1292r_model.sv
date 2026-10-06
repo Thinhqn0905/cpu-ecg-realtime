@@ -127,14 +127,19 @@ module ads1292r_model #(
           end
         end
       end
+
+      bit_idx <= bit_idx + 1;
     end
   end
 
   // Drive next MISO bit on rising SCLK edge (Mode 1 leading edge)
+  // In Mode 1, initial MSB (bit 71) is presented on CS# assertion and sampled on 1st falling edge.
+  // Subsequent bits (70 down to 0) are shifted out on rising SCLK edges 2..72 (when bit_idx > 0).
   always @(posedge sclk_i) begin
     if (!cs_ni) begin
-      shift_out_data <= {shift_out_data[70:0], 1'b0};
-      bit_idx <= bit_idx + 1;
+      if (bit_idx > 0) begin
+        shift_out_data <= {shift_out_data[70:0], 1'b0};
+      end
     end
   end
 

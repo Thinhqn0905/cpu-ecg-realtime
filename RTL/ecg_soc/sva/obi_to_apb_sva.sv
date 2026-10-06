@@ -32,6 +32,7 @@ module obi_to_apb_sva (
 );
 
 `ifndef SYNTHESIS
+`ifndef __ICARUS__
   // ---------------------------------------------------------------------------
   // Property 1: OBI Grant Assertion
   // When OBI request is accepted, grant must be high for that cycle
@@ -76,6 +77,7 @@ module obi_to_apb_sva (
   assert_obi_rvalid: assert property (p_obi_rvalid_on_pready)
     else $error("SVA VIOLATION: OBI RVALID not asserted on APB PREADY completion!");
 
+`endif
 `endif
 
 endmodule : obi_to_apb_sva

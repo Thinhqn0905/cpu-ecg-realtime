@@ -1,0 +1,24 @@
+﻿{
+    "run_id":  "20261006_060347",
+    "timestamp":  "2026-10-06T06:03:50Z",
+    "compiler":  "E:/iverilog/bin/iverilog.exe",
+    "runtime":  "E:/iverilog/bin/vvp.exe",
+    "compile_exit":  0,
+    "simulation_exit":  0,
+    "duration_seconds":  2.078774,
+    "log_file":  "reports/simulation/spi_run_20261006_060347/spi_tb.log",
+    "artifacts":  [
+                      {
+                          "sha256":  "bd2a80af9fdeced7e0971efe7fe95b3736825d50086d883b4ae350b0b11d2838",
+                          "path":  "reports/simulation/spi_run_20261006_060347/spi_tb.vvp"
+                      },
+                      {
+                          "sha256":  "ce2282f5da82e52f540b71d601466a89e30804e6e8aa14eb49b48346caf1e607",
+                          "path":  "reports/simulation/spi_run_20261006_060347/compile.log"
+                      },
+                      {
+                          "sha256":  "407eceaf9f297438d63743ec2556ab2eb4be9d098ddc25ce8789dd3273b0e2f8",
+                          "path":  "reports/simulation/spi_run_20261006_060347/spi_tb.log"
+                      }
+                  ]
+}

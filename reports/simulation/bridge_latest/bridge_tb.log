@@ -1,0 +1,23 @@
+================================================================
+  STARTING OBI-TO-APB3 BRIDGE & INTERCONNECT VERIFICATION
+  Mandatory Evidence Verification per Instruction/claim_integrity.md
+================================================================
+
+[TEST] TC-APB-001: Verifying Address Decoding across all 5 Slaves...
+[PASS] TC-APB-001: All 5 peripherals decoded correctly under both address maps
+
+[TEST] TC-APB-002: Testing Variable Wait-State Acceptance (PREADY delay)...
+[PASS] TC-APB-002: Variable wait-state handled cleanly, data returned correctly
+
+[TEST] TC-APB-003: Testing Backpressure on Back-to-Back OBI Requests...
+[PASS] TC-APB-003: Backpressure deasserted gnt while APB transfer was busy
+
+[TEST] TC-APB-004: Testing Unmapped Address Decoding...
+[PASS] TC-APB-004: Unmapped address returned zero gracefully without hanging
+
+================================================================
+  SIMULATION RESULTS SUMMARY
+  PASSED: 4
+  FAILED: 0
+================================================================
+[SUCCESS] All 4 OBI-APB Bridge Test Cases PASSED!

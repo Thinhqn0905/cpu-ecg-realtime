@@ -1,0 +1,43 @@
+cv32e40p/rtl/cv32e40p_cs_registers.sv:650: syntax error
+cv32e40p/rtl/cv32e40p_cs_registers.sv:656: error: malformed statement
+cv32e40p/rtl/cv32e40p_cs_registers.sv:754: syntax error
+cv32e40p/rtl/cv32e40p_cs_registers.sv:760: error: malformed statement
+cv32e40p/rtl/cv32e40p_cs_registers.sv:955: syntax error
+cv32e40p/rtl/cv32e40p_cs_registers.sv:961: error: malformed statement
+cv32e40p/rtl/cv32e40p_cs_registers.sv:1188: syntax error
+cv32e40p/rtl/cv32e40p_cs_registers.sv:1194: error: malformed statement
+cv32e40p/rtl/cv32e40p_cs_registers.sv:1200: syntax error
+cv32e40p/rtl/cv32e40p_cs_registers.sv:1204: error: malformed statement
+cv32e40p/rtl/cv32e40p_cs_registers.sv:1224: syntax error
+cv32e40p/rtl/cv32e40p_cs_registers.sv:1230: error: malformed statement
+cv32e40p/rtl/cv32e40p_decoder.sv:582: syntax error
+cv32e40p/rtl/cv32e40p_decoder.sv:584: error: Incomprehensible case expression.
+cv32e40p/rtl/cv32e40p_decoder.sv:668: syntax error
+cv32e40p/rtl/cv32e40p_decoder.sv:670: error: Incomprehensible case expression.
+cv32e40p/rtl/cv32e40p_decoder.sv:879: syntax error
+cv32e40p/rtl/cv32e40p_decoder.sv:880: error: malformed statement
+cv32e40p/rtl/cv32e40p_decoder.sv:880: error: Incomprehensible case expression.
+cv32e40p/rtl/cv32e40p_decoder.sv:1095: sorry: "inside" expressions not supported yet.
+cv32e40p/rtl/cv32e40p_decoder.sv:1106: sorry: "inside" expressions not supported yet.
+cv32e40p/rtl/cv32e40p_decoder.sv:1115: sorry: "inside" expressions not supported yet.
+cv32e40p/rtl/cv32e40p_decoder.sv:1126: sorry: "inside" expressions not supported yet.
+cv32e40p/rtl/cv32e40p_decoder.sv:1192: sorry: "inside" expressions not supported yet.
+cv32e40p/rtl/cv32e40p_decoder.sv:1203: sorry: "inside" expressions not supported yet.
+cv32e40p/rtl/cv32e40p_decoder.sv:1320: syntax error
+cv32e40p/rtl/cv32e40p_decoder.sv:1321: error: Incomprehensible case expression.
+cv32e40p/rtl/cv32e40p_decoder.sv:1325: syntax error
+cv32e40p/rtl/cv32e40p_decoder.sv:1326: error: Incomprehensible case expression.
+cv32e40p/rtl/cv32e40p_decoder.sv:1332: syntax error
+cv32e40p/rtl/cv32e40p_decoder.sv:1333: error: Incomprehensible case expression.
+cv32e40p/rtl/cv32e40p_decoder.sv:1453: syntax error
+cv32e40p/rtl/cv32e40p_decoder.sv:1454: error: Incomprehensible case expression.
+cv32e40p/rtl/cv32e40p_decoder.sv:1458: syntax error
+cv32e40p/rtl/cv32e40p_decoder.sv:1459: error: Incomprehensible case expression.
+cv32e40p/rtl/cv32e40p_decoder.sv:1465: syntax error
+cv32e40p/rtl/cv32e40p_decoder.sv:1466: error: Incomprehensible case expression.
+cv32e40p/rtl/cv32e40p_hwloop_regs.sv:69: syntax error
+cv32e40p/rtl/cv32e40p_hwloop_regs.sv:69: error: malformed statement
+cv32e40p/rtl/cv32e40p_hwloop_regs.sv:81: syntax error
+cv32e40p/rtl/cv32e40p_hwloop_regs.sv:81: error: malformed statement
+cv32e40p/rtl/cv32e40p_hwloop_regs.sv:98: syntax error
+cv32e40p/rtl/cv32e40p_hwloop_regs.sv:98: error: malformed statement

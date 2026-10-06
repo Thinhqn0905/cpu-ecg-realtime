@@ -1,0 +1,376 @@
+
+****** Vivado v2023.2 (64-bit)
+  **** SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source run_synth.tcl -notrace
+================================================================
+  VIVADO SYNTHESIS & IMPLEMENTATION: CV32E40P ECG SOC          
+  Project Root: E:/ResearchOnWork/RISC_V_CORE
+  Target Part:  xc7a100tcsg324-1
+  Top Module:   ecg_arty_top
+  Output Dir:   E:/ResearchOnWork/RISC_V_CORE/Synthesis/fpga/ecg_artix7/reports
+================================================================
+[PASS] Preflight checks passed. Core RTL and boot image verified.
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 567.316 ; gain = 183.234
+=== [1/5] RUNNING SYNTHESIS FOR ecg_arty_top ON xc7a100tcsg324-1 ===
+Command: synth_design -top ecg_arty_top -part xc7a100tcsg324-1 -flatten_hierarchy rebuilt -generic BOOT_HEX=E:/ResearchOnWork/RISC_V_CORE/Firmware/build/hello.hex
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 26776
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1415.816 ; gain = 439.492
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-11067] parameter 'APU_NARGS_CPU' declared inside package 'cv32e40p_apu_core_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_apu_core_pkg.sv:25]
+WARNING: [Synth 8-11067] parameter 'APU_WOP_CPU' declared inside package 'cv32e40p_apu_core_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_apu_core_pkg.sv:26]
+WARNING: [Synth 8-11067] parameter 'APU_NDSFLAGS_CPU' declared inside package 'cv32e40p_apu_core_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_apu_core_pkg.sv:27]
+WARNING: [Synth 8-11067] parameter 'APU_NUSFLAGS_CPU' declared inside package 'cv32e40p_apu_core_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_apu_core_pkg.sv:28]
+WARNING: [Synth 8-11067] parameter 'OPCODE_SYSTEM' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:37]
+WARNING: [Synth 8-11067] parameter 'OPCODE_FENCE' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:38]
+WARNING: [Synth 8-11067] parameter 'OPCODE_OP' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:39]
+WARNING: [Synth 8-11067] parameter 'OPCODE_OPIMM' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:40]
+WARNING: [Synth 8-11067] parameter 'OPCODE_STORE' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:41]
+WARNING: [Synth 8-11067] parameter 'OPCODE_LOAD' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:42]
+WARNING: [Synth 8-11067] parameter 'OPCODE_BRANCH' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:43]
+WARNING: [Synth 8-11067] parameter 'OPCODE_JALR' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:44]
+WARNING: [Synth 8-11067] parameter 'OPCODE_JAL' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:45]
+WARNING: [Synth 8-11067] parameter 'OPCODE_AUIPC' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:46]
+WARNING: [Synth 8-11067] parameter 'OPCODE_LUI' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:47]
+WARNING: [Synth 8-11067] parameter 'OPCODE_OP_FP' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:48]
+WARNING: [Synth 8-11067] parameter 'OPCODE_OP_FMADD' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:49]
+WARNING: [Synth 8-11067] parameter 'OPCODE_OP_FNMADD' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:50]
+WARNING: [Synth 8-11067] parameter 'OPCODE_OP_FMSUB' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:51]
+WARNING: [Synth 8-11067] parameter 'OPCODE_OP_FNMSUB' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:52]
+WARNING: [Synth 8-11067] parameter 'OPCODE_STORE_FP' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:53]
+WARNING: [Synth 8-11067] parameter 'OPCODE_LOAD_FP' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:54]
+WARNING: [Synth 8-11067] parameter 'OPCODE_AMO' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:55]
+WARNING: [Synth 8-11067] parameter 'OPCODE_CUSTOM_0' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:58]
+WARNING: [Synth 8-11067] parameter 'OPCODE_CUSTOM_1' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:59]
+WARNING: [Synth 8-11067] parameter 'OPCODE_CUSTOM_2' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:60]
+WARNING: [Synth 8-11067] parameter 'OPCODE_CUSTOM_3' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:61]
+WARNING: [Synth 8-11067] parameter 'REGC_S1' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:63]
+WARNING: [Synth 8-11067] parameter 'REGC_S4' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:64]
+WARNING: [Synth 8-11067] parameter 'REGC_RD' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:65]
+WARNING: [Synth 8-11067] parameter 'REGC_ZERO' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:66]
+WARNING: [Synth 8-11067] parameter 'ALU_OP_WIDTH' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:77]
+WARNING: [Synth 8-11067] parameter 'MUL_OP_WIDTH' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:163]
+WARNING: [Synth 8-11067] parameter 'VEC_MODE32' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:178]
+WARNING: [Synth 8-11067] parameter 'VEC_MODE16' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:179]
+WARNING: [Synth 8-11067] parameter 'VEC_MODE8' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:180]
+WARNING: [Synth 8-11067] parameter 'HAVERESET_INDEX' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:207]
+WARNING: [Synth 8-11067] parameter 'RUNNING_INDEX' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:208]
+WARNING: [Synth 8-11067] parameter 'HALTED_INDEX' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:209]
+WARNING: [Synth 8-11067] parameter 'CSR_OP_WIDTH' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:510]
+WARNING: [Synth 8-11067] parameter 'CSR_MSIX_BIT' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:520]
+WARNING: [Synth 8-11067] parameter 'CSR_MTIX_BIT' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:521]
+WARNING: [Synth 8-11067] parameter 'CSR_MEIX_BIT' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:522]
+WARNING: [Synth 8-11067] parameter 'CSR_MFIX_BIT_LOW' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:523]
+WARNING: [Synth 8-11067] parameter 'CSR_MFIX_BIT_HIGH' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:524]
+WARNING: [Synth 8-11067] parameter 'SP_DVR0' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:527]
+WARNING: [Synth 8-11067] parameter 'SP_DCR0' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:528]
+WARNING: [Synth 8-11067] parameter 'SP_DMR1' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:529]
+WARNING: [Synth 8-11067] parameter 'SP_DMR2' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:530]
+WARNING: [Synth 8-11067] parameter 'SP_DVR_MSB' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:532]
+WARNING: [Synth 8-11067] parameter 'SP_DCR_MSB' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:533]
+WARNING: [Synth 8-11067] parameter 'SP_DMR_MSB' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:534]
+WARNING: [Synth 8-11067] parameter 'SP_DSR_MSB' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:535]
+WARNING: [Synth 8-11067] parameter 'MVENDORID_OFFSET' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:587]
+WARNING: [Synth 8-11067] parameter 'MVENDORID_BANK' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:588]
+WARNING: [Synth 8-11067] parameter 'MARCHID' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:591]
+WARNING: [Synth 8-11067] parameter 'MHPMCOUNTER_WIDTH' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:593]
+WARNING: [Synth 8-11067] parameter 'SEL_REGFILE' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:605]
+WARNING: [Synth 8-11067] parameter 'SEL_FW_EX' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:606]
+WARNING: [Synth 8-11067] parameter 'SEL_FW_WB' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:607]
+WARNING: [Synth 8-11067] parameter 'OP_A_REGA_OR_FWD' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:610]
+WARNING: [Synth 8-11067] parameter 'OP_A_CURRPC' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:611]
+WARNING: [Synth 8-11067] parameter 'OP_A_IMM' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:612]
+WARNING: [Synth 8-11067] parameter 'OP_A_REGB_OR_FWD' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:613]
+WARNING: [Synth 8-11067] parameter 'OP_A_REGC_OR_FWD' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:614]
+WARNING: [Synth 8-11067] parameter 'IMMA_Z' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:617]
+WARNING: [Synth 8-11067] parameter 'IMMA_ZERO' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:618]
+WARNING: [Synth 8-11067] parameter 'OP_B_REGB_OR_FWD' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:621]
+WARNING: [Synth 8-11067] parameter 'OP_B_REGC_OR_FWD' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:622]
+WARNING: [Synth 8-11067] parameter 'OP_B_IMM' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:623]
+WARNING: [Synth 8-11067] parameter 'OP_B_REGA_OR_FWD' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:624]
+WARNING: [Synth 8-11067] parameter 'OP_B_BMASK' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:625]
+WARNING: [Synth 8-11067] parameter 'IMMB_I' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:628]
+WARNING: [Synth 8-11067] parameter 'IMMB_S' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:629]
+WARNING: [Synth 8-11067] parameter 'IMMB_U' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:630]
+WARNING: [Synth 8-11067] parameter 'IMMB_PCINCR' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:631]
+WARNING: [Synth 8-11067] parameter 'IMMB_S2' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:632]
+WARNING: [Synth 8-11067] parameter 'IMMB_S3' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:633]
+WARNING: [Synth 8-11067] parameter 'IMMB_VS' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:634]
+WARNING: [Synth 8-11067] parameter 'IMMB_VU' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:635]
+WARNING: [Synth 8-11067] parameter 'IMMB_SHUF' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:636]
+WARNING: [Synth 8-11067] parameter 'IMMB_CLIP' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:637]
+WARNING: [Synth 8-11067] parameter 'IMMB_BI' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:638]
+WARNING: [Synth 8-11067] parameter 'BMASK_A_ZERO' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:641]
+WARNING: [Synth 8-11067] parameter 'BMASK_A_S3' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:642]
+WARNING: [Synth 8-11067] parameter 'BMASK_B_S2' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:644]
+WARNING: [Synth 8-11067] parameter 'BMASK_B_S3' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:645]
+WARNING: [Synth 8-11067] parameter 'BMASK_B_ZERO' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:646]
+WARNING: [Synth 8-11067] parameter 'BMASK_B_ONE' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:647]
+WARNING: [Synth 8-11067] parameter 'BMASK_A_REG' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:649]
+WARNING: [Synth 8-11067] parameter 'BMASK_A_IMM' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:650]
+WARNING: [Synth 8-11067] parameter 'BMASK_B_REG' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:651]
+WARNING: [Synth 8-11067] parameter 'BMASK_B_IMM' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:652]
+WARNING: [Synth 8-11067] parameter 'MIMM_ZERO' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:656]
+WARNING: [Synth 8-11067] parameter 'MIMM_S3' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:657]
+WARNING: [Synth 8-11067] parameter 'OP_C_REGC_OR_FWD' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:660]
+WARNING: [Synth 8-11067] parameter 'OP_C_REGB_OR_FWD' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:661]
+WARNING: [Synth 8-11067] parameter 'OP_C_JT' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:662]
+WARNING: [Synth 8-11067] parameter 'BRANCH_NONE' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:665]
+WARNING: [Synth 8-11067] parameter 'BRANCH_JAL' declared inside package 'cv32e40p_pkg' shall be treated as localparam [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/include/cv32e40p_pkg.sv:666]
+INFO: [Common 17-14] Message 'Synth 8-11067' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-6157] synthesizing module 'ecg_arty_top' [E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/fpga/ecg_arty_top.sv:14]
+	Parameter BOOT_HEX bound to: E:/ResearchOnWork/RISC_V_CORE/Firmware/build/hello.hex - type: string 
+INFO: [Synth 8-6157] synthesizing module 'MMCME2_BASE' [E:/Vivado/2023.2/scripts/rt/data/unisim_comp.v:82294]
+	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
+	Parameter CLKFBOUT_MULT_F bound to: 8.000000 - type: double 
+	Parameter CLKFBOUT_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKIN1_PERIOD bound to: 10.000000 - type: double 
+	Parameter CLKOUT0_DIVIDE_F bound to: 16.000000 - type: double 
+	Parameter CLKOUT0_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT0_PHASE bound to: 0.000000 - type: double 
+	Parameter DIVCLK_DIVIDE bound to: 1 - type: integer 
+	Parameter REF_JITTER1 bound to: 0.010000 - type: double 
+	Parameter STARTUP_WAIT bound to: FALSE - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'MMCME2_BASE' (0#1) [E:/Vivado/2023.2/scripts/rt/data/unisim_comp.v:82294]
+INFO: [Synth 8-6157] synthesizing module 'BUFG' [E:/Vivado/2023.2/scripts/rt/data/unisim_comp.v:1951]
+INFO: [Synth 8-6155] done synthesizing module 'BUFG' (0#1) [E:/Vivado/2023.2/scripts/rt/data/unisim_comp.v:1951]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_ecg_soc_top' [E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/cv32e40p_ecg_soc_top.sv:15]
+	Parameter I_MEM_SIZE_BYTES bound to: 32'b00000000000000001000000000000000 
+	Parameter D_MEM_SIZE_BYTES bound to: 32'b00000000000000001000000000000000 
+	Parameter TARGET_ASIC bound to: 1'b0 
+	Parameter BOOT_HEX bound to: E:/ResearchOnWork/RISC_V_CORE/Firmware/build/hello.hex - type: string 
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_top' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_top.sv:26]
+	Parameter COREV_PULP bound to: 1 - type: integer 
+	Parameter COREV_CLUSTER bound to: 0 - type: integer 
+	Parameter FPU bound to: 0 - type: integer 
+	Parameter NUM_MHPMCOUNTERS bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_core' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_core.sv:31]
+	Parameter COREV_PULP bound to: 1 - type: integer 
+	Parameter COREV_CLUSTER bound to: 0 - type: integer 
+	Parameter FPU bound to: 0 - type: integer 
+	Parameter FPU_ADDMUL_LAT bound to: 0 - type: integer 
+	Parameter FPU_OTHERS_LAT bound to: 0 - type: integer 
+	Parameter ZFINX bound to: 0 - type: integer 
+	Parameter NUM_MHPMCOUNTERS bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_sleep_unit' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_sleep_unit.sv:56]
+	Parameter COREV_CLUSTER bound to: 0 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_clock_gate' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/bhv/cv32e40p_sim_clock_gate.sv:15]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_clock_gate' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/bhv/cv32e40p_sim_clock_gate.sv:15]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_sleep_unit' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_sleep_unit.sv:56]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_if_stage' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_if_stage.sv:28]
+	Parameter COREV_PULP bound to: 1 - type: integer 
+	Parameter PULP_OBI bound to: 0 - type: integer 
+	Parameter PULP_SECURE bound to: 0 - type: integer 
+	Parameter FPU bound to: 0 - type: integer 
+	Parameter ZFINX bound to: 0 - type: integer 
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_if_stage.sv:132]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_if_stage.sv:138]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_if_stage.sv:144]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_if_stage.sv:159]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_prefetch_buffer' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_prefetch_buffer.sv:27]
+	Parameter PULP_OBI bound to: 0 - type: integer 
+	Parameter COREV_PULP bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_prefetch_controller' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_prefetch_controller.sv:40]
+	Parameter PULP_OBI bound to: 0 - type: integer 
+	Parameter COREV_PULP bound to: 1 - type: integer 
+	Parameter DEPTH bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_prefetch_controller' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_prefetch_controller.sv:40]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_fifo' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_fifo.sv:15]
+	Parameter FALL_THROUGH bound to: 1'b0 
+	Parameter DATA_WIDTH bound to: 32'b00000000000000000000000000100000 
+	Parameter DEPTH bound to: 2 - type: integer 
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_fifo.sv:117]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_fifo' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_fifo.sv:15]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_obi_interface' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_obi_interface.sv:38]
+	Parameter TRANS_STABLE bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_obi_interface' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_obi_interface.sv:38]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_prefetch_buffer' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_prefetch_buffer.sv:27]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_aligner' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_aligner.sv:23]
+INFO: [Synth 8-155] case statement is not full and has no default [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_aligner.sv:102]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_aligner' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_aligner.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_compressed_decoder' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_compressed_decoder.sv:27]
+	Parameter FPU bound to: 0 - type: integer 
+	Parameter ZFINX bound to: 0 - type: integer 
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_compressed_decoder.sv:52]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_compressed_decoder.sv:55]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_compressed_decoder.sv:195]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_compressed_decoder.sv:272]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_compressed_decoder.sv:339]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_compressed_decoder.sv:436]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_compressed_decoder' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_compressed_decoder.sv:27]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_if_stage' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_if_stage.sv:28]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_id_stage' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_id_stage.sv:30]
+	Parameter COREV_PULP bound to: 1 - type: integer 
+	Parameter COREV_CLUSTER bound to: 0 - type: integer 
+	Parameter N_HWLP bound to: 2 - type: integer 
+	Parameter PULP_SECURE bound to: 0 - type: integer 
+	Parameter USE_PMP bound to: 0 - type: integer 
+	Parameter A_EXTENSION bound to: 0 - type: integer 
+	Parameter APU bound to: 0 - type: integer 
+	Parameter FPU bound to: 0 - type: integer 
+	Parameter FPU_ADDMUL_LAT bound to: 0 - type: integer 
+	Parameter FPU_OTHERS_LAT bound to: 0 - type: integer 
+	Parameter ZFINX bound to: 0 - type: integer 
+	Parameter APU_NARGS_CPU bound to: 3 - type: integer 
+	Parameter APU_WOP_CPU bound to: 6 - type: integer 
+	Parameter APU_NDSFLAGS_CPU bound to: 15 - type: integer 
+	Parameter APU_NUSFLAGS_CPU bound to: 5 - type: integer 
+	Parameter DEBUG_TRIGGER_EN bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_hwloop_regs' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_hwloop_regs.sv:25]
+	Parameter N_REGS bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_hwloop_regs' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_hwloop_regs.sv:25]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_id_stage.sv:525]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_id_stage.sv:574]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_id_stage.sv:610]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_id_stage.sv:638]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_id_stage.sv:749]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_id_stage.sv:755]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_id_stage.sv:764]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_id_stage.sv:770]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_id_stage.sv:785]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_register_file' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_register_file_ff.sv:30]
+	Parameter ADDR_WIDTH bound to: 6 - type: integer 
+	Parameter DATA_WIDTH bound to: 32 - type: integer 
+	Parameter FPU bound to: 0 - type: integer 
+	Parameter ZFINX bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_register_file' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_register_file_ff.sv:30]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_decoder' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:28]
+	Parameter COREV_PULP bound to: 1 - type: integer 
+	Parameter COREV_CLUSTER bound to: 0 - type: integer 
+	Parameter A_EXTENSION bound to: 0 - type: integer 
+	Parameter FPU bound to: 0 - type: integer 
+	Parameter FPU_ADDMUL_LAT bound to: 0 - type: integer 
+	Parameter FPU_OTHERS_LAT bound to: 0 - type: integer 
+	Parameter ZFINX bound to: 0 - type: integer 
+	Parameter PULP_SECURE bound to: 0 - type: integer 
+	Parameter USE_PMP bound to: 0 - type: integer 
+	Parameter APU_WOP_CPU bound to: 6 - type: integer 
+	Parameter DEBUG_TRIGGER_EN bound to: 1 - type: integer 
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:293]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:342]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:376]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:401]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:487]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:925]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:1597]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:1633]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:1652]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:1660]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:1684]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:1721]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:1745]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:1790]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:1895]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:1938]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:2025]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:2033]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:2079]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:2159]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:2422]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:2683]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:2704]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:2775]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_decoder' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_decoder.sv:28]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_controller' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_controller.sv:31]
+	Parameter COREV_CLUSTER bound to: 0 - type: integer 
+	Parameter COREV_PULP bound to: 1 - type: integer 
+	Parameter FPU bound to: 0 - type: integer 
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_controller.sv:330]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_controller.sv:541]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_controller.sv:677]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_controller.sv:775]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_controller.sv:863]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_controller.sv:932]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_controller.sv:1054]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_controller.sv:1122]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_controller' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_controller.sv:31]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_int_controller' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_int_controller.sv:24]
+	Parameter PULP_SECURE bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_int_controller' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_int_controller.sv:24]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_id_stage' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_id_stage.sv:30]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_ex_stage' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_ex_stage.sv:32]
+	Parameter COREV_PULP bound to: 1 - type: integer 
+	Parameter FPU bound to: 0 - type: integer 
+	Parameter APU_NARGS_CPU bound to: 3 - type: integer 
+	Parameter APU_WOP_CPU bound to: 6 - type: integer 
+	Parameter APU_NDSFLAGS_CPU bound to: 15 - type: integer 
+	Parameter APU_NUSFLAGS_CPU bound to: 5 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_alu' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu.sv:28]
+INFO: [Synth 8-155] case statement is not full and has no default [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu.sv:139]
+INFO: [Synth 8-155] case statement is not full and has no default [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu.sv:153]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu.sv:348]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu.sv:416]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu.sv:499]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu.sv:535]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu.sv:554]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu.sv:557]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu.sv:591]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu.sv:593]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu.sv:613]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu.sv:633]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu.sv:653]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_popcnt' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_popcnt.sv:25]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_popcnt' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_popcnt.sv:25]
+INFO: [Synth 8-155] case statement is not full and has no default [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu.sv:752]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_ff_one' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_ff_one.sv:25]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_ff_one' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_ff_one.sv:25]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu.sv:863]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_alu_div' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu_div.sv:26]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_alu_div' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu_div.sv:26]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu.sv:931]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_alu' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_alu.sv:28]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_mult' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_mult.sv:26]
+INFO: [Synth 8-155] case statement is not full and has no default [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_mult.sv:140]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_mult.sv:326]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_mult' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_mult.sv:26]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_ex_stage' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_ex_stage.sv:32]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_load_store_unit' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_load_store_unit.sv:26]
+	Parameter PULP_OBI bound to: 0 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_load_store_unit.sv:332]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_load_store_unit.sv:419]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_obi_interface__parameterized0' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_obi_interface.sv:38]
+	Parameter TRANS_STABLE bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_obi_interface__parameterized0' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_obi_interface.sv:38]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_load_store_unit' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_load_store_unit.sv:26]
+INFO: [Synth 8-6157] synthesizing module 'cv32e40p_cs_registers' [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_cs_registers.sv:30]
+	Parameter N_HWLP bound to: 2 - type: integer 
+	Parameter APU bound to: 0 - type: integer 
+	Parameter A_EXTENSION bound to: 0 - type: integer 
+	Parameter FPU bound to: 0 - type: integer 
+	Parameter ZFINX bound to: 0 - type: integer 
+	Parameter PULP_SECURE bound to: 0 - type: integer 
+	Parameter USE_PMP bound to: 0 - type: integer 
+	Parameter N_PMP_ENTRIES bound to: 16 - type: integer 
+	Parameter NUM_MHPMCOUNTERS bound to: 1 - type: integer 
+	Parameter COREV_PULP bound to: 1 - type: integer 
+	Parameter COREV_CLUSTER bound to: 0 - type: integer 
+	Parameter DEBUG_TRIGGER_EN bound to: 1 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_cs_registers.sv:920]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_cs_registers.sv:1041]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_cs_registers.sv:1044]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_cs_registers' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_cs_registers.sv:30]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_core' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_core.sv:31]
+INFO: [Synth 8-6155] done synthesizing module 'cv32e40p_top' (0#1) [E:/ResearchOnWork/RISC_V_CORE/cv32e40p/rtl/cv32e40p_top.sv:26]
+INFO: [Synth 8-6157] synthesizing module 'tcm_sram' [E:/ResearchOnWork/RISC_V_CORE/RTL/ecg_soc/tcm_sram.sv:8]
+	Parameter MEM_SIZE_BYTES bound to: 32'b00000000000000001000000000000000 
+	Parameter TARGET_ASIC bound to: 1'b0 
+	Parameter INIT_FILE bound to: E:/ResearchOnWork/RISC_V_CORE/Firmware/build/hello.hex - type: string 
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1542.535 ; gain = 566.211
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+INFO: [Common 17-83] Releasing license: Synthesis
+142 Infos, 100 Warnings, 0 Critical Warnings and 5 Errors encountered.
+synth_design failed
+INFO: [Common 17-206] Exiting Vivado at Tue Oct  6 13:50:49 2026...

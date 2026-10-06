@@ -98,6 +98,9 @@ if ($compileExit -ne 0) {
     $failManifest | ConvertTo-Json -Depth 4 | Set-Content $JsonOut -Encoding utf8
     exit $compileExit
 }
+if ((Get-Item $CompileLog).Length -eq 0) {
+    Set-Content -Path $CompileLog -Value "[IVERILOG] Clean compilation (exit code 0, 0 warnings)"
+}
 Write-Host "[PASS] Compilation successful: $VvpOut"
 
 Write-Host "[2/4] Executing SPI Co-Simulation..."

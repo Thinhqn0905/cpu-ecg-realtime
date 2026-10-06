@@ -50,8 +50,10 @@ create_project -in_memory -part $PART
 read_verilog -sv [file join $CORE_DIR "rtl/include/cv32e40p_apu_core_pkg.sv"]
 read_verilog -sv [file join $CORE_DIR "rtl/include/cv32e40p_fpu_pkg.sv"]
 read_verilog -sv [file join $CORE_DIR "rtl/include/cv32e40p_pkg.sv"]
-read_verilog -sv [file join $CORE_DIR "bhv/cv32e40p_sim_clock_gate.sv"]
+read_verilog -sv [file join $ROOT_DIR "RTL/ecg_soc/fpga/cv32e40p_fpga_clock_gate.sv"]
 foreach f [glob [file join $CORE_DIR "rtl/*.sv"]] {
+    set bname [file tail $f]
+    if {$bname eq "cv32e40p_fp_wrapper.sv" || $bname eq "cv32e40p_register_file_latch.sv"} continue
     read_verilog -sv $f
 }
 
@@ -89,15 +91,17 @@ report_timing_summary -file [file join $OUT_DIR "timing_synth.rpt"]
 # 4. Optimization & Placement
 # ------------------------------------------------------------------------------
 puts "=== [2/5] RUNNING OPT & PLACE ==="
-opt_design
-place_design
+opt_design -directive Explore
+place_design -directive Explore
+phys_opt_design -directive Explore
 report_utilization -file [file join $OUT_DIR "utilization_placed.rpt"]
 
 # ------------------------------------------------------------------------------
 # 5. Routing & Timing Closure
 # ------------------------------------------------------------------------------
 puts "=== [3/5] RUNNING ROUTE ==="
-route_design
+route_design -directive Explore
+phys_opt_design -directive Explore
 
 puts "=== [4/5] GENERATING TIMING & DRC REPORTS ==="
 check_timing -file [file join $OUT_DIR "check_timing.rpt"]

@@ -1,0 +1,24 @@
+﻿{
+    "run_id":  "20261006_054337",
+    "timestamp":  "2026-10-06T05:43:39Z",
+    "compiler":  "E:/iverilog/bin/iverilog.exe",
+    "runtime":  "E:/iverilog/bin/vvp.exe",
+    "compile_exit":  0,
+    "simulation_exit":  0,
+    "duration_seconds":  2.0858117,
+    "log_file":  "reports/simulation/tcm_run_20261006_054337/tcm_tb.log",
+    "artifacts":  [
+                      {
+                          "sha256":  "b6b4a3c3ce1e3fef83598c30405ca95e1335ffb7cb30fa39389c634124e724af",
+                          "path":  "reports/simulation/tcm_run_20261006_054337/tcm_tb.vvp"
+                      },
+                      {
+                          "sha256":  "ce2282f5da82e52f540b71d601466a89e30804e6e8aa14eb49b48346caf1e607",
+                          "path":  "reports/simulation/tcm_run_20261006_054337/compile.log"
+                      },
+                      {
+                          "sha256":  "4abc1671b011fd0fc238b93da6a178940e45925d01188d41ba7989a8b5cb4a3e",
+                          "path":  "reports/simulation/tcm_run_20261006_054337/tcm_tb.log"
+                      }
+                  ]
+}

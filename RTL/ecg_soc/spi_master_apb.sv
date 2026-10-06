@@ -45,6 +45,7 @@ module spi_master_apb
   logic        frame_mode_q, frame_mode_d;
   logic        start_pulse;
   logic        frame_valid_clr;
+  logic        done_q, done_d;
   logic [23:0] tx_data_q, tx_data_d;
   logic [31:0] sample_cnt_q, sample_cnt_d;
 
@@ -108,7 +109,7 @@ module spi_master_apb
           prdata_o = {29'h0, frame_mode_q, auto_mode_q, 1'b0};
         end
         SPI_REG_STATUS: begin
-          prdata_o = {29'h0, frame_valid_core, done_core, busy_core};
+          prdata_o = {29'h0, frame_valid_core, done_q, busy_core};
         end
         SPI_REG_TXDATA: begin
           prdata_o = {8'h0, tx_data_q};
@@ -142,6 +143,11 @@ module spi_master_apb
     start_pulse     = 1'b0;
     frame_valid_clr = 1'b0;
     sample_cnt_d    = sample_cnt_q;
+    done_d          = done_q;
+
+    if (done_core) begin
+      done_d = 1'b1;
+    end
 
     if (done_core && (auto_mode_q || frame_mode_q)) begin
       sample_cnt_d = sample_cnt_q + 1'b1;
@@ -154,8 +160,14 @@ module spi_master_apb
           start_pulse  = pwdata_i[0];
           auto_mode_d  = pwdata_i[1];
           frame_mode_d = pwdata_i[2];
+          if (pwdata_i[0]) begin
+            done_d = 1'b0; // Clear done when a new transfer starts
+          end
         end
         SPI_REG_STATUS: begin
+          if (pwdata_i[1]) begin
+            done_d = 1'b0; // W1C to clear DONE
+          end
           if (pwdata_i[2]) begin
             frame_valid_clr = 1'b1; // W1C to clear FRAME_VALID
           end
@@ -180,12 +192,14 @@ module spi_master_apb
       clk_div_q    <= 8'd25; // Default 2.0 MHz at 50 MHz system clock
       auto_mode_q  <= 1'b0;
       frame_mode_q <= 1'b0;
+      done_q       <= 1'b0;
       tx_data_q    <= '0;
       sample_cnt_q <= '0;
     end else begin
       clk_div_q    <= clk_div_d;
       auto_mode_q  <= auto_mode_d;
       frame_mode_q <= frame_mode_d;
+      done_q       <= done_d;
       tx_data_q    <= tx_data_d;
       sample_cnt_q <= sample_cnt_d;
     end

@@ -39,23 +39,25 @@ module apb_interconnect
   logic [NUM_SLAVES-1:0] slave_sel;
   logic                  unmapped_sel;
   wire                   _unused_clk_rst = &{1'b0, clk_i, rst_ni};
+  wire [15:0]            addr_hi = m_paddr_i[31:16];
+  wire [3:0]             addr_slot = m_paddr_i[15:12];
 
   always_comb begin
     slave_sel    = '0;
     unmapped_sel = 1'b0;
 
     if (m_psel_i) begin
-      if (m_paddr_i[31:16] == 16'h1000 || m_paddr_i[31:16] == 16'h1A10) begin
-        case (m_paddr_i[15:12])
-          4'h0: if (NUM_SLAVES > 0) slave_sel[0] = 1'b1; // UART
-          4'h1: if (NUM_SLAVES > 1) slave_sel[1] = 1'b1; // SPI
-          4'h2: if (NUM_SLAVES > 2) slave_sel[2] = 1'b1; // Timer
-          4'h3: if (NUM_SLAVES > 3) slave_sel[3] = 1'b1; // GPIO
-          4'h4: if (NUM_SLAVES > 4) slave_sel[4] = 1'b1; // DMA Control Plane
+      if (addr_hi == 16'h1000 || addr_hi == 16'h1A10) begin
+        case (addr_slot)
+          4'h0: if (NUM_SLAVES > 0) slave_sel = (NUM_SLAVES'(1) << 0); // UART
+          4'h1: if (NUM_SLAVES > 1) slave_sel = (NUM_SLAVES'(1) << 1); // SPI
+          4'h2: if (NUM_SLAVES > 2) slave_sel = (NUM_SLAVES'(1) << 2); // Timer
+          4'h3: if (NUM_SLAVES > 3) slave_sel = (NUM_SLAVES'(1) << 3); // GPIO
+          4'h4: if (NUM_SLAVES > 4) slave_sel = (NUM_SLAVES'(1) << 4); // DMA Control Plane
           default: unmapped_sel = 1'b1;
         endcase
-      end else if (NUM_SLAVES > 5 && m_paddr_i[31:16] == 16'h2000) begin
-        slave_sel[5] = 1'b1; // CNN-MAMBA Coprocessor (deferred)
+      end else if (NUM_SLAVES > 5 && addr_hi == 16'h2000) begin
+        slave_sel = (NUM_SLAVES'(1) << 5); // CNN-MAMBA Coprocessor (deferred)
       end else begin
         unmapped_sel = 1'b1;
       end
@@ -71,25 +73,26 @@ module apb_interconnect
     assign s_pwdata_o[i]  = m_pwdata_i;
   end
 
-  // Read multiplexing and response routing
-  always_comb begin
-    m_prdata_o  = 32'h0000_0000;
-    m_pready_o  = 1'b1;
-    m_pslverr_o = 1'b0;
+  // Read multiplexing and response routing via continuous assigns
+  assign m_prdata_o = (unmapped_sel) ? 32'h0000_0000 :
+                      (slave_sel[0])  ? s_prdata_i[0] :
+                      (NUM_SLAVES > 1 && slave_sel[1]) ? s_prdata_i[1] :
+                      (NUM_SLAVES > 2 && slave_sel[2]) ? s_prdata_i[2] :
+                      (NUM_SLAVES > 3 && slave_sel[3]) ? s_prdata_i[3] :
+                      (NUM_SLAVES > 4 && slave_sel[4]) ? s_prdata_i[4] : 32'h0000_0000;
 
-    if (unmapped_sel) begin
-      m_prdata_o  = 32'h0000_0000;
-      m_pready_o  = 1'b1;
-      m_pslverr_o = 1'b0; // Graceful return for unmapped addresses
-    end else begin
-      for (int unsigned j = 0; j < NUM_SLAVES; j++) begin
-        if (slave_sel[j]) begin
-          m_prdata_o  = s_prdata_i[j];
-          m_pready_o  = s_pready_i[j];
-          m_pslverr_o = s_pslverr_i[j];
-        end
-      end
-    end
-  end
+  assign m_pready_o = (unmapped_sel) ? 1'b1 :
+                      (slave_sel[0])  ? s_pready_i[0] :
+                      (NUM_SLAVES > 1 && slave_sel[1]) ? s_pready_i[1] :
+                      (NUM_SLAVES > 2 && slave_sel[2]) ? s_pready_i[2] :
+                      (NUM_SLAVES > 3 && slave_sel[3]) ? s_pready_i[3] :
+                      (NUM_SLAVES > 4 && slave_sel[4]) ? s_pready_i[4] : 1'b1;
+
+  assign m_pslverr_o = (unmapped_sel) ? 1'b0 :
+                       (slave_sel[0])  ? s_pslverr_i[0] :
+                       (NUM_SLAVES > 1 && slave_sel[1]) ? s_pslverr_i[1] :
+                       (NUM_SLAVES > 2 && slave_sel[2]) ? s_pslverr_i[2] :
+                       (NUM_SLAVES > 3 && slave_sel[3]) ? s_pslverr_i[3] :
+                       (NUM_SLAVES > 4 && slave_sel[4]) ? s_pslverr_i[4] : 1'b0;
 
 endmodule : apb_interconnect

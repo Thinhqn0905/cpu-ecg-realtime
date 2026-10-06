@@ -85,8 +85,8 @@ _start:
   j     3b
 4:
 
-  /* 5. Enable Machine Timer (bit 7) and Fast Interrupts (bits 16-20) in MIE CSR */
-  li    t0, 0x001F0080    /* Bit 7: MTIE, Bits [20:16]: Fast IRQs 16..20 */
+  /* 5. Enable Machine Timer (bit 7) in MIE CSR */
+  li    t0, 0x00000080    /* Bit 7: MTIE (Machine Timer Interrupt Enable) */
   csrs  mie, t0
 
   /* 6. Enable Global Interrupts in MSTATUS (MIE bit 3) */
@@ -210,6 +210,8 @@ isr_buffer_ready:
 isr_timer:
 isr_gpio:
 isr_mamba_event:
+  ret
+
 _trap_handler:
 _default_isr:
   mret

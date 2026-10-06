@@ -200,6 +200,30 @@ module soc_tb;
     #200;
     rst_sys_n = 1'b1;
     $display("[TB INFO] System reset released. Core fetching from I-TCM @ 0x0000_0000.");
+    $display("[TB INFO] I-TCM mem[0]=0x%08x mem[1]=0x%08x mem[2]=0x%08x mem[3]=0x%08x",
+             u_dut.u_i_tcm.mem[0], u_dut.u_i_tcm.mem[1], u_dut.u_i_tcm.mem[2], u_dut.u_i_tcm.mem[3]);
+
+    fork
+      begin
+        logic [31:0] prev_pc = '0;
+        int stall_cycles = 0;
+        forever begin
+          @(posedge clk_sys);
+          if (u_dut.gen_cv32e40p_core.u_core.core_i.pc_id != prev_pc) begin
+            prev_pc = u_dut.gen_cv32e40p_core.u_core.core_i.pc_id;
+            stall_cycles = 0;
+          end else begin
+            stall_cycles++;
+            if (stall_cycles == 10 || stall_cycles == 100 || stall_cycles == 1000) begin
+              $display("[STALL/LOOP DETECTED] Time=%0t ns: PC=0x%08x stall_cycles=%0d | d_req=%0b d_gnt=%0b d_rv=%0b d_addr=0x%08x | i_req=%0b i_gnt=%0b i_rv=%0b i_addr=0x%08x",
+                       $time/1000.0, prev_pc, stall_cycles,
+                       u_dut.data_req, u_dut.data_gnt, u_dut.data_rvalid, u_dut.data_addr,
+                       u_dut.instr_req, u_dut.instr_gnt, u_dut.instr_rvalid, u_dut.instr_addr);
+            end
+          end
+        end
+      end
+    join_none
 
     // 2. Wait for full verification sequence or timeout
     // Wait for seen_complete or max 10 ms

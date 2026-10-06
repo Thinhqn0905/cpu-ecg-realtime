@@ -1,0 +1,24 @@
+﻿{
+    "run_id":  "20261006_060431",
+    "timestamp":  "2026-10-06T06:04:33Z",
+    "compiler":  "E:/iverilog/bin/iverilog.exe",
+    "runtime":  "E:/iverilog/bin/vvp.exe",
+    "compile_exit":  0,
+    "simulation_exit":  1,
+    "duration_seconds":  2.0797356,
+    "log_file":  "reports/simulation/dma_run_20261006_060431/dma_tb.log",
+    "artifacts":  [
+                      {
+                          "sha256":  "8de8369f625c2d8a382954c0c12676b9ee9ce4f86e2a46b59c377ba3034e59d6",
+                          "path":  "reports/simulation/dma_run_20261006_060431/dma_tb.vvp"
+                      },
+                      {
+                          "sha256":  "ce2282f5da82e52f540b71d601466a89e30804e6e8aa14eb49b48346caf1e607",
+                          "path":  "reports/simulation/dma_run_20261006_060431/compile.log"
+                      },
+                      {
+                          "sha256":  "b8e95d3b6f46bf54c495c0d19840cad518c973e4063211f18af37c9cac1ef4e6",
+                          "path":  "reports/simulation/dma_run_20261006_060431/dma_tb.log"
+                      }
+                  ]
+}

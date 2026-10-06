@@ -101,7 +101,7 @@ def build_firmware(out_dir: Path, prefix_override: str = None) -> int:
     # Step 1: Compile with GCC
     c_flags = [
         tools["gcc"],
-        "-march=rv32imc",
+        "-march=rv32imc_zicsr",
         "-mabi=ilp32",
         "-O2",
         "-g",

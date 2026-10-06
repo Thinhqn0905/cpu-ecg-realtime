@@ -15,29 +15,29 @@ module ecg_arty_top #(
   parameter string BOOT_HEX = "Firmware/build/hello.hex"
 ) (
   // 100 MHz Oscillator Input from Arty A7-100T (Pin E3)
-  input  logic        clk_100m_i,
+  input  wire logic        clk_100m_i,
   // Active-Low Reset Button (Pin C2)
-  input  logic        rst_sys_ni,
+  input  wire logic        rst_sys_ni,
 
   // PMOD Header JA (ADS1292R Biopotential AFE Interface)
-  output logic        afe_cs_no,
-  output logic        afe_mosi_o,
-  input  logic        afe_miso_i,
-  output logic        afe_sclk_o,
-  input  logic        afe_drdy_ni,
-  output logic        afe_reset_no,
-  output logic        afe_start_o,
-  output logic        afe_pwdn_no,
+  output logic             afe_cs_no,
+  output logic             afe_mosi_o,
+  input  wire logic        afe_miso_i,
+  output logic             afe_sclk_o,
+  input  wire logic        afe_drdy_ni,
+  output logic             afe_reset_no,
+  output logic             afe_start_o,
+  output logic             afe_pwdn_no,
 
   // USB-UART Bridge (Host PC Telemetry)
-  output logic        uart_tx_o,
-  input  logic        uart_rx_i,
+  output logic             uart_tx_o,
+  input  wire logic        uart_rx_i,
 
   // User LEDs
-  output logic [3:0]  gpio_out_o,
+  output logic [3:0]       gpio_out_o,
 
   // User Push Buttons
-  input  logic [3:0]  gpio_in_i
+  input  wire logic [3:0]  gpio_in_i
 );
 
   // ---------------------------------------------------------------------------
