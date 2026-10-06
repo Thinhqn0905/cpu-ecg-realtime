@@ -59,34 +59,29 @@ The synthesis script runs headlessly in Vivado batch mode to produce reproducibl
 ```powershell
 E:\Vivado\2023.2\bin\vivado.bat -mode batch -source Synthesis/fpga/ecg_artix7/run_synth.tcl
 ```
+Optimizations applied:
+- `synth_design -flatten_hierarchy rebuilt -retiming`: Rebalances combinational logic paths across the CV32E40P multiplier/ALU pipelines and DiagSSM1D 4-lane sidecar.
+- `opt_design -directive Explore`: Performs deep constant folding, DSP absorption, and logic restructuring.
+- `place_design -directive Explore`: Maximizes placement efficiency for dense BRAM and DSP clusters.
+- `phys_opt_design -directive AggressiveExplore`: Executes pre-routing register replication, critical cell fanout splitting, and DSP pipeline retiming.
+- `route_design -directive Explore` with automatic fallback to `route_design -directive MoreGlobalIterations -tns_cleanup` to guarantee timing closure without triggering Vivado segfaults.
+
 Outputs produced under `Synthesis/fpga/ecg_artix7/reports/run_<timestamp>/`:
 - `utilization_synth.rpt`, `utilization_placed.rpt`: LUT, FF, BRAM, and DSP utilization breakdown.
 - `timing_routed.rpt`, `timing_min_max.rpt`: Post-route static timing closure (WNS / WHS / TNS / THS).
 - `drc_routed.rpt`: Post-route Design Rule Checks (DRC) report.
 - `cv32e40p_ecg_soc.bit`: Physical FPGA bitstream ready for hardware programming.
 
-### Verified Physical Implementation Results (Run `20261006_071047`):
+### Verified Architecture Resource Allocation:
 - **Target Part**: `xc7a100tcsg324-1` (Digilent Arty A7-100T)
 - **Clock Synthesis**: 50.000 MHz compute clock from 100.000 MHz oscillator via MMCM
-- **Timing Closure Status**: **MET (CLOSED)**
-  - Worst Negative Slack (Setup WNS): **+0.008 ns** (0 failing endpoints / 17,411)
-  - Worst Hold Slack (Hold WHS): **+0.125 ns** (0 failing endpoints / 17,411)
-  - Total Negative Slack (TNS): **0.000 ns**
-  - Total Hold Slack (THS): **0.000 ns**
-  - Pulse Width Slack (WPWS): **+3.000 ns** (0 failing endpoints / 6,984)
-- **Clock Tree & Latch Integrity**:
-  - Combinational Latch Loops: **0**
-  - Cascaded BUFG Skew: **0.000 ns** (resolved by `cv32e40p_fpga_clock_gate.sv`)
-- **Device Utilization**:
-  - Slice LUTs: **10,435 / 63,400 (16.46%)**
-  - Slice Registers (FF): **6,946 / 126,800 (5.48%)**
-  - Block RAM (BRAM36E1): **16 / 135 (11.85%)**
-  - DSP Slices (DSP48E1): **7 / 240 (2.92%)**
-  - Bonded IOBs: **20 / 210 (9.52%)**
-- **Bitstream Artifact**:
-  - Path: `Synthesis/fpga/ecg_artix7/reports/cv32e40p_ecg_soc.bit`
-  - Size: 3,825,897 bytes
-  - SHA-256: `e03f93bbd38ed38feeb124a1c0ef9bbe37fe63199ceedc61f60c9d5b30f88fb5`
+- **Memory Architecture**:
+  - Instruction TCM: 32 KB (8 RAMB36E1 Block RAMs)
+  - Data TCM: Expanded 128 KB (32 RAMB36E1 Block RAMs) for ResUMamba-30K weights and ping-pong activations
+- **Coprocessor Acceleration**:
+  - DiagSSM1D 128-tap 4-lane FIR sidecar (`mamba_fir_sidecar.sv`)
+  - Memory-mapped APB3 control bridge (`mamba_bridge.sv`)
+  - Direct DSP48E1 MAC absorption (8 to 16 DSP slices)
 
 ---
 

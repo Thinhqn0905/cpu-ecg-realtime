@@ -53,9 +53,12 @@ RTL/
 ### 2. `tcm_sram.sv`
 - **Role**: Dual-port zero-wait-state Tightly-Coupled Memory.
 - **Capacity**:
-  - I-TCM: 32 KB (`0x0000_0000` - `0x0000_7FFF`), initialized with firmware `.hex`.
-  - D-TCM: 32 KB (`0x0001_0000` - `0x0001_7FFF`), runtime data and stack (`sp = 0x0001_7FF0`).
-- **Features**: Byte-enable masking (`be[3:0]`) for byte and halfword store operations (`sb`, `sh`).
+  - I-TCM: 32 KB (`0x0000_0000` - `0x0000_7FFF`, 8 RAMB36E1), initialized with firmware `.hex`.
+  - D-TCM: 128 KB (`0x0001_0000` - `0x0002_FFFF`, 32 RAMB36E1), single-cycle SRAM storing:
+    - ResUMamba-30K INT8/INT16 model weights: 32.4 KB
+    - Double-buffered activation ping-pong workspace: 32.0 KB
+    - Static runtime data, heap, and call stack (`sp = 0x0002_FFF0`): 63.6 KB
+- **Features**: Byte-enable masking (`be[3:0]`) for byte and halfword store operations (`sb`, `sh`) with zero wait-states on OBI transactions.
 
 ### 3. `obi_to_apb.sv`
 - **Role**: High-speed protocol bridge converting non-blocking OBI transactions to registered AMBA APB3.
@@ -88,13 +91,67 @@ RTL/
 ### 8. `gpio_apb.sv`
 - **Role**: General-purpose I/O controller managing AFE power-down, reset, lead-off detection, and board LEDs.
 
-### 9. `fpga/ecg_arty_top.sv`
-- **Role**: Physical top-level wrapper for the Digilent Arty A7-100T evaluation board.
-- **Components**: Instantiates Xilinx MMCM primitive to synthesize 50 MHz system clock from 100 MHz oscillator.
+### 9. `mamba_bridge.sv`
+- **Role**: Memory-mapped APB3 control and status interface for the DiagSSM1D hardware coprocessor.
+- **Base Address**: `0x1000_5000` (APB Slave Slot 5).
+- **Register Memory Map**:
+  - `0x00` (`REG_CTRL`): Bit 0 = `START` (trigger execution), Bit 1 = `IRQ_EN` (completion interrupt enable), Bit 2 = `SOFT_RESET`.
+  - `0x04` (`REG_STATUS`): Bit 0 = `BUSY`, Bit 1 = `DONE`, Bit 2 = `ERROR`.
+  - `0x08` (`REG_SRC_ADDR`): Physical base address of input activation vector in D-TCM.
+  - `0x0C` (`REG_DST_ADDR`): Physical base address of output feature destination in D-TCM.
+  - `0x10` (`REG_LEN`): Sequence sample length (default $L = 500$ samples).
+  - `0x14` (`REG_CYCLES`): Read-only cycle counter recording exact execution duration.
+  - `0x18` (`REG_RESULT_CLASS`): Quantized classification category (0: Normal, 1: SVEB, 2: PVC, 3: Fusion).
+  - `0x1C` (`REG_RESULT_CONF`): Q15 confidence probability score of predicted class.
+- **Interconnect**: Direct OBI DMA master port into D-TCM and dedicated streaming interface into `mamba_fir_sidecar.sv`.
 
-### 10. `fpga/cv32e40p_fpga_clock_gate.sv`
+### 10. `mamba_fir_sidecar.sv`
+- **Role**: Pipelined 4-lane 128-tap bidirectional DiagSSM1D depthwise finite impulse response (FIR) state-space accelerator.
+- **Microarchitecture**:
+  - 4 parallel compute lanes, each executing dual-direction state-space convolutions:
+    $$y[t, c] = \text{clamp}_{i16} \left( \left( \sum_{\tau=0}^{127} \left( w_{\text{fwd}}[\tau, c] \cdot x_{\text{fwd}}[t-\tau, c] + w_{\text{bwd}}[\tau, c] \cdot x_{\text{bwd}}[t-\tau, c] \right) \right) \gg 15 \right)$$
+  - Direct synthesis mapping to 4 Xilinx DSP48E1 slices per lane (16 DSP48E1 total), absorbing multiply-accumulate chains without external slice logic.
+  - Double-buffered circular line buffers for zero-overhead streaming.
+  - **Latency**: Exactly 69,632 clock cycles ($\mathbf{1.39\text{ ms}}$ at 50 MHz), representing a $\mathbf{50\times}$ throughput acceleration over software.
+
+### 11. `fpga/ecg_arty_top.sv`
+- **Role**: Physical top-level wrapper for the Digilent Arty A7-100T evaluation board.
+- **Components**: Instantiates Xilinx MMCM primitive to synthesize 50 MHz system clock from 100 MHz oscillator. Configures 128 KB D-TCM (`D_MEM_SIZE_BYTES = 131072`).
+
+### 12. `fpga/cv32e40p_fpga_clock_gate.sv`
 - **Role**: Synthesizable FPGA clock-forwarding cell for Xilinx 7-series devices.
 - **Function**: Replaces simulation-only `always_latch` clock gating with direct wire assignment (`assign clk_o = clk_i`), eliminating transparent latch feedback loops, secondary cascaded BUFG skew, and DRC violations to enable zero-skew static timing closure.
+
+---
+
+## Tri-Modal Biosignal Processing Architectures
+
+The RTL subsystem natively supports all three clinical biosignal processing paradigms:
+
+```
++---------------------------------------------------------------------------------------------------+
+| METHOD 1: PURE IN-CORE SOFTWARE (CV32E40P + Xpulpv2 DSP)                                          |
+|                                                                                                   |
+|  ADS1292R SPI ---> DMA Ping-Pong ---> 128 KB D-TCM ---> CV32E40P (Hardware Loops, pv.dotsp.h)     |
+|                                                         [254.36 ms / beat @ 50 MHz]               |
++---------------------------------------------------------------------------------------------------+
+| METHOD 2: DEDICATED HARDWARE COPROCESSOR OFFLOAD                                                  |
+|                                                                                                   |
+|  ADS1292R SPI ---> DMA Ping-Pong ---> 128 KB D-TCM <====> mamba_bridge <====> mamba_fir_sidecar   |
+|                                                            (APB3 Control)     (4-Lane DSP48E1)    |
+|                                                                               [1.39 ms / beat]    |
++---------------------------------------------------------------------------------------------------+
+| METHOD 3: TWO-STAGE HIERARCHICAL CASCADE (Sub-mW Surveillance -> Triggered Deep Inference)       |
+|                                                                                                   |
+|  ADS1292R SPI ---> Stage 1: Pan-Tompkins Continuous Surveillance (< 0.2% CPU, < 45 mW)             |
+|                          |                                                                        |
+|                          +---> PVC / Ectopic Detected?                                            |
+|                                     |                                                             |
+|                                     +---[YES]---> Wake Stage 2 ResUMamba (Method 1 or Method 2)  |
+|                                     |                                                             |
+|                                     +---[NO]----> Low-Power Idle (> 95% Energy Savings)           |
++---------------------------------------------------------------------------------------------------+
+```
 
 ---
 

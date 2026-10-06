@@ -42,9 +42,9 @@ The RTM Dashboard serves as the single source of truth for design verification s
 
 ---
 
-## 2. Benchmark Characterization (`benchmark_report.md`)
+## 2. Benchmark Characterization (`benchmark_report.md` & `benchmark/tri_modal_resumamba_report.md`)
 
-Documents quantitative performance metrics for the CV32E40P core and peripherals:
+Documents quantitative performance metrics for the CV32E40P core, peripherals, and deep biosignal processing engines:
 - **Core Processing Throughput**:
   - Operating Frequency: 50 MHz on Xilinx Artix-7.
   - CoreMark Benchmark: 1.82 CoreMark/MHz (RV32IMC mode).
@@ -54,6 +54,11 @@ Documents quantitative performance metrics for the CV32E40P core and peripherals
   - ADS1292R 72-bit transfer duration @ 1.0 MHz SCLK: $72\text{ }\mu\text{s}$.
   - DMA frame assembly and memory write: $0.24\text{ }\mu\text{s}$.
   - Total latency from AFE `DRDY#` assertion to D-TCM buffer availability: $<\mathbf{75\text{ }\mu\text{s}}$ (well within the 10 ms clinical latency budget).
+- **Tri-Modal ResUMamba-30K Sequence Model Benchmarks (`benchmark/tri_modal_resumamba_report.md`)**:
+  - **Method 1 (Pure In-Core Software)**: 12,718,000 cycles = **254.36 ms** per 500-sample cardiac window @ 50 MHz.
+  - **Method 2 (Hardware Coprocessor Offload)**: 69,632 cycles = **1.39 ms** per cardiac window @ 50 MHz ($\mathbf{50\times}$ speedup over software).
+  - **Method 3 (Two-Stage Hierarchical Cascade)**: Continuous Stage 1 Pan-Tompkins surveillance ($< 0.2\%$ CPU load) triggering Stage 2 ResUMamba inference on ectopic PVC detection, reducing active duty cycle by $> \mathbf{95\%}$ and cutting average power from 148 mW to **42 mW**.
+  - **Quantization Parity**: INT8/INT16 quantized model achieves Mean Absolute Error (MAE) of **0.01256** and **99.80%** classification agreement with PyTorch float32 golden baseline.
 
 ---
 

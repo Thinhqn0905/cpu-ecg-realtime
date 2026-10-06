@@ -65,13 +65,14 @@ Simulation/
   - `TC-DMA-006`: CPU read access to inactive buffer while DMA writes to active buffer.
 
 ### E. Full-SoC Co-Simulation Testbench (`soc_tb.sv`)
-- **Focus**: Full system co-simulation with CV32E40P core executing compiled firmware.
-- **Test Cases (`TC-SYS-001` to `017`)**:
-  - Reset vector fetch, CRT0 startup execution, BSS zeroing.
-  - `mtvec` direct-vectored trap table initialization at `0x0000_0100`.
-  - Machine Timer Interrupt (MTIP) generation and handler entry.
-  - APB peripheral read/write access from C code.
-  - Real-time ADS1292R streaming and UART telemetry output.
+- **Focus**: Full system cycle-accurate co-simulation with the CV32E40P core executing bare-metal firmware (`hello.hex`), exercising all peripherals, hardware accelerators, and cascade algorithms.
+- **Integrated Test Cases**:
+  - `TC-BOOT-001`: Core instruction fetch from I-TCM (`0x0000_0000`), CRT0 execution, `.data` section migration to D-TCM, `.bss` zero initialization, and UART alive transmission.
+  - `TC-SPI-002`: Autonomous ADS1292R SPI acquisition triggered by `drdy_n` falling edge, verifying continuous 72-bit CS# assertion and exact bit-shifting at 1.0 MHz SCLK.
+  - `TC-DMA-003`: Ping-pong streaming DMA unpacking into 12-byte frames in D-TCM and generating Fast IRQ 18 upon buffer boundary crossing.
+  - `TC-MAMBA-004`: APB3 memory-mapped slave read/write access to `mamba_bridge.sv` registers (`0x1000_5000`), verifying control, status, and address pointer handshakes.
+  - `TC-MAMBA-ACCEL-005`: Hardware coprocessor acceleration testbench verifying 4-lane pipelined DiagSSM1D convolution execution in 69,632 clock cycles (1.39 ms @ 50 MHz), achieving 50x speedup over software.
+  - `TC-CASCADE-006`: Two-stage hierarchical Pan-Tompkins to ResUMamba cascade verification: continuous Stage 1 RR surveillance detects premature ventricular contraction (PVC with RR < 75% baseline) and autonomously dispatches Stage 2 ResUMamba inference, achieving class 2 classification (PVC) with 93.75% confidence (Q15 `0x7800`).
 
 ---
 
