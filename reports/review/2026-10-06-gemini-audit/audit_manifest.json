@@ -1,0 +1,327 @@
+﻿{
+    "campaign_id":  "2026-10-06-gemini-static-audit",
+    "date_utc":  "2026-10-05T23:45:42.8698293Z",
+    "boundary":  "read-only source and existing-artifact inspection; no compile/simulation/synthesis execution",
+    "root_git_commit":  null,
+    "root_git_reason":  "not a Git repository",
+    "cv32e40p_commit":  "97086e9565f8145522ad6d62852123c0e5537529",
+    "cv32e40p_dirty":  [
+
+                       ],
+    "tag_claim":  "v1.8.3",
+    "exact_tag_verified":  false,
+    "exact_tag_reason":  "git describe --tags --exact-match returned no exact tag in local checkout",
+    "files":  [
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\apb_interconnect.sv",
+                      "sha256":  "D4C8F888E47CF47EF5417E57E6917412BA4737445C8AE6867FFD14C8CDBF684B",
+                      "bytes":  3022
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\cv32e40p_ecg_soc_top.sv",
+                      "sha256":  "EDBB18271C55AD154B5B098D5609A73767991916A373A5CB9AD4E3F7EB69857F",
+                      "bytes":  11498
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\ecg_dma.sv",
+                      "sha256":  "CF81B5E583B2D8525A008261A2CCFE34F2485AE5F687F002563E4EF4ECCDBE85",
+                      "bytes":  5335
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\ecg_soc_pkg.sv",
+                      "sha256":  "D6087EF7B04B45ED5D0768CFA78DD8669DF397579C2E9C1BBDD7F2AFC3708F13",
+                      "bytes":  4190
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\ecg_soc_top.sv",
+                      "sha256":  "716898DC423712EC0AB3B188F4B861C83A2D5F63108BAC8AC921FF9BBDE53502",
+                      "bytes":  7938
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\gpio_apb.sv",
+                      "sha256":  "859206617D81D806E28188987CF665BCD9DFE47C297D47DB4CFF6F2F44BF2FBA",
+                      "bytes":  3567
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\mamba_bridge.sv",
+                      "sha256":  "1ECB87F094A6E39F2E7E660BECF913F977C200479D7F686D4E4899AE1F585BA4",
+                      "bytes":  6055
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\obi_to_apb.sv",
+                      "sha256":  "2B741D7789EA6ACCCAC1E96D44B7AAAC5208879CD40A717C4613793C96DC8B4E",
+                      "bytes":  3100
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\spi_master.sv",
+                      "sha256":  "D267F1DAF608546BFD657A19F2B86805071D82AE7F66AADB78197198340C6DE4",
+                      "bytes":  5403
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\spi_master_apb.sv",
+                      "sha256":  "980B1DDAD40C74CBBD1361BF39C52D3764F0DA649BA49AF9AB63325D945EC920",
+                      "bytes":  4075
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\sync_fifo.sv",
+                      "sha256":  "D7D5F42113A7DC84500CA1EE0BDC59DD84EEF0B9CF739C77B7D4C2603A285308",
+                      "bytes":  3923
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\tcm_sram.sv",
+                      "sha256":  "07F4500F4920001CF89008D36EE0DCF19193BB1CCDFA5D6ED6BB0685820C381D",
+                      "bytes":  3883
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\timer_apb.sv",
+                      "sha256":  "2AF8F39087AD93B9465568CA596234A88A7BBFAA654B91CFDD569E93FB13A191",
+                      "bytes":  2696
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\uart_apb.sv",
+                      "sha256":  "7D294D568A8CBE1090539442A07FCA7BFF9FA5B6909080FA4C200AE348FEDBF8",
+                      "bytes":  3785
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\uart_controller.sv",
+                      "sha256":  "DC9B94ADECDC6173E7C73038880108D654925503D586AC94405E43CAF9E77ED5",
+                      "bytes":  8406
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\sva\\obi_to_apb_bind.sv",
+                      "sha256":  "6B52D2617E148316891DFED9BB9A8CAD8DE1DC7D2EE47FF14BFA1D32980D3C6C",
+                      "bytes":  748
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\sva\\obi_to_apb_sva.sv",
+                      "sha256":  "F84B30ADB32DFC46C1D1D501EFCC81D28B7D2972ECFF1CF232CD936C5F21EDCB",
+                      "bytes":  3335
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\sva\\spi_master_bind.sv",
+                      "sha256":  "509658889D79F6DF594846753E8B27C08B9AF72290CB2A2BF3B617DABCFF7694",
+                      "bytes":  540
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\sva\\spi_master_sva.sv",
+                      "sha256":  "E20E802D267563013EAD6E020DB890F4323D1C662A3524775970FD376849254D",
+                      "bytes":  2306
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Simulation\\ads1292r_model.sv",
+                      "sha256":  "3714B6ED3316AC606A234130B296454BF3919E0B39F1B91F69C2EEF828C4534D",
+                      "bytes":  3035
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Simulation\\soc_tb.sv",
+                      "sha256":  "7F876129C159B5DC0F83B229884E3686D53D54ADDB66A72FCFAA6067BD944976",
+                      "bytes":  6684
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Simulation\\spi_master_tb.sv",
+                      "sha256":  "C34736D3703BE9D8CE4F62220CC5AFEE83BB662B96656F1B17017352EA51095E",
+                      "bytes":  6530
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Firmware\\main.c",
+                      "sha256":  "976EF570C167AC9F7D5864A7380372F8A9EE8AAE0377B77507B41782C4AC8327",
+                      "bytes":  5718
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Firmware\\boot\\crt0.S",
+                      "sha256":  "8B436A3F528C76C93D8645BD59DD0358C70D02AA2326E5ED862E9B749C7D799C",
+                      "bytes":  2943
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Firmware\\boot\\link.ld",
+                      "sha256":  "C499400FF479B3458B3520726735616F4AE0222756764B7E4E6F737EE7C0352F",
+                      "bytes":  1291
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Firmware\\drivers\\ads1292r.c",
+                      "sha256":  "9E3DE74B51B68D8D738F29FC10D9862EAB3AE7679D9F4341B1EFEAE89B95202C",
+                      "bytes":  2395
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Firmware\\drivers\\ads1292r.h",
+                      "sha256":  "2B0C1B10BB6EF4974E5C8F040439D7D81219C27AF254D54417EF10576EC83298",
+                      "bytes":  1561
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Firmware\\drivers\\dma.c",
+                      "sha256":  "27365E81996615E6772E0574119A56FC24B76199D802F1E0B003F18ECF3C8456",
+                      "bytes":  831
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Firmware\\drivers\\dma.h",
+                      "sha256":  "3CADD01687F0069155AE6F61B599FC74BECAB2AD054E7854BC6F696D7EEC943F",
+                      "bytes":  821
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Firmware\\drivers\\uart.c",
+                      "sha256":  "53DE59304C5850EDD28E9DC69950253F0E3AF81136012837A9230F3C660A0F7A",
+                      "bytes":  1940
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Firmware\\drivers\\uart.h",
+                      "sha256":  "0C319507F4E7573D4461DBBC761EF84A2944983F47BC390B38981014AF84488C",
+                      "bytes":  723
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Firmware\\dsp\\ecg_fir_pulp.S",
+                      "sha256":  "4D0874408C44A77F9926664EA3A973E4ECA56D645EC22A290307E8992C3680E7",
+                      "bytes":  1814
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Firmware\\dsp\\ecg_iir_pulp.S",
+                      "sha256":  "3A7ABE86A36FBBD42710B98133AC0F20CB87951F9D06C1AD93128D8DDE9BA9A9",
+                      "bytes":  1936
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Firmware\\dsp\\pan_tompkins.c",
+                      "sha256":  "2E6E6E8C3C70EEB224771F76B73E9487DF5D5758F91847AD44B0D8F082948E9C",
+                      "bytes":  2494
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Firmware\\dsp\\pan_tompkins.h",
+                      "sha256":  "429ACBA299A596457B390046FC97A09A9B735E97484103ABAC2C22A7164A9D3D",
+                      "bytes":  874
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\flist_cv32e40p_soc.f",
+                      "sha256":  "B0D21353A5ED692E5416D7F2001E61145C94284C1339122C8F379EF2194BEEAF",
+                      "bytes":  1847
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\asic\\run_openlane.ps1",
+                      "sha256":  "8B205359B8C31ABA9ED763778F8F0E6383005252098A47B977BBC19579B6682B",
+                      "bytes":  1516
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\asic\\run_openlane.sh",
+                      "sha256":  "FABE4DCBB5BB27ACAEF8C1533F8D65370D08E5CD441D960131479304617C730B",
+                      "bytes":  1438
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\asic\\openlane\\config.json",
+                      "sha256":  "D361730E0896460700EA30169ABCA73440C42D57649FEE49DDD25CB402FCC2F8",
+                      "bytes":  3209
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\asic\\openlane\\config_sky130.json",
+                      "sha256":  "4230554C84774CD3A1A447F2540D017041CB7FD90D484281818476C5D39D4B5F",
+                      "bytes":  3115
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7\\arty_a7_100t.xdc",
+                      "sha256":  "F5D35691E8CEDD36044D1E306C8DE78698CFDA550EBD69A68F6C82B5854C1281",
+                      "bytes":  3683
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7\\run_fpga.ps1",
+                      "sha256":  "6B4F6DCC1EC3A3F18E98B8631992E2A140353D0A6378924DAAF9081076D39541",
+                      "bytes":  1674
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7\\run_fpga.sh",
+                      "sha256":  "615CAF74A7F4401A10DF8F103D9EE258C5EF844BE0A016F753D9A9E0CA3CA0A7",
+                      "bytes":  817
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\Synthesis\\fpga\\ecg_artix7\\run_synth.tcl",
+                      "sha256":  "587A766CF6564B85129E6C71F85CBBA969A06769FD992D270D976A1873C03095",
+                      "bytes":  2596
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\scripts\\clone_repos.ps1",
+                      "sha256":  "12B342D9B95B6C2DDEBF0A1B4C8E6ABE6ABEF88A72B6DEA48647899680FF29F8",
+                      "bytes":  962
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\scripts\\clone_repos.sh",
+                      "sha256":  "DE72236CE78476754FD9147681F6969B0D7B1F477B6102F430C50D364024D655",
+                      "bytes":  758
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\scripts\\run_sim.ps1",
+                      "sha256":  "C0A2D7064CEE609EAA87806FF0519E92B5B47E59F8F56A506667F4A7ED990D78",
+                      "bytes":  3042
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\scripts\\run_sim.sh",
+                      "sha256":  "096C553B14D4AA70345396C214FE29F257CB98C8EAAC1AD9A82F4D3C0D1C115F",
+                      "bytes":  1668
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\spec\\ecg_soc_module_map.json",
+                      "sha256":  "2D55E3A7F08C28F7E173BDDFF9FF934910953A9F75843D94D9BBBA1186D8B41E",
+                      "bytes":  4632
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\spec\\ecg_soc_reqs.json",
+                      "sha256":  "6F2DFE51E43E81ADF6E1ED7BE6250D3B4C9B00FE5D6ADD0D81CFD19B6C813886",
+                      "bytes":  5627
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\spec\\ecg_soc_spec.md",
+                      "sha256":  "F9CF58D0D27DC86A2D2334CAF9024800C12709A17969376F1181F352B050777B",
+                      "bytes":  9515
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\config\\ecg_soc_config.json",
+                      "sha256":  "D9FDBAC34D547EBB5430AFD6AC6207871077B18C62B601A1FA69DA5F5A07D823",
+                      "bytes":  3406
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\reports\\benchmark_report.md",
+                      "sha256":  "C9A185892A73E98EE00620DCBCD09E4FFEC47E98E86F7E9DDA3745F55AD714CF",
+                      "bytes":  6382
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\reports\\manifest.json",
+                      "sha256":  "52A951B9578A5A3DC6D9612B495E8D0D94C494534EA329D04F677324B33F314F",
+                      "bytes":  3019
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\reports\\test.md",
+                      "sha256":  "AC2F0929CE43777862BCAC5BF827EF36D2822BBD2881B06AAEA45A79F1374E20",
+                      "bytes":  26
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\reports\\simulation\\sim_manifest.json",
+                      "sha256":  "69EA79A99469E98317777A9CA814CE53DC73464A8E630952A9EDC3929DDBE515",
+                      "bytes":  487
+                  },
+                  {
+                      "path":  "E:\\ResearchOnWork\\RISC_V_CORE\\reports\\verification\\rtm_dashboard.md",
+                      "sha256":  "3DC0158BCB4135E030C1FCD69FF2622C0CBEAF3419FEDBEF563E20E8629958AE",
+                      "bytes":  4881
+                  }
+              ],
+    "absent_artifacts":  [
+                             {
+                                 "exists":  false,
+                                 "path":  "reports/simulation/soc_tb.log"
+                             },
+                             {
+                                 "exists":  false,
+                                 "path":  "reports/simulation/soc_tb.vcd"
+                             },
+                             {
+                                 "exists":  false,
+                                 "path":  "reports/simulation/sim_results.json"
+                             },
+                             {
+                                 "exists":  false,
+                                 "path":  "Synthesis/fpga/ecg_artix7/reports/timing_routed.rpt"
+                             },
+                             {
+                                 "exists":  false,
+                                 "path":  "Synthesis/fpga/ecg_artix7/reports/utilization_synth.rpt"
+                             },
+                             {
+                                 "exists":  false,
+                                 "path":  "Synthesis/fpga/ecg_artix7/reports/cv32e40p_ecg_soc.bit"
+                             }
+                         ]
+}

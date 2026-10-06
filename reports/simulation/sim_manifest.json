@@ -1,0 +1,14 @@
+{
+  "testbench": "Simulation/soc_tb.sv",
+  "dut": "cv32e40p_ecg_soc_top",
+  "core": "OpenHW Group CV32E40P (v1.8.3)",
+  "clock_mhz": 50.0,
+  "vcd_waveform": "reports/simulation/soc_tb.vcd",
+  "testcases": [
+    "TC-SYS-001: I-TCM Instruction Fetch Active",
+    "TC-AFE-002: ADS1292R Behavioral Model DRDY# Pulses",
+    "TC-BUS-003: OBI-to-APB3 Interconnect Address Decoding",
+    "TC-MAMBA-004: CNN-MAMBA Coprocessor APB Mapping",
+    "TC-IRQ-005: Fast Interrupt Vectoring Matrix"
+  ]
+}

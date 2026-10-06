@@ -1,0 +1,12 @@
+[submodule "cv32e40p"]
+	path = cv32e40p
+	url = https://github.com/openhwgroup/cv32e40p.git
+[submodule "cva6"]
+	path = cva6
+	url = https://github.com/openhwfoundation/cva6
+[submodule "ibex"]
+	path = ibex
+	url = https://github.com/lowRISC/ibex
+[submodule "OpenLane"]
+	path = OpenLane
+	url = https://github.com/The-OpenROAD-Project/OpenLane.git

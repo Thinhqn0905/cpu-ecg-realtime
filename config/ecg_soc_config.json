@@ -1,0 +1,102 @@
+{
+  "project": "RISC-V ECG Data Acquisition SoC",
+  "generated_date": "2026-10-06",
+  "gate2_status": "VALIDATED_PASS",
+  "parameters": {
+    "PR_CORE_SELECT": {
+      "value": "CV32E40P",
+      "description": "Selected 4-stage processor core with Xpulpv2 DSP extensions"
+    },
+    "PR_COREV_PULP": {
+      "value": 1,
+      "description": "Enable hardware loops, post-increment load/store, and SIMD MAC"
+    },
+    "PR_CORE_FPU": {
+      "value": 0,
+      "description": "Fixed-point Q1.15 execution without hardware FPU (area optimized)"
+    },
+    "PR_I_TCM_SIZE_BYTES": {
+      "value": 32768,
+      "unit": "bytes",
+      "description": "Instruction Tightly-Coupled Memory size (32 KB @ 0x0000_0000)"
+    },
+    "PR_D_TCM_SIZE_BYTES": {
+      "value": 32768,
+      "unit": "bytes",
+      "description": "Data Tightly-Coupled Memory size (32 KB @ 0x0001_0000)"
+    },
+    "PR_FAST_IRQ_VECTORS": {
+      "value": 15,
+      "description": "Number of fast vectored interrupt lines (irq_fast_i[14:0])"
+    },
+    "PR_SYS_CLK_FREQ_MHZ": {
+      "value": 50,
+      "unit": "MHz",
+      "description": "Top-level SoC system clock frequency derived from 100MHz osc via MMCM"
+    },
+    "PR_SPI_CLK_DIV": {
+      "value": 25,
+      "description": "SPI master clock divider (50MHz / 25 = 2.0MHz SCLK for ADS1292R)"
+    },
+    "PR_SPI_CPOL": {
+      "value": 0,
+      "description": "Clock polarity (0 = idle low, ADS1292R requirement)"
+    },
+    "PR_SPI_CPHA": {
+      "value": 1,
+      "description": "Clock phase (1 = sample on trailing/falling edge, ADS1292R Mode 1)"
+    },
+    "PR_SPI_WORD_LEN": {
+      "value": 24,
+      "unit": "bits",
+      "description": "Sample word width per channel (ADS1292R 24-bit delta-sigma output)"
+    },
+    "PR_SPI_FIFO_DEPTH": {
+      "value": 8,
+      "unit": "entries",
+      "description": "Depth of SPI RX asynchronous capture FIFO"
+    },
+    "PR_PINGPONG_BANK_SIZE": {
+      "value": 32,
+      "unit": "samples",
+      "description": "Number of samples per Ping-Pong BRAM buffer bank (64ms @ 500Hz)"
+    },
+    "PR_UART_BAUD_DIV": {
+      "value": 434,
+      "description": "Divider for 115200 baud at 50MHz (50,000,000 / 115,200 = 434)"
+    },
+    "PR_UART_BAUD_DIV_FAST": {
+      "value": 54,
+      "description": "Divider for 921600 baud burst mode at 50MHz (50,000,000 / 921,600 = 54)"
+    },
+    "PR_UART_FIFO_DEPTH": {
+      "value": 16,
+      "unit": "bytes",
+      "description": "Depth of UART TX and RX FIFOs"
+    },
+    "PR_TIMER_WIDTH": {
+      "value": 32,
+      "unit": "bits",
+      "description": "Width of system timer counter register"
+    },
+    "PR_GPIO_WIDTH": {
+      "value": 8,
+      "unit": "bits",
+      "description": "Number of general-purpose I/O pins"
+    },
+    "PR_DMA_EN": {
+      "value": 1,
+      "description": "Enable autonomous Ping-Pong BRAM sample streaming engine"
+    },
+    "PR_MAMBA_ACCEL_EN": {
+      "value": 1,
+      "description": "Enable AXI4-Lite/Stream interface for CNN-MAMBA sidecar accelerator"
+    }
+  },
+  "constraints_verification": {
+    "spi_clock_rule": "PR_SPI_CLK_DIV >= 2 : PASSED (25 >= 2)",
+    "sampling_rate_bandwidth": "2.0MHz SCLK transfers 72 bits in 36us (<< 2000us period at 500Hz) : PASSED",
+    "uart_bandwidth": "115200 baud delivers 11.5 kB/s (>> 7.0 kB/s raw stream at 500Hz) : PASSED",
+    "artix7_resource_budget": "Estimated 3,850 LUTs for peripherals (<= 5,000 budget) : PASSED"
+  }
+}

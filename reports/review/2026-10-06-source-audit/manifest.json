@@ -1,0 +1,174 @@
+{
+  "campaign_id": "2026-10-06-source-audit",
+  "date_utc": "2026-10-05T17:40:52.2436427Z",
+  "boundary": "original-source Icarus compile and limited SPI smoke simulation; original-source Verilator lint; static review",
+  "root_git_commit": null,
+  "root_git_reason": "workspace root is not a git repository",
+  "upstream_commit": "81245a47fad8fe1a5d562d953ef2662e099def76",
+  "upstream_dirty": [],
+  "tool": "E:/iverilog/bin/iverilog.exe 12.0 devel",
+  "spi_command": "iverilog -g2012 -Wall -s spi_master_tb -o reports/review/2026-10-06-source-audit/spi_original.vvp RTL/ecg_soc/ecg_soc_pkg.sv RTL/ecg_soc/spi_master.sv RTL/ecg_soc/spi_master_apb.sv Simulation/ads1292r_model.sv Simulation/spi_master_tb.sv",
+  "spi_exit": 0,
+  "top_flags": "-g2012 -Wall -s ecg_soc_top",
+  "top_filelist": [
+    "RTL/ecg_soc/ecg_soc_pkg.sv",
+    "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\apb_interconnect.sv",
+    "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\ecg_dma.sv",
+    "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\ecg_soc_top.sv",
+    "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\gpio_apb.sv",
+    "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\spi_master.sv",
+    "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\spi_master_apb.sv",
+    "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\sync_fifo.sv",
+    "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\timer_apb.sv",
+    "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\uart_apb.sv",
+    "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\uart_controller.sv"
+  ],
+  "top_exit": 0,
+  "sources": [
+    {
+      "sha256": "CC8A937EEB70C00D07397F8433D4E5C0BDCA47EB33FE95575E4F643F6B67CFD6",
+      "path": "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\apb_interconnect.sv"
+    },
+    {
+      "sha256": "FD04D3F9BBBB19EACEB7660AD85D36CD3C39AC7CC290460FDFA0BB280E900E95",
+      "path": "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\ecg_dma.sv"
+    },
+    {
+      "sha256": "D6087EF7B04B45ED5D0768CFA78DD8669DF397579C2E9C1BBDD7F2AFC3708F13",
+      "path": "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\ecg_soc_pkg.sv"
+    },
+    {
+      "sha256": "47A83D4BEBF0F26A0B0FD153A0BA470C7544EFCF5E3F83E125AAF10E797204FC",
+      "path": "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\ecg_soc_top.sv"
+    },
+    {
+      "sha256": "FED5859A30DEB80455818FCC73CF5807440DF8CE84803305DF0DE177B77695CB",
+      "path": "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\gpio_apb.sv"
+    },
+    {
+      "sha256": "9CC8B9FBC71436FAC3836384E516BE1D469E7E3DD3668EC9E84C1795D7032F75",
+      "path": "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\spi_master.sv"
+    },
+    {
+      "sha256": "980B1DDAD40C74CBBD1361BF39C52D3764F0DA649BA49AF9AB63325D945EC920",
+      "path": "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\spi_master_apb.sv"
+    },
+    {
+      "sha256": "6342F5564B9693E3B07DA1672A8714DF1362D4725BBC41391B569B9A860B6470",
+      "path": "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\sync_fifo.sv"
+    },
+    {
+      "sha256": "2AF8F39087AD93B9465568CA596234A88A7BBFAA654B91CFDD569E93FB13A191",
+      "path": "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\timer_apb.sv"
+    },
+    {
+      "sha256": "F910C5E83479D5DC2E7CF859ABB4BB9816AA0CE2F1712060DF0EC7F0B6B97513",
+      "path": "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\uart_apb.sv"
+    },
+    {
+      "sha256": "5A0CA9D4D2F12CF5FE7D2D611B12509195A109A4C1C3DF675E8D2500150C83E2",
+      "path": "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\uart_controller.sv"
+    },
+    {
+      "sha256": "509658889D79F6DF594846753E8B27C08B9AF72290CB2A2BF3B617DABCFF7694",
+      "path": "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\sva\\spi_master_bind.sv"
+    },
+    {
+      "sha256": "E20E802D267563013EAD6E020DB890F4323D1C662A3524775970FD376849254D",
+      "path": "E:\\ResearchOnWork\\RISC_V_CORE\\RTL\\ecg_soc\\sva\\spi_master_sva.sv"
+    },
+    {
+      "sha256": "3714B6ED3316AC606A234130B296454BF3919E0B39F1B91F69C2EEF828C4534D",
+      "path": "E:\\ResearchOnWork\\RISC_V_CORE\\Simulation\\ads1292r_model.sv"
+    },
+    {
+      "sha256": "C34736D3703BE9D8CE4F62220CC5AFEE83BB662B96656F1B17017352EA51095E",
+      "path": "E:\\ResearchOnWork\\RISC_V_CORE\\Simulation\\spi_master_tb.sv"
+    },
+    {
+      "sha256": "3C66996FD09B08BBC42861755DFA49EC3094FAF9004F98AC4FA65D871FBACAE9",
+      "path": "E:\\ResearchOnWork\\RISC_V_CORE\\spec\\ecg_soc_module_map.json"
+    },
+    {
+      "sha256": "6F2DFE51E43E81ADF6E1ED7BE6250D3B4C9B00FE5D6ADD0D81CFD19B6C813886",
+      "path": "E:\\ResearchOnWork\\RISC_V_CORE\\spec\\ecg_soc_reqs.json"
+    },
+    {
+      "sha256": "BC064C816EFCAE45490F8577C48CFC9B617E23882A0F7DB0C979BEEDCD6CA700",
+      "path": "E:\\ResearchOnWork\\RISC_V_CORE\\spec\\ecg_soc_spec.md"
+    },
+    {
+      "sha256": "D43FA513636290D265804EBD95B184D9815407BF0CA97D8721A60B886234DBE6",
+      "path": "E:\\ResearchOnWork\\RISC_V_CORE\\config\\ecg_soc_config.json"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "reports\\review\\2026-10-06-source-audit\\spi_compile.log",
+      "sha256": "8a94c2e0ff66dfc78a28b3a407d58550561413ce5d836bdb30342d00a952e2aa"
+    },
+    {
+      "path": "reports\\review\\2026-10-06-source-audit\\spi_original.vvp",
+      "sha256": "82dd10a7ead7372e2bf951b9bc13e525d0fffa7ce5edf3a58f839ac9c68c4678"
+    },
+    {
+      "path": "reports\\review\\2026-10-06-source-audit\\spi_run.json",
+      "sha256": "380a84838748dfdd6e15c367fe012bc06caa99035f2abfefdf5786ec951dbe1b"
+    },
+    {
+      "path": "reports\\review\\2026-10-06-source-audit\\top_compile.log",
+      "sha256": "758ba434eec92629bb427ea5c95a424e93849656808b1c6f372203164bca7993"
+    },
+    {
+      "path": "reports\\review\\2026-10-06-source-audit\\top_original.vvp",
+      "sha256": "5da851e59adbf3dec6e38e0cb151ecf289d3a2c721e5c6fb6bae1354d7eb9267"
+    },
+    {
+      "path": "reports\\review\\2026-10-06-source-audit\\verilator_lint.exit",
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+    },
+    {
+      "path": "reports\\review\\2026-10-06-source-audit\\verilator_lint.log",
+      "sha256": "78fb1c558d14000641464c0a8b7110c16715ffbdf8be890954a02a6870c79352"
+    },
+    {
+      "path": "reports\\review\\2026-10-06-source-audit\\verilator_version.log",
+      "sha256": "e9af8edbc4366e97ab35cf36cc274bf8d63b74abd46f00b89eb874fc502f2774"
+    }
+  ],
+  "simulation": {
+    "command": "E:/iverilog/bin/vvp.exe reports/review/2026-10-06-source-audit/spi_original.vvp",
+    "exit_code": 0,
+    "timed_out": false,
+    "stdout": "=========================================================\nStarting ECG SoC SPI Master Testbench Verification Suite\n=========================================================\n\n[TEST] TC-001: Testing APB Register Read/Write Integrity...\n  PASS: CLKDIV register read back matches (10)\n  PASS: SAMPLE_CNT register read back matches (0x12345678)\n\n[TEST] TC-002: Triggering Manual 24-bit SPI Transfer...\n  PASS: SPI Manual Transfer completed with Busy=0, Done=1\n\n[TEST] TC-007: Enabling Auto-Mode and Verifying DRDY# Capture...\n  PASS: Caught DRDY interrupt from AFE!\n  INFO: Captured 24-bit AFE Sample Word: 0xc00000\n  PASS: Captured valid non-zero biopotential sample!\n\n=========================================================\nVERIFICATION RESULT: 5 PASSED, 0 FAILED\n>>> ALL VERIFICATION GATES PASSED <<<\n=========================================================\n\nSimulation/spi_master_tb.sv:229: $finish called at 998070000 (1ps)\n",
+    "stderr": "",
+    "elapsed_seconds": 0.5790000000270084
+  },
+  "lint": {
+    "command": [
+      "wsl",
+      "-d",
+      "Ubuntu",
+      "--",
+      "verilator",
+      "--lint-only",
+      "-Wall",
+      "--top-module",
+      "ecg_soc_top",
+      "RTL/ecg_soc/ecg_soc_pkg.sv",
+      "RTL/ecg_soc/apb_interconnect.sv",
+      "RTL/ecg_soc/ecg_dma.sv",
+      "RTL/ecg_soc/gpio_apb.sv",
+      "RTL/ecg_soc/spi_master.sv",
+      "RTL/ecg_soc/spi_master_apb.sv",
+      "RTL/ecg_soc/sync_fifo.sv",
+      "RTL/ecg_soc/timer_apb.sv",
+      "RTL/ecg_soc/uart_controller.sv",
+      "RTL/ecg_soc/uart_apb.sv",
+      "RTL/ecg_soc/ecg_soc_top.sv"
+    ],
+    "exit_code": 1,
+    "tool": "Verilator 4.038 2020-07-11 rev v4.036-114-g0cd4a57ad",
+    "assertions_included": false
+  }
+}

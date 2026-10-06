@@ -1,0 +1,225 @@
+{
+    "audit_id":  "2026-10-06-gemini-recovery-audit",
+    "created_utc":  "2026-10-06T02:31:23.2641635Z",
+    "boundary":  "static source/artifact audit; no project code executed",
+    "git_status":  "root not a git repository",
+    "execution_claims":  "NOT_VERIFIED",
+    "files":  [
+                  {
+                      "path":  "Instruction/session_checklist.md",
+                      "sha256":  "38baec61b9449184082daeb5e83e4f8b617a842781c4fea1008ff27a94869f55",
+                      "snapshot":  "snapshot/Instruction/session_checklist.md",
+                      "bytes":  5049
+                  },
+                  {
+                      "path":  "reports/benchmark_report.md",
+                      "sha256":  "0e410922c2dd0bcaaa5d205b81102b572139231a96d7747ae3bc37ba0b5e9de6",
+                      "snapshot":  "snapshot/reports/benchmark_report.md",
+                      "bytes":  5279
+                  },
+                  {
+                      "path":  "reports/manifest.json",
+                      "sha256":  "8fd79edd79f488cff5c97c271270b2910223219bc2b67bd46a61533e77ddf96a",
+                      "snapshot":  "snapshot/reports/manifest.json",
+                      "bytes":  2595
+                  },
+                  {
+                      "path":  "reports/verification/rtm_dashboard.md",
+                      "sha256":  "90ebb0ea499ce7be6c0a35f38f877709979117411c002d3c81499961d5176993",
+                      "snapshot":  "snapshot/reports/verification/rtm_dashboard.md",
+                      "bytes":  4485
+                  },
+                  {
+                      "path":  "Firmware/build_boot_image.py",
+                      "sha256":  "11faa1ac0b19152669f4e262995d83dd9cbb0ae3673c93791a847f5a4720278d",
+                      "snapshot":  "snapshot/Firmware/build_boot_image.py",
+                      "bytes":  19839
+                  },
+                  {
+                      "path":  "Firmware/Makefile",
+                      "sha256":  "b953087f8aecf7fa432aa48d5cd06bb58314ddb8309c76ee23cf4b400f8df15c",
+                      "snapshot":  "snapshot/Firmware/Makefile",
+                      "bytes":  2081
+                  },
+                  {
+                      "path":  "Firmware/build/hello.hex",
+                      "sha256":  "1359dc105183a9e9bae8555b4d42f19d77aa4bba610062a3bbe22fcc218d48cd",
+                      "snapshot":  "snapshot/Firmware/build/hello.hex",
+                      "bytes":  1350
+                  },
+                  {
+                      "path":  "Firmware/build/hello.dump",
+                      "sha256":  "19f177f409c8e61d840621c99a842516fc09cdf6b9dfb020b46d2702798e8aa8",
+                      "snapshot":  "snapshot/Firmware/build/hello.dump",
+                      "bytes":  7519
+                  },
+                  {
+                      "path":  "Firmware/build/hello.map",
+                      "sha256":  "8c7ee6d68627997450d29808606ddcd236eb53a2852ab928607cd16582e07a18",
+                      "snapshot":  "snapshot/Firmware/build/hello.map",
+                      "bytes":  1260
+                  },
+                  {
+                      "path":  "Firmware/build/hello.sha256",
+                      "sha256":  "c2906597493b61c5b366bd35098b9762645ffc7c8b494b81ee7773f9023aba1a",
+                      "snapshot":  "snapshot/Firmware/build/hello.sha256",
+                      "bytes":  335
+                  },
+                  {
+                      "path":  "Firmware/boot/hello.c",
+                      "sha256":  "7dbc8f52d1743d497bdb885f70a99a1f245375ab733a5d1af606108806860910",
+                      "snapshot":  "snapshot/Firmware/boot/hello.c",
+                      "bytes":  3449
+                  },
+                  {
+                      "path":  "Firmware/boot/crt0.S",
+                      "sha256":  "1346699d4c6da3c600062fdf9e5092cc91c6d1d15473641f9772e8ded83afeb2",
+                      "snapshot":  "snapshot/Firmware/boot/crt0.S",
+                      "bytes":  4989
+                  },
+                  {
+                      "path":  "Firmware/boot/link.ld",
+                      "sha256":  "c499400ff479b3458b3520726735616f4ae0222756764b7e4e6f737ee7c0352f",
+                      "snapshot":  "snapshot/Firmware/boot/link.ld",
+                      "bytes":  1291
+                  },
+                  {
+                      "path":  "Firmware/dsp/ecg_fir_pulp.S",
+                      "sha256":  "ea601ae02d07d1e44f11101ddbc126974f8953b50ba036c3e84850b8ad19ba11",
+                      "snapshot":  "snapshot/Firmware/dsp/ecg_fir_pulp.S",
+                      "bytes":  2736
+                  },
+                  {
+                      "path":  "Firmware/dsp/fir_reference.c",
+                      "sha256":  "d2f94965f1039c89ed0b8064b11027c822338206155400536be61ecc9d582924",
+                      "snapshot":  "snapshot/Firmware/dsp/fir_reference.c",
+                      "bytes":  1670
+                  },
+                  {
+                      "path":  "Firmware/dsp/dsp_test.c",
+                      "sha256":  "120d26d95c12c3f3f0159ed390a0399e96f111bffdf1aec608aa5c47c1d922f3",
+                      "snapshot":  "snapshot/Firmware/dsp/dsp_test.c",
+                      "bytes":  5474
+                  },
+                  {
+                      "path":  "Firmware/dsp/pan_tompkins.c",
+                      "sha256":  "fb36e1e620486f167b84ac507cdbc1493b4488e47f00a978c69a872cec3225a8",
+                      "snapshot":  "snapshot/Firmware/dsp/pan_tompkins.c",
+                      "bytes":  2640
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/cv32e40p_ecg_soc_top.sv",
+                      "sha256":  "b35f77415ed2dd1020a28a949ae259e2cbb9d5aa7ec07d656fcf82f78b1bff0f",
+                      "snapshot":  "snapshot/RTL/ecg_soc/cv32e40p_ecg_soc_top.sv",
+                      "bytes":  13678
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/tcm_sram.sv",
+                      "sha256":  "10c199f49a7aa6576d21786fb7877751f82c78993402350f54ecb5ac30f98aae",
+                      "snapshot":  "snapshot/RTL/ecg_soc/tcm_sram.sv",
+                      "bytes":  3549
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/spi_master.sv",
+                      "sha256":  "5df248b0eb093e51e0611f84597860445ed36b229f74fe4220b56c05282501f4",
+                      "snapshot":  "snapshot/RTL/ecg_soc/spi_master.sv",
+                      "bytes":  8891
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/spi_master_apb.sv",
+                      "sha256":  "024c5d12433fe2c00a1944441a03be48fee4bb7098a1f799df053906c07aa8fd",
+                      "snapshot":  "snapshot/RTL/ecg_soc/spi_master_apb.sv",
+                      "bytes":  5731
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/uart_apb.sv",
+                      "sha256":  "05a187a398880bc14e9ad866e170fd60ca0385487670f231f42742c5d7064809",
+                      "snapshot":  "snapshot/RTL/ecg_soc/uart_apb.sv",
+                      "bytes":  3870
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/ecg_soc_pkg.sv",
+                      "sha256":  "815f9bf5a3a23fe67cf1a8185f7cb6fb8e1c77f06aed4e0786e4e4534b986079",
+                      "snapshot":  "snapshot/RTL/ecg_soc/ecg_soc_pkg.sv",
+                      "bytes":  4395
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/sva/obi_to_apb_sva.sv",
+                      "sha256":  "f84b30adb32dfc46c1d1d501efcc81d28b7d2972ecff1cf232cd936c5f21edcb",
+                      "snapshot":  "snapshot/RTL/ecg_soc/sva/obi_to_apb_sva.sv",
+                      "bytes":  3335
+                  },
+                  {
+                      "path":  "RTL/ecg_soc/fpga/ecg_arty_top.sv",
+                      "sha256":  "3c3e9967333bce60f477b51b97a1c0a1d7fc5802421b18f7097fcc4969fc3507",
+                      "snapshot":  "snapshot/RTL/ecg_soc/fpga/ecg_arty_top.sv",
+                      "bytes":  4556
+                  },
+                  {
+                      "path":  "Simulation/soc_tb.sv",
+                      "sha256":  "1164b3aed4abbddef8c593bfd1abef8fdcf778196904962e6eb92a4bd2306403",
+                      "snapshot":  "snapshot/Simulation/soc_tb.sv",
+                      "bytes":  7572
+                  },
+                  {
+                      "path":  "Simulation/spi_master_tb.sv",
+                      "sha256":  "bdaa9d2ad554e2250d2a1d038a2a4739a89b916365a3d8df02c8542c4590b4a9",
+                      "snapshot":  "snapshot/Simulation/spi_master_tb.sv",
+                      "bytes":  12344
+                  },
+                  {
+                      "path":  "Simulation/ads1292r_model.sv",
+                      "sha256":  "bda0989e95e2ea2a3f4259b60b5c1aa32ae3774ac0b3724bfd1005170df9d782",
+                      "snapshot":  "snapshot/Simulation/ads1292r_model.sv",
+                      "bytes":  4409
+                  },
+                  {
+                      "path":  "scripts/check_evidence.py",
+                      "sha256":  "59688a465758a4098535b7a5e8fef4c43ea35eb1dbbc0302672294460472fe10",
+                      "snapshot":  "snapshot/scripts/check_evidence.py",
+                      "bytes":  6101
+                  },
+                  {
+                      "path":  "scripts/test_evidence_gate.py",
+                      "sha256":  "c246b1b78207309cd37738972a41c282ee53ac50be721c56ff40d3bf54a4a4d4",
+                      "snapshot":  "snapshot/scripts/test_evidence_gate.py",
+                      "bytes":  5851
+                  },
+                  {
+                      "path":  "scripts/run_sim.ps1",
+                      "sha256":  "863ccf499e91695926a818115378304292178b1bf59f444e5daeb4c8119da1e4",
+                      "snapshot":  "snapshot/scripts/run_sim.ps1",
+                      "bytes":  4286
+                  },
+                  {
+                      "path":  "scripts/run_sim.sh",
+                      "sha256":  "25b7d4467bd6036aa19218ccad269c05ac554e3c6aa55936bb59fdd2a132112c",
+                      "snapshot":  "snapshot/scripts/run_sim.sh",
+                      "bytes":  2738
+                  },
+                  {
+                      "path":  "Synthesis/fpga/ecg_artix7/run_synth.tcl",
+                      "sha256":  "d371403a2df9a4ece859888bf258e26a2bb01d36f8ffa75242b287e43066c9a2",
+                      "snapshot":  "snapshot/Synthesis/fpga/ecg_artix7/run_synth.tcl",
+                      "bytes":  2647
+                  },
+                  {
+                      "path":  "Synthesis/fpga/ecg_artix7/run_fpga.ps1",
+                      "sha256":  "a8e517848bfbe003fdd930b22f90ba63ee67abcd8e5300df75061fcf3092ec6d",
+                      "snapshot":  "snapshot/Synthesis/fpga/ecg_artix7/run_fpga.ps1",
+                      "bytes":  1982
+                  },
+                  {
+                      "path":  "Synthesis/fpga/ecg_artix7/run_fpga.sh",
+                      "sha256":  "d922adecc5bf5d69690aebee016c22a3411b8f588c9418fa27148b66344d7c55",
+                      "snapshot":  "snapshot/Synthesis/fpga/ecg_artix7/run_fpga.sh",
+                      "bytes":  1158
+                  },
+                  {
+                      "path":  "Synthesis/fpga/ecg_artix7/arty_a7_100t.xdc",
+                      "sha256":  "d80efa638bb06b2afb78beba891dc63701af67116b37ff23f17c4e67f3e0d85d",
+                      "snapshot":  "snapshot/Synthesis/fpga/ecg_artix7/arty_a7_100t.xdc",
+                      "bytes":  3735
+                  }
+              ]
+}

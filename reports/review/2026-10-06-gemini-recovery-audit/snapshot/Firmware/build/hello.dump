@@ -1,0 +1,166 @@
+build/hello.elf:     file format elf32-littleriscv
+
+Disassembly of section .vectors:
+
+00000000 <_vector_table>:
+       0:  0800006f            j       0x80 <_start>
+       4:  0740006f            j       0x130 <_default_isr>
+       8:  0700006f            j       0x130 <_default_isr>
+       c:  06c0006f            j       0x130 <_default_isr>
+      10:  0680006f            j       0x130 <_default_isr>
+      14:  0640006f            j       0x130 <_default_isr>
+      18:  0600006f            j       0x130 <_default_isr>
+      1c:  05c0006f            j       0x130 <_default_isr>
+      20:  0580006f            j       0x130 <_default_isr>
+      24:  0540006f            j       0x130 <_default_isr>
+      28:  0500006f            j       0x130 <_default_isr>
+      2c:  04c0006f            j       0x130 <_default_isr>
+      30:  0480006f            j       0x130 <_default_isr>
+      34:  0440006f            j       0x130 <_default_isr>
+      38:  0400006f            j       0x130 <_default_isr>
+      3c:  03c0006f            j       0x130 <_default_isr>
+      40:  0380006f            j       0x130 <_default_isr>
+      44:  0340006f            j       0x130 <_default_isr>
+      48:  0300006f            j       0x130 <_default_isr>
+      4c:  02c0006f            j       0x130 <_default_isr>
+      50:  0700006f            j       0xc0 <_isr_timer_wrapper>
+      54:  0240006f            j       0x130 <_default_isr>
+      58:  0200006f            j       0x130 <_default_isr>
+      5c:  01c0006f            j       0x130 <_default_isr>
+      60:  0180006f            j       0x130 <_default_isr>
+      64:  0140006f            j       0x130 <_default_isr>
+      68:  0100006f            j       0x130 <_default_isr>
+      6c:  00c0006f            j       0x130 <_default_isr>
+      70:  0080006f            j       0x130 <_default_isr>
+      74:  0040006f            j       0x130 <_default_isr>
+      78:  0000006f            j       0x130 <_default_isr>
+      7c:  ffc0006f            j       0x130 <_default_isr>
+
+Disassembly of section .text:
+
+00000080 <_start>:
+      80:  00018137            lui     sp,0x18
+      84:  00100293            li      t0,1
+      88:  30529073            csrw    mtvec,t0
+      8c:  007f02b7            lui     t0,0x7f0
+      90:  30429073            csrw    mie,t0
+      94:  30045073            csrsi   mstatus,8
+      98:  cafe12b7            lui     t0,0xcafe1
+      9c:  23428293            addi    t0,t0,564 # 0xcafe1234
+      a0:  00010537            lui     a0,0x10
+      a4:  00552223            sw      t0,4(a0)  # g_boot_magic
+      a8:  00052023            sw      zero,0(a0)# g_irq_count
+      ac:  094000ef            jal     ra,140 <main>
+      b0:  10500073            wfi
+      b4:  ffdff06f            j       b0 <_start+0x30>
+
+000000c0 <_isr_timer_wrapper>:
+      c0:  fe010113            addi    sp,sp,-32
+      c4:  00112023            sw      ra,0(sp)
+      c8:  00512223            sw      t0,4(sp)
+      cc:  00612423            sw      t1,8(sp)
+      d0:  00a12623            sw      a0,12(sp)
+      d4:  100022b7            lui     t0,0x10002
+      d8:  00100313            li      t1,1
+      dc:  0062a623            sw      t1,12(t0) # TIMER_REG_STATUS (ACK)
+      e0:  0002a423            sw      zero,8(t0)# TIMER_REG_CTRL (stop)
+      e4:  000102b7            lui     t0,0x10
+      e8:  0002a303            lw      t1,0(t0)  # g_irq_count
+      ec:  00130313            addi    t1,t1,1
+      f0:  0062a023            sw      t1,0(t0)
+      f4:  00012083            lw      ra,0(sp)
+      f8:  00412283            lw      t0,4(sp)
+      fc:  00812303            lw      t1,8(sp)
+     100:  00c12503            lw      a0,12(sp)
+     104:  02010113            addi    sp,sp,32
+     108:  30200073            mret
+
+00000130 <_default_isr>:
+     130:  30200073            mret
+
+00000140 <main>:
+     140:  10000437            lui     s0,0x10000
+     144:  1b200293            li      t0,434
+     148:  00542823            sw      t0,16(s0) # BAUDDIV = 434 (115200 @ 50MHz)
+     14c:  00100293            li      t0,1
+     150:  00542623            sw      t0,12(s0) # CTRL = 1 (TX en)
+     154:  40000513            li      a0,1024   # 0x0400 str1
+     158:  00000013            nop
+     15c:  00054283            lbu     t0,0(a0)
+     160:  00028c63            beqz    t0,178 <arm_timer>
+     164:  00842303            lw      t1,8(s0)
+     168:  00237313            andi    t1,t1,2
+     16c:  fe031ce3            bnez    t1,164 <main+0x24>
+     170:  00542023            sw      t0,0(s0)
+     174:  00150513            addi    a0,a0,1
+     178:  fe5ff06f            j       15c <main+0x1c>
+
+0000017c <arm_timer>:
+     17c:  100024b7            lui     s1,0x10002
+     180:  03c00293            li      t0,60
+     184:  0054a023            sw      t0,0(s1)  # COUNTER = 60
+     188:  0004a223            sw      zero,4(s1)# RELOAD = 0
+     18c:  00500293            li      t0,5
+     190:  0054a423            sw      t0,8(s1)  # CTRL = 5 (en + IRQ)
+
+00000194 <wait_irq>:
+     194:  00010937            lui     s2,0x10
+     198:  00092283            lw      t0,0(s2)  # poll g_irq_count
+     19c:  00029663            bnez    t0,1a8 <print_irq_pass>
+     1a0:  00000013            nop
+     1a4:  ff5ff06f            j       198 <wait_irq+0x4>
+
+000001a8 <print_irq_pass>:
+     1a8:  43000513            li      a0,1072   # 0x0430 str2
+     1ac:  00000013            nop
+     1b0:  00054283            lbu     t0,0(a0)
+     1b4:  00028c63            beqz    t0,1cc <print_complete>
+     1b8:  00842303            lw      t1,8(s0)
+     1bc:  00237313            andi    t1,t1,2
+     1c0:  fe031ce3            bnez    t1,1b8 <print_irq_pass+0x10>
+     1c4:  00542023            sw      t0,0(s0)
+     1c8:  00150513            addi    a0,a0,1
+     1cc:  fe5ff06f            j       1b0 <print_irq_pass+0x8>
+
+000001d0 <print_complete>:
+     1d0:  45000513            li      a0,1104   # 0x0450 str3
+     1d4:  00000013            nop
+     1d8:  00054283            lbu     t0,0(a0)
+     1dc:  00028c63            beqz    t0,1f4 <done_wfi>
+     1e0:  00842303            lw      t1,8(s0)
+     1e4:  00237313            andi    t1,t1,2
+     1e8:  fe031ce3            bnez    t1,1e0 <print_complete+0x10>
+     1ec:  00542023            sw      t0,0(s0)
+     1f0:  00150513            addi    a0,a0,1
+     1f4:  fe5ff06f            j       1d8 <print_complete+0x8>
+
+000001f8 <done_wfi>:
+     1f8:  10500073            wfi
+     1fc:  ffdff06f            j       1f8 <done_wfi>
+
+Disassembly of section .rodata:
+
+00000400 <str1>:
+     400:  20474345            .ascii  "ECG "
+     404:  544f4f42            .ascii  "BOOT"
+     408:  5643203a            .ascii  ": CV"
+     40c:  34453233            .ascii  "32E4"
+     410:  41205030            .ascii  "0P A"
+     414:  4556494c            .ascii  "LIVE"
+     418:  00000a0d            .ascii  "\r\n\0\0"
+
+00000430 <str2>:
+     430:  20474345            .ascii  "ECG "
+     434:  544f4f42            .ascii  "BOOT"
+     438:  5249203a            .ascii  ": IR"
+     43c:  41502051            .ascii  "Q PA"
+     440:  0a0d5353            .ascii  "SS\r\n"
+     444:  00000000            .word   0x00000000
+
+00000450 <str3>:
+     450:  20474345            .ascii  "ECG "
+     454:  544f4f42            .ascii  "BOOT"
+     458:  4f43203a            .ascii  ": CO"
+     45c:  454c504d            .ascii  "MPLE"
+     460:  0a0d4554            .ascii  "TE\r\n"
+     464:  00000000            .word   0x00000000

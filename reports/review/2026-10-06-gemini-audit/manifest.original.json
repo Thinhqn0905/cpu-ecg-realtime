@@ -1,0 +1,97 @@
+{
+  "project": "RISC-V Real-Time ECG Data Acquisition SoC",
+  "manifest_version": "1.0.0",
+  "timestamp_utc": "2026-10-06T00:00:00Z",
+  "workspace_root": "E:/ResearchOnWork/RISC_V_CORE",
+  "target_core": {
+    "name": "CV32E40P",
+    "architecture": "RV32IMC + Xpulpv2 DSP",
+    "upstream_repository": "https://github.com/openhwgroup/cv32e40p.git",
+    "commit_hash": "97086e9565f8145522ad6d62852123c0e5537529",
+    "branch": "master",
+    "tag": "v1.8.3",
+    "pipeline_stages": 4,
+    "isa_extensions": [
+      "RV32I",
+      "RV32M",
+      "RV32C",
+      "Xpulpv2 (HWLP, Post-increment, 16-bit SIMD, MAC)"
+    ],
+    "parameters": {
+      "COREV_PULP": 1,
+      "COREV_CLUSTER": 0,
+      "FPU": 0,
+      "NUM_MHPMCOUNTERS": 1
+    }
+  },
+  "reference_cores": {
+    "cva6": {
+      "upstream_repository": "https://github.com/openhwgroup/cva6.git",
+      "commit_hash": "81245a47fad8fe1a5d562d953ef2662e099def76",
+      "role": "Upstream 64-bit reference architecture baseline"
+    }
+  },
+  "physical_targets": {
+    "fpga": {
+      "board": "Digilent Arty A7-100T",
+      "device": "xc7a100tcsg324-1",
+      "clock_frequency_mhz": 50.0,
+      "synthesis_script": "Synthesis/fpga/ecg_artix7/run_synth.tcl",
+      "xdc_constraints": "Synthesis/fpga/ecg_artix7/arty_a7_100t.xdc"
+    },
+    "asic": {
+      "nodes": [
+        {
+          "pdk": "gf180mcuC",
+          "std_cell_lib": "gf180mcu_fd_sc_mcu7t5v0",
+          "config_file": "Synthesis/asic/openlane/config.json",
+          "clock_period_ns": 10.0,
+          "die_area_um": "1500 x 1500"
+        },
+        {
+          "pdk": "sky130A",
+          "std_cell_lib": "sky130_fd_sc_hd",
+          "config_file": "Synthesis/asic/openlane/config_sky130.json",
+          "clock_period_ns": 10.0,
+          "die_area_um": "1200 x 1200"
+        }
+      ]
+    }
+  },
+  "filelist": {
+    "path": "Synthesis/flist_cv32e40p_soc.f",
+    "top_module": "cv32e40p_ecg_soc_top",
+    "include_dirs": [
+      "cv32e40p/rtl/include",
+      "cv32e40p/bhv",
+      "cv32e40p/bhv/include",
+      "RTL/ecg_soc"
+    ]
+  },
+  "memory_map": {
+    "i_tcm_base": "0x0000_0000",
+    "i_tcm_size_bytes": 32768,
+    "d_tcm_base": "0x0001_0000",
+    "d_tcm_size_bytes": 32768,
+    "apb_peripheral_base": "0x1000_0000",
+    "mamba_coprocessor_base": "0x2000_0000"
+  },
+  "interrupt_mapping": {
+    "irq_fast_0": "UART_RX (irq_bundle[1])",
+    "irq_fast_1": "UART_TX (irq_bundle[2])",
+    "irq_fast_2": "AFE_DRDY (irq_bundle[3], 250-1000 Hz, Highest Priority)",
+    "irq_fast_3": "DMA_BUFFER_READY (irq_bundle[4], Ping-Pong Ping/Pong)",
+    "irq_fast_4": "TIMER (irq_bundle[5])",
+    "irq_fast_5": "GPIO_LEADOFF (irq_bundle[6])",
+    "irq_fast_6": "MAMBA_EVENT (irq_bundle[7])"
+  },
+  "verification_suite": {
+    "system_testbench": "Simulation/soc_tb.sv",
+    "afe_behavioral_model": "Simulation/ads1292r_model.sv",
+    "peripheral_testbench": "Simulation/spi_master_tb.sv",
+    "assertion_binds": [
+      "RTL/ecg_soc/sva/spi_master_bind.sv",
+      "RTL/ecg_soc/sva/spi_master_sva.sv"
+    ]
+  }
+}

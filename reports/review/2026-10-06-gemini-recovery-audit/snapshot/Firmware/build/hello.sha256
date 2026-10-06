@@ -1,0 +1,5 @@
+# SHA-256 Manifest for CV32E40P Boot Verification Firmware
+# Generated per Instruction/claim_integrity.md
+6a8b752ecdd4862f91361c4709d227f272a44f4da6eeeb6c7104b2a41764eb83  hello.hex
+c9df259163b469446e36d1b74797d021c56ad88ad6bfec903cbcfaf9e7a836da  hello.dump
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  hello.map

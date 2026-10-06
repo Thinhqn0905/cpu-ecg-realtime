@@ -1,0 +1,35 @@
+# Build artifacts
+Firmware/build/*.o
+Firmware/build/*.elf
+Firmware/build/*.hex
+Firmware/build/*.dump
+Firmware/build/*.map
+Firmware/build/*.bin
+Firmware/build/dsp_test
+Firmware/build/dsp_test.exe
+Firmware/build/dsp_test.log
+
+# Simulation VVP and VCD (large binaries — logs are kept as evidence)
+*.vvp
+*.vcd
+
+# Vivado
+Synthesis/fpga/ecg_artix7/runs/
+Synthesis/fpga/ecg_artix7/.Xil/
+*.jou
+
+# ASIC
+Synthesis/asic/runs/
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# IDE
+.vscode/
+.idea/

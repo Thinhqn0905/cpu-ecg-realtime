@@ -1,0 +1,67 @@
+{
+  "project": "RISC-V Real-Time ECG Data Acquisition SoC",
+  "manifest_version": "1.1.0",
+  "timestamp_utc": "2026-10-06T00:00:00Z",
+  "workspace_root": "E:/ResearchOnWork/RISC_V_CORE",
+  "audit_disposition": "REVISED_PER_AUDIT",
+  "audit_reference": "reports/review/2026-10-06-gemini-audit/audit.md",
+  "original_manifest_copy": "reports/review/2026-10-06-gemini-audit/manifest.original.json",
+  "target_core": {
+    "name": "CV32E40P",
+    "architecture": "RV32IMC + Xpulpv2 DSP (Configured: COREV_PULP=1, FPU=0)",
+    "upstream_repository": "https://github.com/openhwgroup/cv32e40p.git",
+    "observed_head_commit": "97086e9565f8145522ad6d62852123c0e5537529",
+    "observed_branch": "master",
+    "release_tag_status": "NOT_VERIFIED (shallow clone lacks local tag metadata; commit is clean HEAD)",
+    "pipeline_stages": 4,
+    "isa_extensions": [
+      "RV32I",
+      "RV32M",
+      "RV32C",
+      "Xpulpv2 (HWLP, Post-increment, 16-bit SIMD, MAC)"
+    ]
+  },
+  "reference_cores": {
+    "cva6": {
+      "upstream_repository": "https://github.com/openhwgroup/cva6.git",
+      "commit_hash": "81245a47fad8fe1a5d562d953ef2662e099def76",
+      "role": "Upstream 32/64-bit reference architecture baseline"
+    }
+  },
+  "physical_targets": {
+    "fpga": {
+      "board": "Digilent Arty A7-100T",
+      "device": "xc7a100tcsg324-1",
+      "target_frequency_mhz": 50.0,
+      "oscillator_input_mhz": 100.0,
+      "synthesis_script": "Synthesis/fpga/ecg_artix7/run_synth.tcl",
+      "xdc_constraints": "Synthesis/fpga/ecg_artix7/arty_a7_100t.xdc",
+      "status": "NOT_VERIFIED (synthesis/route scripts configured; no routed DCP, timing report, or bitstream generated)"
+    },
+    "asic": {
+      "status": "DEFERRED / NOT_VERIFIED (OpenLane config files drafted; no netlist, GDSII, or power extraction performed)"
+    }
+  },
+  "filelist": {
+    "path": "Synthesis/flist_cv32e40p_soc.f",
+    "top_module": "cv32e40p_ecg_soc_top",
+    "status": "RESOLVED_AND_VERIFIED (Ports aligned, dual-plane D-OBI DMA integrated, and strict zero-wait TCM enforced)"
+  },
+  "verification_campaigns": {
+    "2026-10-06-source-audit": {
+      "path": "reports/review/2026-10-06-source-audit/manifest.json",
+      "result": "SPI smoke simulation passed on historical 24-bit revision (5 tests); Verilator lint exit 1"
+    },
+    "2026-10-06-gemini-audit": {
+      "path": "reports/review/2026-10-06-gemini-audit/audit_manifest.json",
+      "result": "Static audit complete; identified findings A1-A11; previous claims rejected"
+    },
+    "2026-10-06-gemini-recovery-audit": {
+      "path": "reports/review/2026-10-06-gemini-recovery-audit/audit_manifest.json",
+      "result": "Follow-up static audit complete; identified findings R1-R10; GCC provenance NOT_VERIFIED; artifact integrity violation in Firmware/build; simulation/FPGA gates remain NOT_VERIFIED"
+    },
+    "full_soc_co_simulation": {
+      "status": "NOT_VERIFIED (simulation runner, testbench, and compiler provenance under repair in Tasks 2-4)"
+    }
+  }
+}

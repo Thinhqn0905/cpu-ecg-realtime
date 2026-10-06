@@ -1,0 +1,112 @@
+%Warning-PINCONNECTEMPTY: RTL/ecg_soc/uart_controller.sv:57:6: Cell pin connected by name with empty reference: 'almost_full_o'
+   57 |     .almost_full_o  (),
+      |      ^~~~~~~~~~~~~
+                          ... Use "/* verilator lint_off PINCONNECTEMPTY */" and lint_on around source to disable this message.
+%Warning-PINCONNECTEMPTY: RTL/ecg_soc/uart_controller.sv:58:6: Cell pin connected by name with empty reference: 'overflow_err_o'
+   58 |     .overflow_err_o (),
+      |      ^~~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: RTL/ecg_soc/uart_controller.sv:62:6: Cell pin connected by name with empty reference: 'almost_empty_o'
+   62 |     .almost_empty_o (),
+      |      ^~~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: RTL/ecg_soc/uart_controller.sv:63:6: Cell pin connected by name with empty reference: 'underflow_err_o'
+   63 |     .underflow_err_o(),
+      |      ^~~~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: RTL/ecg_soc/uart_controller.sv:64:6: Cell pin connected by name with empty reference: 'level_o'
+   64 |     .level_o        ()
+      |      ^~~~~~~
+%Warning-PINCONNECTEMPTY: RTL/ecg_soc/uart_controller.sv:81:6: Cell pin connected by name with empty reference: 'almost_full_o'
+   81 |     .almost_full_o  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: RTL/ecg_soc/uart_controller.sv:82:6: Cell pin connected by name with empty reference: 'overflow_err_o'
+   82 |     .overflow_err_o (),
+      |      ^~~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: RTL/ecg_soc/uart_controller.sv:86:6: Cell pin connected by name with empty reference: 'almost_empty_o'
+   86 |     .almost_empty_o (),
+      |      ^~~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: RTL/ecg_soc/uart_controller.sv:87:6: Cell pin connected by name with empty reference: 'underflow_err_o'
+   87 |     .underflow_err_o(),
+      |      ^~~~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: RTL/ecg_soc/uart_controller.sv:88:6: Cell pin connected by name with empty reference: 'level_o'
+   88 |     .level_o        ()
+      |      ^~~~~~~
+%Warning-WIDTH: RTL/ecg_soc/sync_fifo.sv:46:36: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'count_q' generates 5 bits.
+                                              : ... In instance ecg_soc_top.u_uart.u_uart_core.u_tx_fifo
+   46 |   assign full_o         = (count_q == FIFO_DEPTH);
+      |                                    ^~
+%Warning-WIDTH: RTL/ecg_soc/sync_fifo.sv:48:36: Operator GTE expects 32 bits on the LHS, but LHS's VARREF 'count_q' generates 5 bits.
+                                              : ... In instance ecg_soc_top.u_uart.u_uart_core.u_tx_fifo
+   48 |   assign almost_full_o  = (count_q >= ALMOST_FULL_THRESH);
+      |                                    ^~
+%Warning-WIDTH: RTL/ecg_soc/sync_fifo.sv:49:36: Operator LTE expects 32 bits on the LHS, but LHS's VARREF 'count_q' generates 5 bits.
+                                              : ... In instance ecg_soc_top.u_uart.u_uart_core.u_tx_fifo
+   49 |   assign almost_empty_o = (count_q <= ALMOST_EMPTY_THRESH && count_q > '0);
+      |                                    ^~
+%Warning-WIDTH: RTL/ecg_soc/sync_fifo.sv:65:32: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'wr_ptr_q' generates 4 bits.
+                                              : ... In instance ecg_soc_top.u_uart.u_uart_core.u_tx_fifo
+   65 |           wr_ptr_d = (wr_ptr_q == FIFO_DEPTH - 1) ? '0 : wr_ptr_q + 1'b1;
+      |                                ^~
+%Warning-WIDTH: RTL/ecg_soc/sync_fifo.sv:74:32: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'rd_ptr_q' generates 4 bits.
+                                              : ... In instance ecg_soc_top.u_uart.u_uart_core.u_tx_fifo
+   74 |           rd_ptr_d = (rd_ptr_q == FIFO_DEPTH - 1) ? '0 : rd_ptr_q + 1'b1;
+      |                                ^~
+%Warning-WIDTH: RTL/ecg_soc/sync_fifo.sv:83:32: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'wr_ptr_q' generates 4 bits.
+                                              : ... In instance ecg_soc_top.u_uart.u_uart_core.u_tx_fifo
+   83 |           wr_ptr_d = (wr_ptr_q == FIFO_DEPTH - 1) ? '0 : wr_ptr_q + 1'b1;
+      |                                ^~
+%Warning-WIDTH: RTL/ecg_soc/sync_fifo.sv:87:32: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'rd_ptr_q' generates 4 bits.
+                                              : ... In instance ecg_soc_top.u_uart.u_uart_core.u_tx_fifo
+   87 |           rd_ptr_d = (rd_ptr_q == FIFO_DEPTH - 1) ? '0 : rd_ptr_q + 1'b1;
+      |                                ^~
+%Warning-WIDTH: RTL/ecg_soc/sync_fifo.sv:91:32: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'wr_ptr_q' generates 4 bits.
+                                              : ... In instance ecg_soc_top.u_uart.u_uart_core.u_tx_fifo
+   91 |           wr_ptr_d = (wr_ptr_q == FIFO_DEPTH - 1) ? '0 : wr_ptr_q + 1'b1;
+      |                                ^~
+%Warning-WIDTH: RTL/ecg_soc/sync_fifo.sv:92:32: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'rd_ptr_q' generates 4 bits.
+                                              : ... In instance ecg_soc_top.u_uart.u_uart_core.u_tx_fifo
+   92 |           rd_ptr_d = (rd_ptr_q == FIFO_DEPTH - 1) ? '0 : rd_ptr_q + 1'b1;
+      |                                ^~
+%Warning-WIDTH: RTL/ecg_soc/spi_master.sv:136:27: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'bit_cnt_q' generates 6 bits.
+                                                : ... In instance ecg_soc_top.u_spi_master.u_spi_core
+  136 |             if (bit_cnt_q == WORD_LEN - 1) begin
+      |                           ^~
+%Warning-WIDTH: RTL/ecg_soc/ecg_dma.sv:70:20: Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'wr_idx_q' generates 5 bits.
+                                            : ... In instance ecg_soc_top.u_dma
+   70 |       if (wr_idx_q == SAMPLES_PER_BANK - 1) begin
+      |                    ^~
+%Warning-WIDTH: RTL/ecg_soc/ecg_dma.sv:135:11: Operator CASE expects 12 bits on the Case expression, but Case expression's SEL generates 8 bits.
+                                             : ... In instance ecg_soc_top.u_dma
+  135 |           case (paddr_i[7:0])
+      |           ^~~~
+%Warning-UNUSED: RTL/ecg_soc/ecg_soc_top.sv:186:9: Signal is not used: 'dma_overflow_err'
+                                                 : ... In instance ecg_soc_top
+  186 |   logic dma_overflow_err;
+      |         ^~~~~~~~~~~~~~~~
+%Warning-UNUSED: RTL/ecg_soc/apb_interconnect.sv:13:23: Signal is not used: 'clk_i'
+                                                      : ... In instance ecg_soc_top.u_interconnect
+   13 |   input  logic        clk_i,
+      |                       ^~~~~
+%Warning-UNUSED: RTL/ecg_soc/apb_interconnect.sv:14:23: Signal is not used: 'rst_ni'
+                                                      : ... In instance ecg_soc_top.u_interconnect
+   14 |   input  logic        rst_ni,
+      |                       ^~~~~~
+%Warning-UNUSED: RTL/ecg_soc/ecg_dma.sv:21:23: Bits of signal are not used: 'pwdata_i'[31:2]
+                                             : ... In instance ecg_soc_top.u_dma
+   21 |   input  logic [31:0] pwdata_i,
+      |                       ^~~~~~~~
+%Warning-UNUSED: RTL/ecg_soc/gpio_apb.sv:20:33: Bits of signal are not used: 'pwdata_i'[31:8]
+                                              : ... In instance ecg_soc_top.u_gpio
+   20 |   input  logic [31:0]           pwdata_i,
+      |                                 ^~~~~~~~
+%Warning-UNUSED: RTL/ecg_soc/uart_apb.sv:20:23: Bits of signal are not used: 'pwdata_i'[31:16]
+                                              : ... In instance ecg_soc_top.u_uart
+   20 |   input  logic [31:0] pwdata_i,
+      |                       ^~~~~~~~
+%Warning-UNUSED: RTL/ecg_soc/uart_apb.sv:41:16: Signal is not used: 'tx_ready'
+                                              : ... In instance ecg_soc_top.u_uart
+   41 |   logic        tx_ready;
+      |                ^~~~~~~~
+%Warning-UNUSED: RTL/ecg_soc/uart_apb.sv:43:16: Signal is not used: 'rx_valid'
+                                              : ... In instance ecg_soc_top.u_uart
+   43 |   logic        rx_valid;
+      |                ^~~~~~~~
+%Error: Exiting due to 30 warning(s)

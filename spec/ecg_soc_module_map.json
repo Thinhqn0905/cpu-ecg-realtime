@@ -1,0 +1,126 @@
+{
+  "project": "RISC-V ECG Data Acquisition SoC",
+  "generated_date": "2026-10-06",
+  "modules": [
+    {
+      "name": "ecg_soc_pkg",
+      "file": "RTL/ecg_soc/ecg_soc_pkg.sv",
+      "type": "package",
+      "description": "Global register offsets, base addresses, status bit definitions",
+      "requirements": ["REQ-SYS-001"],
+      "testcases": ["TC-001"]
+    },
+    {
+      "name": "sync_fifo",
+      "file": "RTL/ecg_soc/sync_fifo.sv",
+      "type": "submodule",
+      "description": "Synchronous parameterized FIFO with watermark flags and overflow guard",
+      "requirements": ["REQ-BUF-001", "REQ-BUF-004"],
+      "testcases": ["TC-010"]
+    },
+    {
+      "name": "spi_master",
+      "file": "RTL/ecg_soc/spi_master.sv",
+      "type": "core",
+      "description": "ADS1292R SPI engine with configurable clock divider, Mode 1 support, and 24-bit words",
+      "requirements": ["REQ-SPI-001", "REQ-SPI-002", "REQ-SPI-003", "REQ-SPI-004", "REQ-SPI-005"],
+      "testcases": ["TC-002", "TC-003", "TC-007"]
+    },
+    {
+      "name": "spi_master_apb",
+      "file": "RTL/ecg_soc/spi_master_apb.sv",
+      "type": "wrapper",
+      "description": "APB3 slave interface wrapper for SPI master",
+      "requirements": ["REQ-APB-001", "REQ-SPI-002"],
+      "testcases": ["TC-001", "TC-002"]
+    },
+    {
+      "name": "uart_controller",
+      "file": "RTL/ecg_soc/uart_controller.sv",
+      "type": "core",
+      "description": "8N1 UART transceiver with programmable baud rate generator and TX/RX FIFOs",
+      "requirements": ["REQ-UART-001", "REQ-UART-002", "REQ-UART-003", "REQ-UART-004"],
+      "testcases": ["TC-004", "TC-008"]
+    },
+    {
+      "name": "uart_apb",
+      "file": "RTL/ecg_soc/uart_apb.sv",
+      "type": "wrapper",
+      "description": "APB3 slave interface wrapper for UART controller",
+      "requirements": ["REQ-APB-001", "REQ-UART-001"],
+      "testcases": ["TC-001", "TC-004"]
+    },
+    {
+      "name": "timer_apb",
+      "file": "RTL/ecg_soc/timer_apb.sv",
+      "type": "peripheral",
+      "description": "32-bit APB countdown/periodic timer with interrupt output",
+      "requirements": ["REQ-APB-001"],
+      "testcases": ["TC-001", "TC-005"]
+    },
+    {
+      "name": "gpio_apb",
+      "file": "RTL/ecg_soc/gpio_apb.sv",
+      "type": "peripheral",
+      "description": "8-bit bidirectional GPIO with edge/level interrupt generation",
+      "requirements": ["REQ-APB-001"],
+      "testcases": ["TC-001", "TC-006"]
+    },
+    {
+      "name": "apb_interconnect",
+      "file": "RTL/ecg_soc/apb_interconnect.sv",
+      "type": "interconnect",
+      "description": "1-to-6 APB3 address decoder, multiplexer, and default slave",
+      "requirements": ["REQ-APB-001", "REQ-APB-002", "REQ-APB-003"],
+      "testcases": ["TC-001"]
+    },
+    {
+      "name": "ecg_dma",
+      "file": "RTL/ecg_soc/ecg_dma.sv",
+      "type": "accelerator",
+      "description": "Ping-Pong BRAM buffer manager and autonomous sample transfer engine",
+      "requirements": ["REQ-BUF-002", "REQ-BUF-003", "REQ-BUF-004"],
+      "testcases": ["TC-011"]
+    },
+    {
+      "name": "ecg_soc_top",
+      "file": "RTL/ecg_soc/ecg_soc_top.sv",
+      "type": "subsystem",
+      "description": "Peripheral subsystem integration tying together APB interconnect, peripherals, and AFE I/Os",
+      "requirements": ["REQ-SYS-001", "REQ-SYS-002", "REQ-SYS-003"],
+      "testcases": ["TC-009", "TC-012"]
+    },
+    {
+      "name": "obi_to_apb",
+      "file": "RTL/ecg_soc/obi_to_apb.sv",
+      "type": "bridge",
+      "description": "Open Bus Interface to APB3 protocol bridge with zero wait-state grant",
+      "requirements": ["REQ-CORE-002"],
+      "testcases": ["TC-001", "TC-009"]
+    },
+    {
+      "name": "tcm_sram",
+      "file": "RTL/ecg_soc/tcm_sram.sv",
+      "type": "memory",
+      "description": "Dual-target Harvard 32 KB SRAM wrapper for FPGA BRAM or ASIC macros",
+      "requirements": ["REQ-CORE-003"],
+      "testcases": ["TC-001"]
+    },
+    {
+      "name": "mamba_bridge",
+      "file": "RTL/ecg_soc/mamba_bridge.sv",
+      "type": "coprocessor",
+      "description": "CNN-MAMBA accelerator bridge with APB3 control and AXI4-Stream data",
+      "requirements": ["REQ-MAMBA-001"],
+      "testcases": ["TC-MAMBA-004"]
+    },
+    {
+      "name": "cv32e40p_ecg_soc_top",
+      "file": "RTL/ecg_soc/cv32e40p_ecg_soc_top.sv",
+      "type": "top",
+      "description": "Master top-level SoC integrating CV32E40P core, Harvard TCMs, bus bridge, and peripherals",
+      "requirements": ["REQ-CORE-001", "REQ-CORE-004", "REQ-SYS-001", "REQ-SYS-002", "REQ-SYS-003"],
+      "testcases": ["TC-001", "TC-009", "TC-012"]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "command": "E:/iverilog/bin/vvp.exe reports/review/2026-10-06-source-audit/spi_original.vvp",
+  "exit_code": 0,
+  "timed_out": false,
+  "stdout": "=========================================================\nStarting ECG SoC SPI Master Testbench Verification Suite\n=========================================================\n\n[TEST] TC-001: Testing APB Register Read/Write Integrity...\n  PASS: CLKDIV register read back matches (10)\n  PASS: SAMPLE_CNT register read back matches (0x12345678)\n\n[TEST] TC-002: Triggering Manual 24-bit SPI Transfer...\n  PASS: SPI Manual Transfer completed with Busy=0, Done=1\n\n[TEST] TC-007: Enabling Auto-Mode and Verifying DRDY# Capture...\n  PASS: Caught DRDY interrupt from AFE!\n  INFO: Captured 24-bit AFE Sample Word: 0xc00000\n  PASS: Captured valid non-zero biopotential sample!\n\n=========================================================\nVERIFICATION RESULT: 5 PASSED, 0 FAILED\n>>> ALL VERIFICATION GATES PASSED <<<\n=========================================================\n\nSimulation/spi_master_tb.sv:229: $finish called at 998070000 (1ps)\n",
+  "stderr": "",
+  "elapsed_seconds": 0.5790000000270084
+}

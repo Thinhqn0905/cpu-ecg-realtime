@@ -1,0 +1,141 @@
+{
+  "project": "RISC-V ECG Data Acquisition SoC",
+  "version": "1.0",
+  "target_device": "xc7a100tcsg324-1",
+  "generated_date": "2026-10-06",
+  "requirements": [
+    {
+      "id": "REQ-SYS-001",
+      "category": "system",
+      "description": "The system clock shall operate at a nominal frequency of 50.0 MHz derived from onboard oscillator via MMCM.",
+      "target_module": "ecg_soc_top",
+      "verification_method": "Simulation / Static Timing Analysis"
+    },
+    {
+      "id": "REQ-SYS-002",
+      "category": "resource",
+      "description": "Total peripheral logic (excluding CPU and CNN-MAMBA) shall consume <= 5000 LUTs, <= 3000 FFs, <= 10 BRAM36k.",
+      "target_module": "ecg_soc_top",
+      "verification_method": "Vivado Synthesis Utilization Report"
+    },
+    {
+      "id": "REQ-SYS-003",
+      "category": "latency",
+      "description": "End-to-end sample acquisition latency from AFE DRDY# to UART transmission start shall be <= 10.0 ms.",
+      "target_module": "ecg_soc_top",
+      "verification_method": "Simulation TC-012"
+    },
+    {
+      "id": "REQ-SPI-001",
+      "category": "protocol",
+      "description": "The SPI master shall implement SPI Mode 1 (CPOL=0, CPHA=1).",
+      "target_module": "spi_master",
+      "verification_method": "SVA + Simulation TC-002"
+    },
+    {
+      "id": "REQ-SPI-002",
+      "category": "timing",
+      "description": "SCLK frequency shall be configurable via register division; default division ratio shall be 25 (2.0 MHz SCLK at 50 MHz sys_clk).",
+      "target_module": "spi_master",
+      "verification_method": "Simulation TC-002"
+    },
+    {
+      "id": "REQ-SPI-003",
+      "category": "acquisition",
+      "description": "The SPI master shall support autonomous 72-bit burst reading (24b status + 24b CH1 + 24b CH2) upon falling edge of DRDY#.",
+      "target_module": "spi_master",
+      "verification_method": "Simulation TC-003 / TC-007"
+    },
+    {
+      "id": "REQ-SPI-004",
+      "category": "timing",
+      "description": "CS# setup time (tCSSC) prior to the first SCLK edge shall be >= 4 SCLK cycles (2.0 us).",
+      "target_module": "spi_master",
+      "verification_method": "SVA Assertion"
+    },
+    {
+      "id": "REQ-SPI-005",
+      "category": "timing",
+      "description": "CS# hold time (tSCCS) following the final SCLK edge shall be >= 4 SCLK cycles (2.0 us).",
+      "target_module": "spi_master",
+      "verification_method": "SVA Assertion"
+    },
+    {
+      "id": "REQ-BUF-001",
+      "category": "buffering",
+      "description": "An asynchronous capture FIFO (depth >= 8 words x 24-bit) shall isolate the SPI SCLK domain from the system bus domain.",
+      "target_module": "sync_fifo",
+      "verification_method": "Simulation TC-010"
+    },
+    {
+      "id": "REQ-BUF-002",
+      "category": "buffering",
+      "description": "A Ping-Pong dual-bank BRAM buffer shall hold two alternating frames of 32 samples each (288 bytes per bank).",
+      "target_module": "ecg_dma",
+      "verification_method": "Simulation TC-011"
+    },
+    {
+      "id": "REQ-BUF-003",
+      "category": "interrupt",
+      "description": "The buffer controller shall assert BUFFER_HALF_FULL interrupt when Bank A fills, seamlessly switching write ingress to Bank B.",
+      "target_module": "ecg_dma",
+      "verification_method": "Simulation TC-011"
+    },
+    {
+      "id": "REQ-BUF-004",
+      "category": "safety",
+      "description": "If write ingress attempts to overwrite an unread buffer bank, an OVERFLOW_FAULT status bit shall assert and log dropped sample count.",
+      "target_module": "ecg_dma",
+      "verification_method": "Simulation TC-010"
+    },
+    {
+      "id": "REQ-UART-001",
+      "category": "protocol",
+      "description": "The UART shall support 8 data bits, 1 stop bit, no parity (8N1).",
+      "target_module": "uart_controller",
+      "verification_method": "Simulation TC-004"
+    },
+    {
+      "id": "REQ-UART-002",
+      "category": "timing",
+      "description": "Baud rate generator shall support standard rates: 115200 (divisor 434 @ 50 MHz) and 921600 (divisor 54 @ 50 MHz).",
+      "target_module": "uart_controller",
+      "verification_method": "Simulation TC-004"
+    },
+    {
+      "id": "REQ-UART-003",
+      "category": "packet",
+      "description": "Standard data packets shall use a 14-byte frame structure: [0xAA][TYPE][TIMESTAMP_32b][CH1_24b][CH2_24b][STATUS_8b][CRC8].",
+      "target_module": "uart_controller",
+      "verification_method": "Simulation TC-008"
+    },
+    {
+      "id": "REQ-UART-004",
+      "category": "integrity",
+      "description": "CRC-8 shall be computed over bytes 1 through 12 using polynomial x^8 + x^2 + x + 1 (0x07).",
+      "target_module": "uart_controller",
+      "verification_method": "Simulation TC-008"
+    },
+    {
+      "id": "REQ-APB-001",
+      "category": "bus",
+      "description": "All peripheral register read/write accesses shall adhere to the AMBA 3 APB protocol without generating protocol deadlocks.",
+      "target_module": "apb_interconnect",
+      "verification_method": "SVA + Simulation TC-001"
+    },
+    {
+      "id": "REQ-APB-002",
+      "category": "bus",
+      "description": "Unmapped address reads shall return 0x0000_0000 with PSLVERR = 0.",
+      "target_module": "apb_interconnect",
+      "verification_method": "Simulation TC-001"
+    },
+    {
+      "id": "REQ-APB-003",
+      "category": "bus",
+      "description": "Back-to-back writes with zero wait states (PREADY = 1) shall complete deterministically in 2 clock cycles.",
+      "target_module": "apb_interconnect",
+      "verification_method": "SVA Assertion"
+    }
+  ]
+}
