@@ -19,6 +19,7 @@ module cv32e40p_ecg_soc_top
   parameter int unsigned D_MEM_SIZE_BYTES = 131072, // 128 KB Data Memory (ResUMamba weights & activations)
   parameter bit          TARGET_ASIC      = 1'b0,  // 0: FPGA, 1: ASIC
   parameter bit          USE_REAL_CORE    = 1'b1,  // 0: Synthesizable bus harness, 1: cv32e40p_top
+  parameter bit          ENABLE_MAMBA     = 1'b1,  // 1: Enable hardware CNN-MAMBA coprocessor offload
   parameter string       BOOT_HEX         = ""     // Boot hex image file path
 ) (
   input  wire logic        clk_sys_i,
@@ -265,7 +266,7 @@ module cv32e40p_ecg_soc_top
   logic [7:1] irq_bundle;
 
   ecg_soc_top #(
-    .ENABLE_MAMBA(1'b0)
+    .ENABLE_MAMBA(ENABLE_MAMBA)
   ) u_peripherals (
     .clk_sys_i   (clk_sys_i),
     .rst_sys_ni  (rst_sys_ni),
@@ -325,6 +326,7 @@ module cv32e40p_ecg_soc_top
     core_irq[18]  = irq_bundle[IRQ_ID_AFE_DRDY];     // Fast 18: SPI / AFE Error
     core_irq[19]  = irq_bundle[IRQ_ID_BUFFER_READY]; // Fast 19: DMA Buffer Done
     core_irq[20]  = irq_bundle[IRQ_ID_GPIO];         // Fast 20: GPIO Alert
+    core_irq[22]  = irq_bundle[IRQ_ID_MAMBA_EVENT];  // Fast 22: Mamba Coprocessor Done
   end
 
   // ---------------------------------------------------------------------------

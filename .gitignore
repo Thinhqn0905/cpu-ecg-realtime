@@ -1,4 +1,7 @@
 # Build artifacts
+build/
+a.out
+Firmware/build/*.exe
 Firmware/build/*.o
 Firmware/build/*.elf
 Firmware/build/*.hex

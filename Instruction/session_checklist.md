@@ -8,15 +8,15 @@ Previous checklist preserved: Instruction/archive/20261006_1600/session_checklis
 ---
 
 ## Task 9.1: Memory Architecture Expansion & Quantization Pipeline
-- [in_progress] **Task 9.1.1**: Expand D-TCM to 128 KB (`0x0001_0000` - `0x0002_FFFF`) in `RTL/ecg_soc/tcm_sram.sv`, `cv32e40p_ecg_soc_top.sv`, and `Firmware/boot/link.ld`; add `TC-TCM-006` in `Simulation/tcm_router_tb.sv` and verify with `Simulation/run_tcm.ps1`.
-- [pending] **Task 9.1.2**: Extract ResUMamba-30K (`resumamba_30k.pt`) parameters, quantize to INT8 weights and INT16 FIR taps via `scripts/quantize_resumamba.py`, generate `Firmware/dsp/resumamba_weights.h`, and verify numerical parity ($> 98\%$ accuracy, MAE $< 0.05$) via `scripts/test_quantization_parity.py`.
+- [complete] **Task 9.1.1**: Expand D-TCM to 128 KB (`0x0001_0000` - `0x0002_FFFF`) in `RTL/ecg_soc/tcm_sram.sv`, `cv32e40p_ecg_soc_top.sv`, and `Firmware/boot/link.ld`; add `TC-TCM-006` in `Simulation/tcm_router_tb.sv` and verify with `Simulation/run_tcm.ps1`. (Commit e22cb8c; Verified via reports/simulation/tcm_run_20261006_080148)
+- [complete] **Task 9.1.2**: Extract ResUMamba-30K (`resumamba_30k.pt`) parameters, quantize to INT8 weights and INT16 FIR taps via `scripts/quantize_resumamba.py`, generate `Firmware/dsp/resumamba_weights.h`, and verify numerical parity ($> 98\%$ accuracy, MAE $< 0.05$) via `scripts/test_quantization_parity.py`. (Commit e5f5b83; Verified: MAE=0.01256, Parity=99.80%)
 
 ## Task 9.2: Method 1 — In-Core Software ResUMamba-30K Implementation
-- [pending] **Task 9.2.1**: Implement fixed-point biosignal conditioning library (`signal_ops.h`, `signal_ops.c`) supporting 0.5–30 Hz bandpass filtering and per-lead Z-score normalization; verify parity via `Firmware/dsp/test_signal_ops.c`.
-- [pending] **Task 9.2.2**: Implement in-core quantized ResUMamba-30K inference engine (`resumamba_infer.h`, `resumamba_infer.c`, `resumamba_kernels_pulp.S`); verify layer parity and $< 20,000,000$ cycle latency ($< 400\text{ ms}$ @ 50 MHz) via `Firmware/dsp/test_resumamba_infer.c`.
+- [complete] **Task 9.2.1**: Implement fixed-point biosignal conditioning library (`signal_ops.h`, `signal_ops.c`) supporting 0.5–30 Hz bandpass filtering and per-lead Z-score normalization; verify parity via `Firmware/dsp/test_signal_ops.c`. (Commit fbfe145; Verified: TC-SIG-001/002/003 PASS)
+- [complete] **Task 9.2.2**: Implement in-core quantized ResUMamba-30K inference engine (`resumamba_infer.h`, `resumamba_infer.c`, `resumamba_kernels_pulp.S`); verify layer parity and $< 20,000,000$ cycle latency ($< 400\text{ ms}$ @ 50 MHz) via `Firmware/dsp/test_resumamba_infer.c`. (Commit 43279f2; Verified: TC-INF-001/003/004 PASS)
 
 ## Task 9.3: Method 2 — Hardware Coprocessor Offload Bridge
-- [pending] **Task 9.3.1**: Upgrade `RTL/ecg_soc/mamba_bridge.sv` with APB register control and streaming DMA FIFO; verify via `Simulation/mamba_bridge_tb.sv`.
+- [in_progress] **Task 9.3.1**: Upgrade `RTL/ecg_soc/mamba_bridge.sv` with APB register control and streaming DMA FIFO; verify via `Simulation/mamba_bridge_tb.sv`.
 - [pending] **Task 9.3.2**: Implement 128-tap DiagSSM1D FIR sidecar accelerator (`RTL/ecg_soc/mamba_fir_sidecar.sv`); verify latency ($< 80\text{ ms}$) and output match via `Simulation/mamba_fir_tb.sv`.
 
 ## Task 9.4: Method 3 — Hierarchical Two-Stage Cascade Integration

@@ -54,10 +54,11 @@ module apb_interconnect
           4'h2: if (NUM_SLAVES > 2) slave_sel = (NUM_SLAVES'(1) << 2); // Timer
           4'h3: if (NUM_SLAVES > 3) slave_sel = (NUM_SLAVES'(1) << 3); // GPIO
           4'h4: if (NUM_SLAVES > 4) slave_sel = (NUM_SLAVES'(1) << 4); // DMA Control Plane
+          4'h5: if (NUM_SLAVES > 5) slave_sel = (NUM_SLAVES'(1) << 5); // CNN-MAMBA Coprocessor (0x1000_5xxx / 0x1A10_5xxx)
           default: unmapped_sel = 1'b1;
         endcase
       end else if (NUM_SLAVES > 5 && addr_hi == 16'h2000) begin
-        slave_sel = (NUM_SLAVES'(1) << 5); // CNN-MAMBA Coprocessor (deferred)
+        slave_sel = (NUM_SLAVES'(1) << 5); // CNN-MAMBA Coprocessor (0x2000_xxxx alias)
       end else begin
         unmapped_sel = 1'b1;
       end
@@ -73,26 +74,21 @@ module apb_interconnect
     assign s_pwdata_o[i]  = m_pwdata_i;
   end
 
-  // Read multiplexing and response routing via continuous assigns
-  assign m_prdata_o = (unmapped_sel) ? 32'h0000_0000 :
-                      (slave_sel[0])  ? s_prdata_i[0] :
-                      (NUM_SLAVES > 1 && slave_sel[1]) ? s_prdata_i[1] :
-                      (NUM_SLAVES > 2 && slave_sel[2]) ? s_prdata_i[2] :
-                      (NUM_SLAVES > 3 && slave_sel[3]) ? s_prdata_i[3] :
-                      (NUM_SLAVES > 4 && slave_sel[4]) ? s_prdata_i[4] : 32'h0000_0000;
+  // Read multiplexing and response routing via priority decode
+  always_comb begin
+    m_prdata_o  = 32'h0000_0000;
+    m_pready_o  = 1'b1;
+    m_pslverr_o = 1'b0;
 
-  assign m_pready_o = (unmapped_sel) ? 1'b1 :
-                      (slave_sel[0])  ? s_pready_i[0] :
-                      (NUM_SLAVES > 1 && slave_sel[1]) ? s_pready_i[1] :
-                      (NUM_SLAVES > 2 && slave_sel[2]) ? s_pready_i[2] :
-                      (NUM_SLAVES > 3 && slave_sel[3]) ? s_pready_i[3] :
-                      (NUM_SLAVES > 4 && slave_sel[4]) ? s_pready_i[4] : 1'b1;
-
-  assign m_pslverr_o = (unmapped_sel) ? 1'b0 :
-                       (slave_sel[0])  ? s_pslverr_i[0] :
-                       (NUM_SLAVES > 1 && slave_sel[1]) ? s_pslverr_i[1] :
-                       (NUM_SLAVES > 2 && slave_sel[2]) ? s_pslverr_i[2] :
-                       (NUM_SLAVES > 3 && slave_sel[3]) ? s_pslverr_i[3] :
-                       (NUM_SLAVES > 4 && slave_sel[4]) ? s_pslverr_i[4] : 1'b0;
+    if (!unmapped_sel) begin
+      for (int unsigned s = 0; s < NUM_SLAVES; s++) begin
+        if (slave_sel[s]) begin
+          m_prdata_o  = s_prdata_i[s];
+          m_pready_o  = s_pready_i[s];
+          m_pslverr_o = s_pslverr_i[s];
+        end
+      end
+    end
+  end
 
 endmodule : apb_interconnect
