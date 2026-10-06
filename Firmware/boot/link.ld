@@ -1,7 +1,7 @@
 /* Linker Script for CV32E40P Real-Time ECG SoC
    Dual Tightly-Coupled Memory Architecture:
-   - 32 KB I-TCM (0x0000_0000 - 0x0000_7FFF)
-   - 32 KB D-TCM (0x0001_0000 - 0x0001_7FFF)
+   - 32 KB I-TCM  (0x0000_0000 - 0x0000_7FFF)
+   - 128 KB D-TCM (0x0001_0000 - 0x0002_FFFF)
 */
 
 OUTPUT_ARCH( "riscv" )
@@ -10,7 +10,7 @@ ENTRY( _start )
 MEMORY
 {
   I_TCM (rx)  : ORIGIN = 0x00000000, LENGTH = 32K
-  D_TCM (rw)  : ORIGIN = 0x00010000, LENGTH = 32K
+  D_TCM (rw)  : ORIGIN = 0x00010000, LENGTH = 128K
 }
 
 SECTIONS

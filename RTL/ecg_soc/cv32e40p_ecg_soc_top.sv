@@ -15,8 +15,8 @@
 module cv32e40p_ecg_soc_top
   import ecg_soc_pkg::*;
 #(
-  parameter int unsigned I_MEM_SIZE_BYTES = 32768, // 32 KB Instruction Memory
-  parameter int unsigned D_MEM_SIZE_BYTES = 32768, // 32 KB Data Memory
+  parameter int unsigned I_MEM_SIZE_BYTES = 32768,  // 32 KB Instruction Memory
+  parameter int unsigned D_MEM_SIZE_BYTES = 131072, // 128 KB Data Memory (ResUMamba weights & activations)
   parameter bit          TARGET_ASIC      = 1'b0,  // 0: FPGA, 1: ASIC
   parameter bit          USE_REAL_CORE    = 1'b1,  // 0: Synthesizable bus harness, 1: cv32e40p_top
   parameter string       BOOT_HEX         = ""     // Boot hex image file path

@@ -10,13 +10,15 @@
 // - TC-TCM-003: Port B Byte-Enable Masked Write & Read in D-TCM
 // - TC-TCM-004: Memory Boundary Alignment (0x0000_7FFC, 0x0001_0000, 0x0001_7FFC)
 // - TC-TCM-005: Zero-Wait-State Grant and Single-Cycle RVALID Timing Verification
+// - TC-TCM-006: 128 KB D-TCM Expansion & Upper Boundary Access (0x0001_FFFC) Non-Aliasing
 
 `timescale 1ns / 1ps
 
 module tcm_router_tb;
 
   localparam time CLK_PERIOD = 20ns; // 50 MHz
-  localparam int MEM_SIZE = 32768;   // 32 KB
+  localparam int I_MEM_SIZE = 32768;   // 32 KB I-TCM
+  localparam int D_MEM_SIZE = 131072;  // 128 KB D-TCM (Expanded for ResUMamba-30K)
 
   logic clk;
   logic rst_n;
@@ -71,7 +73,7 @@ module tcm_router_tb;
 
   // Instantiate I-TCM DUT
   tcm_sram #(
-    .MEM_SIZE_BYTES(MEM_SIZE),
+    .MEM_SIZE_BYTES(I_MEM_SIZE),
     .TARGET_ASIC   (1'b0),
     .INIT_FILE     ("")
   ) u_itcm (
@@ -94,7 +96,7 @@ module tcm_router_tb;
 
   // Instantiate D-TCM DUT
   tcm_sram #(
-    .MEM_SIZE_BYTES(MEM_SIZE),
+    .MEM_SIZE_BYTES(D_MEM_SIZE),
     .TARGET_ASIC   (1'b0),
     .INIT_FILE     ("")
   ) u_dtcm (
@@ -304,16 +306,63 @@ module tcm_router_tb;
     end
 
     // -------------------------------------------------------------------------
+    // TC-TCM-006: 128 KB D-TCM Expansion & Upper Boundary Access (0x0001_FFFC) Non-Aliasing
+    // -------------------------------------------------------------------------
+    $display("\n[TEST] TC-TCM-006: Testing 128 KB D-TCM Expansion & Non-Aliasing Boundary Access...");
+    // 1. Write unique pattern to top of 128 KB window (offset 0x0001_FFFC)
+    @(posedge clk);
+    dtcm_data_req   <= 1'b1;
+    dtcm_data_addr  <= 32'h0001_FFFC;
+    dtcm_data_we    <= 1'b1;
+    dtcm_data_be    <= 4'b1111;
+    dtcm_data_wdata <= 32'hDEAD_128A;
+    @(posedge clk);
+
+    // 2. Read back 32 KB boundary (offset 0x0000_7FFC). Must NOT alias and still hold 0xB00DFACE!
+    dtcm_data_req   <= 1'b1;
+    dtcm_data_addr  <= 32'h0000_7FFC;
+    dtcm_data_we    <= 1'b0;
+    dtcm_data_be    <= 4'b1111;
+    @(posedge clk);
+    dtcm_data_req   <= 1'b0;
+    @(posedge clk);
+
+    if (dtcm_data_rvalid && (dtcm_data_rdata == 32'hB00D_FACE)) begin
+      $display("[INFO] TC-TCM-006: Offset 0x7FFC preserved, no aliasing detected");
+    end else begin
+      $display("[FAIL] TC-TCM-006: Aliasing detected at 0x7FFC! Read 0x%08X (expected 0xB00DFACE)", dtcm_data_rdata);
+      fail_count++;
+    end
+
+    // 3. Read back 128 KB boundary (offset 0x0001_FFFC). Must return 0xDEAD128A!
+    @(posedge clk);
+    dtcm_data_req   <= 1'b1;
+    dtcm_data_addr  <= 32'h0001_FFFC;
+    dtcm_data_we    <= 1'b0;
+    dtcm_data_be    <= 4'b1111;
+    @(posedge clk);
+    dtcm_data_req   <= 1'b0;
+    @(posedge clk);
+
+    if (dtcm_data_rvalid && (dtcm_data_rdata == 32'hDEAD_128A) && (fail_count == 0)) begin
+      $display("[PASS] TC-TCM-006: 128 KB D-TCM upper boundary (0x1FFFC) verified with zero aliasing");
+      pass_count++;
+    end else begin
+      $display("[FAIL] TC-TCM-006: 128 KB boundary read failed: got 0x%08X, expected 0xDEAD128A", dtcm_data_rdata);
+      if (fail_count == 0) fail_count++;
+    end
+
+    // -------------------------------------------------------------------------
     // Summary & Exit Gate
     // -------------------------------------------------------------------------
     $display("\n================================================================");
     $display("  TCM ROUTER TEST SUMMARY");
-    $display("  PASSED: %0d / 5", pass_count);
+    $display("  PASSED: %0d / 6", pass_count);
     $display("  FAILED: %0d", fail_count);
     $display("================================================================");
 
-    if ((fail_count == 0) && (pass_count == 5)) begin
-      $display("[SUCCESS] All 5 TCM Subsystem Tests PASSED!");
+    if ((fail_count == 0) && (pass_count == 6)) begin
+      $display("[SUCCESS] All 6 TCM Subsystem Tests PASSED!");
       $finish(0);
     end else begin
       $display("[FATAL] TCM Subsystem verification failed: pass_count=%0d, fail_count=%0d", pass_count, fail_count);

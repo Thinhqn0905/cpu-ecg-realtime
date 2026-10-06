@@ -143,7 +143,7 @@ if ($simExit -ne 0) {
 
 Write-Host "[4/4] Validating Evidence Gate with check_evidence.py..."
 $pythonExe = "python"
-$expectedCases = @("TC-TCM-001", "TC-TCM-002", "TC-TCM-003", "TC-TCM-004", "TC-TCM-005")
+$expectedCases = @("TC-TCM-001", "TC-TCM-002", "TC-TCM-003", "TC-TCM-004", "TC-TCM-005", "TC-TCM-006")
 $gateArgs = @("scripts/check_evidence.py", $JsonOut) + $expectedCases + @("--run-id", $RunId)
 $gateProcess = Start-Process -FilePath $pythonExe -ArgumentList $gateArgs -Wait -PassThru -NoNewWindow
 $gateExit = $gateProcess.ExitCode

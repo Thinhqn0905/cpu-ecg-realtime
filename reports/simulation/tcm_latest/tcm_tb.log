@@ -18,9 +18,13 @@
 [TEST] TC-TCM-005: Verifying Zero-Wait-State Grant & Single-Cycle RVALID Timing...
 [PASS] TC-TCM-005: Zero-wait-state grant and single-cycle rvalid verified
 
+[TEST] TC-TCM-006: Testing 128 KB D-TCM Expansion & Non-Aliasing Boundary Access...
+[INFO] TC-TCM-006: Offset 0x7FFC preserved, no aliasing detected
+[PASS] TC-TCM-006: 128 KB D-TCM upper boundary (0x1FFFC) verified with zero aliasing
+
 ================================================================
   TCM ROUTER TEST SUMMARY
-  PASSED: 5 / 5
+  PASSED: 6 / 6
   FAILED: 0
 ================================================================
-[SUCCESS] All 5 TCM Subsystem Tests PASSED!
+[SUCCESS] All 6 TCM Subsystem Tests PASSED!
