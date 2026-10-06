@@ -4,6 +4,8 @@ Firmware/build/*.elf
 Firmware/build/*.hex
 Firmware/build/*.dump
 Firmware/build/*.map
+Firmware/build/*.nm
+Firmware/build/*.readelf
 Firmware/build/*.bin
 Firmware/build/dsp_test
 Firmware/build/dsp_test.exe

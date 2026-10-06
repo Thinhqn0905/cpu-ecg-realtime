@@ -5,14 +5,14 @@
 # Enforces reproducible ELF, map, disassembly, and Verilog hex generation per Instruction/claim_integrity.md
 
 RISCV_PREFIX ?= riscv32-unknown-elf-
-CC      ?= $(RISCV_PREFIX)gcc
-OBJCOPY ?= $(RISCV_PREFIX)objcopy
-OBJDUMP ?= $(RISCV_PREFIX)objdump
-NM      ?= $(RISCV_PREFIX)nm
-READELF ?= $(RISCV_PREFIX)readelf
+CC      := $(RISCV_PREFIX)gcc
+OBJCOPY := $(RISCV_PREFIX)objcopy
+OBJDUMP := $(RISCV_PREFIX)objdump
+NM      := $(RISCV_PREFIX)nm
+READELF := $(RISCV_PREFIX)readelf
 PYTHON  ?= python
 
-ARCH    ?= rv32imc
+ARCH    ?= rv32imc_zicsr
 ABI     ?= ilp32
 
 CFLAGS  ?= -march=$(ARCH) -mabi=$(ABI) -O2 -g -Wall -Wextra -ffreestanding -fno-builtin -nostdlib
